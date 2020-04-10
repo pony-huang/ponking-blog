@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ponking.pblog.mapper.ArticleMapper">
+
+    <resultMap id="ArticleDTO" type="com.ponking.pblog.model.dto.ArticleEditDto">
+        <id property="id" column="id"/>
+        <result property="summary" column="summary"/>
+        <result property="image" column="image"/>
+        <result property="content" column="content"/>
+        <result property="contentMd" column="content_md"/>
+        <result property="top" column="top"/>
+        <result property="commented" column="commented"/>
+        <result property="original" column="original"/>
+        <result property="sourceUrl" column="source_url"/>
+        <result property="status" column="status"/>
+        <result property="categoryId" column="category_id"/>
+        <collection property="tagIds" javaType="ArrayList" ofType="long"  column="{id=id}"
+                    select="selectTagsByArticleId"/>
+    </resultMap>
+
+
+    <resultMap id="ArticleFront" type="com.ponking.pblog.model.dto.ArticleFrontListDto">
+        <id property="id" column="id"/>
+        <result property="summary" column="summary"/>
+        <result property="image" column="image"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="createTime" column="create_time"/>
+        <result property="top" column="top"/>
+        <result property="visits" column="visits"/>
+        <association property="category" javaType="com.ponking.pblog.model.entity.Category"
+                     column="{id=category_id}" select="selectCategoryByArticleId"/>
+    </resultMap>
+
+    <resultMap id="ArchiveColumn" type="com.ponking.pblog.model.vo.ArticleTopColumnVO">
+        <id property="id" column="id"/>
+        <result property="image" column="image"/>
+        <result property="updateTime" column="update_time"/>
+        <association property="category" javaType="com.ponking.pblog.model.entity.Category"
+                     column="{id=category_id}" select="selectCategoryByArticleId"/>
+    </resultMap>
+
+    <resultMap id="ArchivesVoMap" type="com.ponking.pblog.model.vo.ArchiveVO">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="date" column="update_time"/>
+        <association property="category" javaType="com.ponking.pblog.model.entity.Category"
+                     column="{id=category_id}" select="selectCategoryByArticleId"/>
+    </resultMap>
+    
+    <select id="selectOneDTO" resultMap="ArticleDTO">
+        SELECT 
+            id,title,summary,image,content,content_md,category_id,
+            update_time,top,commented,original,source_url,status
+        FROM 
+            blog_article
+        WHERE id = #{id}
+    </select>
+
+
+    <select id="selectArticleFrontList" resultMap="ArticleFront">
+        SELECT
+            id,title,summary,image,category_id,create_time,
+            update_time,top,visits
+        FROM
+            blog_article
+        ${ew.customSqlSegment}
+    </select>
+
+    <select id="selectArchiveColumnInfo" resultType="com.ponking.pblog.model.vo.ArchiveColumnVO">
+            select
+                update_time years,month(update_time) count
+            from
+                blog_article
+            where
+                update_time between date_sub(now(),interval 12 month) and now()
+            GROUP BY month(update_time)
+            ORDER BY month(update_time) DESC
+    </select>
+
+    <select id="selectListArticleTopColumn" resultMap="ArchiveColumn">
+        SELECT
+            id,title,image,category_id,
+            update_time
+        FROM
+            blog_article
+        ORDER BY update_time
+        lIMIT 0,5
+    </select>
+
+    <select id="selectArchiveFrontAll" resultMap="ArchivesVoMap">
+        SELECT
+                id,title,category_id,update_time
+        FROM
+                blog_article
+        ORDER BY month(update_time) DESC
+    </select>
+
+    <select id="selectTagsByArticleId" resultType="long">
+        SELECT
+            t.id
+        FROM
+            blog_article_tag at RIGHT JOIN blog_tag t on t.id = at.tag_id
+        WHERE
+            at.article_id = #{id}
+    </select>
+
+    <select id="selectCategoryByArticleId" resultType="com.ponking.pblog.model.entity.Category">
+        SELECT
+            bc.id,bc.name
+        FROM
+            blog_category bc
+        WHERE
+            bc.id = #{id}
+    </select>
+
+
+
+</mapper>

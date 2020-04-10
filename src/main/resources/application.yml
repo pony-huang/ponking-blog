@@ -1,0 +1,21 @@
+spring:
+  profiles:
+    active: dev
+  # thymeleaf模板配置
+  thymeleaf:
+    suffix: .html
+    mode: HTML5
+    encoding: utf-8
+    cache: false
+
+jwt:
+  expire-time: 12000000 #
+  secret-key: 19980606
+
+
+file:
+  commons:
+    # windows系统下访问的路径
+    uploadWindows: D:\\temp\\
+    # Linux系统下访问的路径
+    uploadLinux: /usr/images/

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+
+    <meta name="generator" content="Hexo 3.8.0"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+    <title>PAT 甲级 1014 wr 代码 - 有冇</title>
+
+
+    <meta name="description"
+          content="1014 福尔摩斯的约会 (20 分) 大侦探福尔摩斯接到一张奇怪的字条：我们约会吧！ 3485djDkxh4hhGE 2984akDfkkkkggEdsb s&amp;amp;hgsfdk d&amp;amp;Hyscvnm。大侦探很快就明白了，字条上奇怪的乱码实际上就是约会的时间星期四 14:04，因为前面两字符串中第 1 对相同的大写英文字母（大小写有区分）是第 4 个字母 D，代表星期四；第 2 对相同的">
+    <meta name="keywords" content="ACM,PAT">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="PAT 甲级 1014 wr 代码">
+    <meta property="og:url" content="www.ponking.com/2019/03/31/PAT乙级1014/index.html">
+    <meta property="og:site_name" content="有冇">
+    <meta property="og:description"
+          content="1014 福尔摩斯的约会 (20 分) 大侦探福尔摩斯接到一张奇怪的字条：我们约会吧！ 3485djDkxh4hhGE 2984akDfkkkkggEdsb s&amp;amp;hgsfdk d&amp;amp;Hyscvnm。大侦探很快就明白了，字条上奇怪的乱码实际上就是约会的时间星期四 14:04，因为前面两字符串中第 1 对相同的大写英文字母（大小写有区分）是第 4 个字母 D，代表星期四；第 2 对相同的">
+    <meta property="og:locale" content="zh-CN">
+    <meta property="og:image" content="/images/og_image.png">
+    <meta property="og:updated_time" content="2019-08-31T08:04:05.564Z">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="PAT 甲级 1014 wr 代码">
+    <meta name="twitter:description"
+          content="1014 福尔摩斯的约会 (20 分) 大侦探福尔摩斯接到一张奇怪的字条：我们约会吧！ 3485djDkxh4hhGE 2984akDfkkkkggEdsb s&amp;amp;hgsfdk d&amp;amp;Hyscvnm。大侦探很快就明白了，字条上奇怪的乱码实际上就是约会的时间星期四 14:04，因为前面两字符串中第 1 对相同的大写英文字母（大小写有区分）是第 4 个字母 D，代表星期四；第 2 对相同的">
+    <meta name="twitter:image" content="/images/og_image.png">
+
+
+    <link rel="icon" href="/images/favicon.svg">
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    <style>body > .footer, body > .navbar, body > .section {
+        opacity: 0
+    }</style>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    <link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    <link rel="stylesheet" href="/css/progressbar.css">
+    <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+<nav class="navbar navbar-main" th:replace="commons/commons :: navbar_header(0)">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/static">
+
+                <img src="/static/images/logo.svg" alt="PAT 甲级 1014 wr 代码" height="28">
+
+            </a>
+        </div>
+        <div class="navbar-menu">
+
+            <div class="navbar-start">
+
+                <a class="navbar-item"
+                   href="/static">Home</a>
+
+                <a class="navbar-item"
+                   href="/archives">Archives</a>
+
+                <a class="navbar-item"
+                   href="/categories">Categories</a>
+
+                <a class="navbar-item"
+                   href="/tags">Tags</a>
+
+                <a class="navbar-item"
+                   href="/about">About</a>
+
+            </div>
+
+            <div class="navbar-end">
+
+
+                <a class="navbar-item" target="_blank" title="Download on GitHub"
+                   href="https://github.com/ppoffice/hexo-theme-icarus">
+
+                    <i class="fab fa-github"></i>
+
+                </a>
+
+
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <!--文章详情-->
+            <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+                <div class="card">
+
+                    <div class="card-content article ">
+
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
+                                <time class="level-item has-text-grey" datetime="2019-03-31T15:35:41.000Z">2019-03-31
+                                </time>
+
+
+                                <span class="level-item has-text-grey">
+
+
+                    4 分钟 读完 (大约 604 个字)
+                </span>
+
+
+                            </div>
+                        </div>
+
+                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+
+                            PAT 甲级 1014 wr 代码
+
+                        </h1>
+                        <div class="content">
+                            <p>1014 福尔摩斯的约会 (20 分)</p>
+                            <p>大侦探福尔摩斯接到一张奇怪的字条：<code>我们约会吧！ 3485djDkxh4hhGE 2984akDfkkkkggEdsb s&amp;hgsfdk d&amp;Hyscvnm</code>。大侦探很快就明白了，字条上奇怪的乱码实际上就是约会的时间<code>星期四
+                                14:04</code>，因为前面两字符串中第 1 对相同的大写英文字母（大小写有区分）是第 4 个字母 <code>D</code>，代表星期四；第 2 对相同的字符是
+                                <code>E</code> ，那是第 5 个英文字母，代表一天里的第 14 个钟头（于是一天的 0 点到 23 点由数字 0 到 9、以及大写字母
+                                <code>A</code> 到 <code>N</code> 表示）；后面两字符串第 1 对相同的英文字母 <code>s</code> 出现在第 4 个位置（从 0
+                                开始计数）上，代表第 4 分钟。现给定两对字符串，请帮助福尔摩斯解码得到约会的时间。</p>
+                            <h3 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h3>
+                            <p>输入在 4 行中分别给出 4 个非空、不包含空格、且长度不超过 60 的字符串。</p>
+                            <h3 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h3>
+                            <p>在一行中输出约会的时间，格式为 <code>DAY HH:MM</code>，其中 <code>DAY</code> 是某星期的 3 字符缩写，即
+                                <code>MON</code> 表示星期一，<code>TUE</code> 表示星期二，<code>WED</code> 表示星期三，<code>THU</code>
+                                表示星期四，<code>FRI</code> 表示星期五，<code>SAT</code> 表示星期六，<code>SUN</code>
+                                表示星期日。题目输入保证每个测试存在唯一解。</p>
+                            <h3 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h3>
+                            <figure class="highlight plain hljs">
+                                <table>
+                                    <tr>
+                                        <td class="code">
+                                            <pre><span class="line">3485djDkxh4hhGE </span><br><span class="line">2984akDfkkkkggEdsb </span><br><span
+                                                    class="line">s&amp;hgsfdk </span><br><span class="line">d&amp;Hyscvnm</span><br></pre>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </figure>
+                            <h3 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h3>
+                            <figure class="highlight plain hljs">
+                                <table>
+                                    <tr>
+                                        <td class="code">
+                                            <pre><span class="line">THU 14:04</span><br></pre>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </figure>
+                            <p>题意:在1,2字符串找出第一对最早中出现大写字母,和找出第二对最早出现的英文字母,输出对应的字符串;在3,4字符串中找出第一对相同的英文字母,输出对应的字符串;</p>
+                            <p>分析:可以用string数组存储”MON TUE…SUN”.</p>
+                            <p>代码:(来自)**</p>
+                            <figure class="highlight c++ hljs">
+                                <table>
+                                    <tr>
+                                        <td class="code">
+                                            <pre><span class="line"><span class="hljs-meta">#<span
+                                                    class="hljs-meta-keyword">include</span> <span
+                                                    class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span
+                                                    class="line"><span class="hljs-meta">#<span
+                                                    class="hljs-meta-keyword">include</span> <span
+                                                    class="hljs-meta-string">&lt;cctype&gt;</span></span></span><br><span
+                                                    class="line"><span class="hljs-keyword">using</span> <span
+                                                    class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span
+                                                    class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span
+                                                    class="hljs-title">main</span><span
+                                                    class="hljs-params">()</span> </span>&#123;</span><br><span
+                                                    class="line">    <span class="hljs-built_in">string</span> a, b, c, d;</span><br><span
+                                                    class="line">    <span class="hljs-built_in">cin</span> &gt;&gt; a &gt;&gt; b &gt;&gt; c &gt;&gt; d;</span><br><span
+                                                    class="line">    <span class="hljs-keyword">char</span> t[<span
+                                                    class="hljs-number">2</span>];</span><br><span
+                                                    class="line">    <span
+                                                    class="hljs-keyword">int</span> pos, i = <span
+                                                    class="hljs-number">0</span>, j = <span class="hljs-number">0</span>;</span><br><span
+                                                    class="line">    <span class="hljs-keyword">while</span>(i &lt; a.length() &amp;&amp; i &lt; b.length()) &#123;</span><br><span
+                                                    class="line">        <span class="hljs-keyword">if</span> (a[i] == b[i] &amp;&amp; (a[i] &gt;= <span
+                                                    class="hljs-string">'A'</span> &amp;&amp; a[i] &lt;= <span
+                                                    class="hljs-string">'G'</span>)) &#123;</span><br><span
+                                                    class="line">            t[<span class="hljs-number">0</span>] = a[i];</span><br><span
+                                                    class="line">            <span
+                                                    class="hljs-keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span
+                                                    class="line">        i++;</span><br><span
+                                                    class="line">    &#125;</span><br><span
+                                                    class="line">    i = i + <span
+                                                    class="hljs-number">1</span>;</span><br><span class="line">    <span
+                                                    class="hljs-keyword">while</span> (i &lt; a.length() &amp;&amp; i &lt; b.length()) &#123;</span><br><span
+                                                    class="line">        <span class="hljs-keyword">if</span> (a[i] == b[i] &amp;&amp; ((a[i] &gt;= <span
+                                                    class="hljs-string">'A'</span> &amp;&amp; a[i] &lt;= <span
+                                                    class="hljs-string">'N'</span>) || <span class="hljs-built_in">isdigit</span>(a[i]))) &#123;</span><br><span
+                                                    class="line">            t[<span class="hljs-number">1</span>] = a[i];</span><br><span
+                                                    class="line">            <span
+                                                    class="hljs-keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span
+                                                    class="line">        i++;</span><br><span
+                                                    class="line">    &#125;</span><br><span class="line">    <span
+                                                    class="hljs-keyword">while</span> (j &lt; c.length() &amp;&amp; j &lt; d.length()) &#123;</span><br><span
+                                                    class="line">        <span class="hljs-keyword">if</span> (c[j] == d[j] &amp;&amp; <span
+                                                    class="hljs-built_in">isalpha</span>(c[j])) &#123;</span><br><span
+                                                    class="line">            pos = j;</span><br><span class="line">            <span
+                                                    class="hljs-keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span
+                                                    class="line">        j++;</span><br><span
+                                                    class="line">    &#125;</span><br><span class="line">    <span
+                                                    class="hljs-built_in">string</span> week[<span
+                                                    class="hljs-number">7</span>] = &#123;<span class="hljs-string">"MON "</span>, <span
+                                                    class="hljs-string">"TUE "</span>, <span
+                                                    class="hljs-string">"WED "</span>, <span
+                                                    class="hljs-string">"THU "</span>, <span
+                                                    class="hljs-string">"FRI "</span>, <span
+                                                    class="hljs-string">"SAT "</span>, <span
+                                                    class="hljs-string">"SUN "</span>&#125;;</span><br><span
+                                                    class="line">    <span class="hljs-keyword">int</span> m = <span
+                                                    class="hljs-built_in">isdigit</span>(t[<span
+                                                    class="hljs-number">1</span>]) ? t[<span
+                                                    class="hljs-number">1</span>] - <span class="hljs-string">'0'</span> : t[<span
+                                                    class="hljs-number">1</span>] - <span class="hljs-string">'A'</span> + <span
+                                                    class="hljs-number">10</span>;</span><br><span
+                                                    class="line">    <span class="hljs-built_in">cout</span> &lt;&lt; week[t[<span
+                                                    class="hljs-number">0</span>]-<span class="hljs-string">'A'</span>];</span><br><span
+                                                    class="line">    <span class="hljs-built_in">printf</span>(<span
+                                                    class="hljs-string">"%02d:%02d"</span>, m, pos);</span><br><span
+                                                    class="line">    <span class="hljs-keyword">return</span> <span
+                                                    class="hljs-number">0</span>;</span><br><span
+                                                    class="line">&#125;</span><br></pre>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </figure>
+
+                        </div>
+
+                        <div class="level is-size-7 is-uppercase">
+                            <div class="level-start">
+                                <div class="level-item">
+                                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                                    <a class="has-link-grey -link" href="/tags/ACM/">ACM</a>, <a
+                                        class="has-link-grey -link" href="/tags/PAT/">PAT</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+                        <div class="buttons is-centered">
+
+
+                            <a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+                                <span>支付宝</span>
+                                <div class="qrcode"><img src="/images/wechat.png" alt="支付宝"></div>
+                            </a>
+
+
+                            <a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+                                <span>微信</span>
+                                <div class="qrcode"><img src="/images/wechat.png" alt="微信"></div>
+                            </a>
+
+
+                            <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+                            <div class="notification is-danger">
+                                You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal.
+                                Please set it in <code>_config.yml</code>.
+                            </div>
+
+
+                            <div class="notification is-danger">
+                                You forgot to set the <code>url</code> Patreon. Please set it in
+                                <code>_config.yml</code>.
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card card-transparent">
+                    <div class="level post-navigation is-flex-wrap is-mobile">
+
+                        <div class="level-start">
+                            <a class="level level-item has-link-grey  article-nav-prev"
+                               href="/2019/04/01/thinking20190401/">
+                                <i class="level-item fas fa-chevron-left"></i>
+                                <span class="level-item">今天自我感想</span>
+                            </a>
+                        </div>
+
+
+                        <div class="level-end">
+                            <a class="level level-item has-link-grey  article-nav-next" href="/2019/03/29/PAT乙级1013/">
+                                <span class="level-item">PAT 甲级 1013 数素数</span>
+                                <i class="level-item fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <!--左侧栏-->
+            <div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky" th:replace="commons/commons :: left_column">
+            </div>
+
+
+            <!--右侧栏-->
+            <div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky" th:replace="commons/commons :: right_column">
+            </div>
+
+        </div>
+    </div>
+</section>
+<footer class="footer" th:replace="commons/commons :: footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+
+                    <img src="/static/images/logo.svg" alt="PAT 甲级 1014 wr 代码" height="28">
+
+                </a>
+                <p class="is-size-7">
+                    &copy; 2020 Ponking&nbsp;
+                    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+
+                </p>
+            </div>
+            <div class="level-end">
+
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+
+
+                    <p class="control">
+                        <a class="button is-white is-large" target="_blank" title="Creative Commons"
+                           href="https://creativecommons.org/">
+
+                            <i class="fab fa-creative-commons"></i>
+
+                        </a>
+                    </p>
+
+                    <p class="control">
+                        <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International"
+                           href="https://creativecommons.org/licenses/by/4.0/">
+
+                            <i class="fab fa-creative-commons-by"></i>
+
+                        </a>
+                    </p>
+
+                    <p class="control">
+                        <a class="button is-white is-large" target="_blank" title="Download on GitHub"
+                           href="https://github.com/ppoffice/hexo-theme-icarus">
+
+                            <i class="fab fa-github"></i>
+
+                        </a>
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+<script>
+    var IcarusThemeSettings = {
+        article: {
+            highlight: {
+                clipboard: true,
+                fold: 'unfolded'
+            }
+        }
+    };
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+<script src="/js/animation.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+        my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$', '$'],
+                    ['\\(', '\\)']
+                ]
+            }
+        });
+    });
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+<script src="/js/main.js" defer></script>
+
+
+<div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..."/>
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+
+</body>
+</html>

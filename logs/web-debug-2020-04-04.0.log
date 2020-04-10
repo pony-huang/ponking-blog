@@ -1,0 +1,375 @@
+2020-04-04 00:00:29.536 [http-nio-8080-exec-10] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 00:00:29.538 [http-nio-8080-exec-10] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 00:00:29.539 [http-nio-8080-exec-10] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 00:00:29.554 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 00:00:29.555 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 00:00:29.556 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 00:00:29.608 [http-nio-8080-exec-1] DEBUG c.ponking.pblog.mapper.ArticleMapper.selectOneDTO - ==>  Preparing: SELECT id,title,summary,image,content,content_md,category_id, update_time,top,commented,original,source_url,status FROM blog_article WHERE id = ? 
+2020-04-04 00:00:29.608 [http-nio-8080-exec-1] DEBUG c.ponking.pblog.mapper.ArticleMapper.selectOneDTO - ==> Parameters: 1(Integer)
+2020-04-04 00:00:29.611 [http-nio-8080-exec-1] DEBUG c.p.p.mapper.ArticleMapper.selectTagsByArticleId - ====>  Preparing: SELECT t.id FROM blog_article_tag at RIGHT JOIN blog_tag t on t.id = at.tag_id WHERE at.article_id = ? 
+2020-04-04 00:00:29.611 [http-nio-8080-exec-1] DEBUG c.p.p.mapper.ArticleMapper.selectTagsByArticleId - ====> Parameters: 1(Long)
+2020-04-04 00:00:29.613 [http-nio-8080-exec-1] DEBUG c.p.p.mapper.ArticleMapper.selectTagsByArticleId - <====      Total: 3
+2020-04-04 00:00:29.613 [http-nio-8080-exec-1] DEBUG c.ponking.pblog.mapper.ArticleMapper.selectOneDTO - <==      Total: 1
+2020-04-04 00:00:29.832 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 00:00:29.832 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 00:00:29.832 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 00:00:29.832 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 00:00:29.833 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 00:00:29.833 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 00:04:58.539 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 00:04:58.540 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 00:04:58.541 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 00:04:58.542 [http-nio-8080-exec-6] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 00:04:58.543 [http-nio-8080-exec-6] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 00:04:58.544 [http-nio-8080-exec-6] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 00:04:58.558 [http-nio-8080-exec-7] DEBUG c.ponking.pblog.mapper.ArticleMapper.selectOneDTO - ==>  Preparing: SELECT id,title,summary,image,content,content_md,category_id, update_time,top,commented,original,source_url,status FROM blog_article WHERE id = ? 
+2020-04-04 00:04:58.558 [http-nio-8080-exec-7] DEBUG c.ponking.pblog.mapper.ArticleMapper.selectOneDTO - ==> Parameters: 1(Integer)
+2020-04-04 00:04:58.560 [http-nio-8080-exec-7] DEBUG c.p.p.mapper.ArticleMapper.selectTagsByArticleId - ====>  Preparing: SELECT t.id FROM blog_article_tag at RIGHT JOIN blog_tag t on t.id = at.tag_id WHERE at.article_id = ? 
+2020-04-04 00:04:58.560 [http-nio-8080-exec-7] DEBUG c.p.p.mapper.ArticleMapper.selectTagsByArticleId - ====> Parameters: 1(Long)
+2020-04-04 00:04:58.561 [http-nio-8080-exec-7] DEBUG c.p.p.mapper.ArticleMapper.selectTagsByArticleId - <====      Total: 3
+2020-04-04 00:04:58.561 [http-nio-8080-exec-7] DEBUG c.ponking.pblog.mapper.ArticleMapper.selectOneDTO - <==      Total: 1
+2020-04-04 00:05:00.184 [http-nio-8080-exec-10] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 00:05:00.184 [http-nio-8080-exec-10] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 00:05:00.185 [http-nio-8080-exec-10] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 00:05:00.487 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 00:05:00.487 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 00:05:00.488 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 00:06:07.008 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 00:06:07.008 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 00:06:07.009 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 00:06:07.015 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 00:06:07.015 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 00:06:07.016 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 00:06:07.308 [http-nio-8080-exec-5] DEBUG c.ponking.pblog.mapper.ArticleMapper.selectOneDTO - ==>  Preparing: SELECT id,title,summary,image,content,content_md,category_id, update_time,top,commented,original,source_url,status FROM blog_article WHERE id = ? 
+2020-04-04 00:06:07.308 [http-nio-8080-exec-5] DEBUG c.ponking.pblog.mapper.ArticleMapper.selectOneDTO - ==> Parameters: 1(Integer)
+2020-04-04 00:06:07.310 [http-nio-8080-exec-5] DEBUG c.p.p.mapper.ArticleMapper.selectTagsByArticleId - ====>  Preparing: SELECT t.id FROM blog_article_tag at RIGHT JOIN blog_tag t on t.id = at.tag_id WHERE at.article_id = ? 
+2020-04-04 00:06:07.310 [http-nio-8080-exec-5] DEBUG c.p.p.mapper.ArticleMapper.selectTagsByArticleId - ====> Parameters: 1(Long)
+2020-04-04 00:06:07.311 [http-nio-8080-exec-5] DEBUG c.p.p.mapper.ArticleMapper.selectTagsByArticleId - <====      Total: 3
+2020-04-04 00:06:07.311 [http-nio-8080-exec-5] DEBUG c.ponking.pblog.mapper.ArticleMapper.selectOneDTO - <==      Total: 1
+2020-04-04 00:07:57.854 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.TagMapper.selectPage - ==>  Preparing: SELECT COUNT(1) FROM blog_tag 
+2020-04-04 00:07:57.854 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.TagMapper.selectPage - ==> Parameters: 
+2020-04-04 00:07:57.867 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.TagMapper.selectPage - ==>  Preparing: SELECT id,name FROM blog_tag LIMIT ?,? 
+2020-04-04 00:07:57.867 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.TagMapper.selectPage - ==> Parameters: 0(Long), 10(Long)
+2020-04-04 00:07:57.868 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.TagMapper.selectPage - <==      Total: 7
+2020-04-04 16:50:03.196 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 16:50:44.878 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.UserMapper.selectById - ==>  Preparing: SELECT id,username,nickname,password,salt,email,email_md5,last_login,create_time,login_fail,is_disable FROM sys_user WHERE id=? 
+2020-04-04 16:50:44.918 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.UserMapper.selectById - ==> Parameters: 1(Long)
+2020-04-04 16:50:44.953 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.UserMapper.selectById - <==      Total: 1
+2020-04-04 16:50:56.528 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 16:50:56.529 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 16:50:56.533 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 16:50:56.694 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectPage - ==>  Preparing: SELECT COUNT(1) FROM ( SELECT id,title,summary,image,content,content_md,category_id,create_time,update_time,top,commented,original,source_url,visits,status FROM blog_article ) TOTAL 
+2020-04-04 16:50:56.694 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectPage - ==> Parameters: 
+2020-04-04 16:50:56.712 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectPage - ==>  Preparing: SELECT id,title,summary,image,content,content_md,category_id,create_time,update_time,top,commented,original,source_url,visits,status FROM blog_article LIMIT ?,? 
+2020-04-04 16:50:56.712 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectPage - ==> Parameters: 0(Long), 10(Long)
+2020-04-04 16:50:56.720 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectPage - <==      Total: 7
+2020-04-04 16:51:02.196 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 16:51:02.196 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 16:51:02.199 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 16:51:02.506 [http-nio-8080-exec-7] DEBUG c.ponking.pblog.mapper.ArticleMapper.selectOneDTO - ==>  Preparing: SELECT id,title,summary,image,content,content_md,category_id, update_time,top,commented,original,source_url,status FROM blog_article WHERE id = ? 
+2020-04-04 16:51:02.506 [http-nio-8080-exec-7] DEBUG c.ponking.pblog.mapper.ArticleMapper.selectOneDTO - ==> Parameters: 1(Integer)
+2020-04-04 16:51:02.507 [http-nio-8080-exec-6] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 16:51:02.507 [http-nio-8080-exec-6] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 16:51:02.510 [http-nio-8080-exec-6] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 16:51:02.510 [http-nio-8080-exec-7] DEBUG c.p.p.mapper.ArticleMapper.selectTagsByArticleId - ====>  Preparing: SELECT t.id FROM blog_article_tag at RIGHT JOIN blog_tag t on t.id = at.tag_id WHERE at.article_id = ? 
+2020-04-04 16:51:02.511 [http-nio-8080-exec-7] DEBUG c.p.p.mapper.ArticleMapper.selectTagsByArticleId - ====> Parameters: 1(Long)
+2020-04-04 16:51:02.520 [http-nio-8080-exec-7] DEBUG c.p.p.mapper.ArticleMapper.selectTagsByArticleId - <====      Total: 3
+2020-04-04 16:51:02.521 [http-nio-8080-exec-7] DEBUG c.ponking.pblog.mapper.ArticleMapper.selectOneDTO - <==      Total: 1
+2020-04-04 16:52:11.228 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 16:52:11.228 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 16:52:11.229 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 16:52:11.269 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 16:52:11.269 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 16:52:11.271 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 16:52:11.542 [http-nio-8080-exec-10] DEBUG c.ponking.pblog.mapper.ArticleMapper.selectOneDTO - ==>  Preparing: SELECT id,title,summary,image,content,content_md,category_id, update_time,top,commented,original,source_url,status FROM blog_article WHERE id = ? 
+2020-04-04 16:52:11.543 [http-nio-8080-exec-10] DEBUG c.ponking.pblog.mapper.ArticleMapper.selectOneDTO - ==> Parameters: 1(Integer)
+2020-04-04 16:52:11.545 [http-nio-8080-exec-10] DEBUG c.p.p.mapper.ArticleMapper.selectTagsByArticleId - ====>  Preparing: SELECT t.id FROM blog_article_tag at RIGHT JOIN blog_tag t on t.id = at.tag_id WHERE at.article_id = ? 
+2020-04-04 16:52:11.545 [http-nio-8080-exec-10] DEBUG c.p.p.mapper.ArticleMapper.selectTagsByArticleId - ====> Parameters: 1(Long)
+2020-04-04 16:52:11.546 [http-nio-8080-exec-10] DEBUG c.p.p.mapper.ArticleMapper.selectTagsByArticleId - <====      Total: 3
+2020-04-04 16:52:11.546 [http-nio-8080-exec-10] DEBUG c.ponking.pblog.mapper.ArticleMapper.selectOneDTO - <==      Total: 1
+2020-04-04 16:52:29.106 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 16:52:29.106 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 16:52:29.107 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 16:52:29.416 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 16:52:29.417 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 16:52:29.418 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 16:52:29.427 [http-nio-8080-exec-4] DEBUG c.ponking.pblog.mapper.ArticleMapper.selectOneDTO - ==>  Preparing: SELECT id,title,summary,image,content,content_md,category_id, update_time,top,commented,original,source_url,status FROM blog_article WHERE id = ? 
+2020-04-04 16:52:29.427 [http-nio-8080-exec-4] DEBUG c.ponking.pblog.mapper.ArticleMapper.selectOneDTO - ==> Parameters: 1(Integer)
+2020-04-04 16:52:29.429 [http-nio-8080-exec-4] DEBUG c.p.p.mapper.ArticleMapper.selectTagsByArticleId - ====>  Preparing: SELECT t.id FROM blog_article_tag at RIGHT JOIN blog_tag t on t.id = at.tag_id WHERE at.article_id = ? 
+2020-04-04 16:52:29.430 [http-nio-8080-exec-4] DEBUG c.p.p.mapper.ArticleMapper.selectTagsByArticleId - ====> Parameters: 1(Long)
+2020-04-04 16:52:29.431 [http-nio-8080-exec-4] DEBUG c.p.p.mapper.ArticleMapper.selectTagsByArticleId - <====      Total: 3
+2020-04-04 16:52:29.431 [http-nio-8080-exec-4] DEBUG c.ponking.pblog.mapper.ArticleMapper.selectOneDTO - <==      Total: 1
+2020-04-04 20:47:36.594 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 20:48:45.336 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 20:49:10.680 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 20:52:44.184 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 20:53:47.901 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 20:57:06.411 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 20:59:25.630 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:01:10.615 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:01:44.573 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:03:28.377 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:04:09.101 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:05:16.338 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:08:20.144 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:25:52.856 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:26:07.072 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:26:43.079 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:28:14.832 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:28:45.379 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:36:13.421 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:36:34.904 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:38:30.090 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:39:31.375 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:40:25.029 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:41:04.852 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:41:37.407 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:42:30.450 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:44:08.000 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:44:39.193 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:52:03.055 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:53:33.773 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:55:22.427 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 21:58:46.947 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.UserMapper.selectById - ==>  Preparing: SELECT id,username,nickname,password,salt,email,email_md5,last_login,create_time,login_fail,is_disable FROM sys_user WHERE id=? 
+2020-04-04 21:58:47.039 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.UserMapper.selectById - ==> Parameters: 1(Long)
+2020-04-04 21:58:47.095 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.UserMapper.selectById - <==      Total: 1
+2020-04-04 21:58:52.989 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 21:58:52.989 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 21:58:52.995 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 21:58:53.247 [http-nio-8080-exec-6] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 21:58:53.248 [http-nio-8080-exec-6] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 21:58:53.257 [http-nio-8080-exec-6] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 21:59:35.578 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 21:59:35.579 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 21:59:35.582 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 21:59:35.586 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 21:59:35.586 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 21:59:35.587 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 21:59:39.383 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 21:59:39.383 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 21:59:39.383 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 21:59:39.383 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 21:59:39.384 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 21:59:39.385 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 21:59:51.902 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.UserMapper.selectById - ==>  Preparing: SELECT id,username,nickname,password,salt,email,email_md5,last_login,create_time,login_fail,is_disable FROM sys_user WHERE id=? 
+2020-04-04 21:59:51.902 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.UserMapper.selectById - ==> Parameters: 1(Long)
+2020-04-04 21:59:51.903 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.UserMapper.selectById - <==      Total: 1
+2020-04-04 21:59:56.864 [http-nio-8080-exec-6] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 21:59:56.865 [http-nio-8080-exec-6] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 21:59:56.866 [http-nio-8080-exec-6] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 21:59:56.978 [http-nio-8080-exec-7] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 21:59:56.978 [http-nio-8080-exec-7] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 21:59:56.979 [http-nio-8080-exec-7] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 22:00:31.794 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 22:00:31.794 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 22:00:31.795 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 22:00:31.795 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 22:00:31.795 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 22:00:31.796 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 22:00:42.402 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 22:00:42.402 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 22:00:42.403 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 22:00:42.706 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 22:00:42.706 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 22:00:42.707 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 22:00:49.911 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 22:00:49.912 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 22:00:49.913 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 22:00:49.947 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 22:00:49.947 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 22:00:49.950 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 22:01:54.339 [http-nio-8080-exec-6] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 22:01:54.340 [http-nio-8080-exec-6] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 22:01:54.341 [http-nio-8080-exec-6] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 22:01:54.639 [http-nio-8080-exec-7] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 22:01:54.639 [http-nio-8080-exec-7] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 22:01:54.640 [http-nio-8080-exec-7] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 22:03:24.922 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 22:03:24.922 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 22:03:24.924 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 22:03:25.226 [http-nio-8080-exec-10] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 22:03:25.226 [http-nio-8080-exec-10] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 22:03:25.227 [http-nio-8080-exec-10] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 22:20:52.429 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 22:22:59.248 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 22:22:59.248 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 22:22:59.249 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 22:22:59.249 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 22:22:59.250 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 22:22:59.250 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 22:23:04.219 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 22:23:04.220 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 22:23:04.221 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 22:23:04.530 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 22:23:04.530 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 22:23:04.532 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 22:25:35.588 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 22:25:35.588 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 22:25:35.589 [http-nio-8080-exec-7] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 22:25:35.590 [http-nio-8080-exec-7] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 22:25:35.591 [http-nio-8080-exec-7] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 22:25:35.597 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 22:28:29.111 [http-nio-8080-exec-10] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 22:28:29.111 [http-nio-8080-exec-10] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 22:28:29.113 [http-nio-8080-exec-10] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 22:28:29.416 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 22:28:29.416 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 22:28:29.418 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 22:28:35.112 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 22:28:35.112 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 22:28:35.114 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 22:28:35.425 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 22:28:35.425 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 22:28:35.425 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 22:30:57.260 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 22:30:57.260 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 22:30:57.261 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 22:30:57.275 [http-nio-8080-exec-6] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 22:30:57.275 [http-nio-8080-exec-6] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 22:30:57.277 [http-nio-8080-exec-6] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 22:33:42.040 [http-nio-8080-exec-7] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 22:33:42.040 [http-nio-8080-exec-7] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 22:33:42.042 [http-nio-8080-exec-7] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 22:33:42.055 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 22:33:42.055 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 22:33:42.056 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 22:38:36.594 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 22:38:43.741 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 22:38:43.743 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 22:38:43.745 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 22:38:43.748 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 22:38:43.749 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 22:38:43.751 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 22:41:31.101 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 22:41:43.422 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 22:41:43.423 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 22:41:43.447 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 22:41:43.447 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 22:41:43.468 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 22:41:43.468 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 22:43:52.897 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 22:43:52.898 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 22:43:52.899 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 22:43:52.901 [http-nio-8080-exec-6] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 22:43:52.902 [http-nio-8080-exec-6] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 22:43:52.905 [http-nio-8080-exec-6] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 22:43:57.672 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 22:43:57.673 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 22:43:57.675 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 22:43:57.976 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 22:43:57.976 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 22:43:57.978 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 22:44:13.453 [http-nio-8080-exec-10] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - ==>  Preparing: SELECT COUNT( 1 ) FROM blog_article WHERE title = ? 
+2020-04-04 22:44:13.454 [http-nio-8080-exec-10] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - ==> Parameters: null
+2020-04-04 22:44:13.457 [http-nio-8080-exec-10] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - <==      Total: 1
+2020-04-04 22:44:13.461 [http-nio-8080-exec-10] DEBUG com.ponking.pblog.mapper.ArticleMapper.insert - ==>  Preparing: INSERT INTO blog_article VALUES 
+2020-04-04 22:44:13.461 [http-nio-8080-exec-10] DEBUG com.ponking.pblog.mapper.ArticleMapper.insert - ==> Parameters: 
+2020-04-04 22:47:28.300 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 22:47:28.300 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 22:47:28.303 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 22:47:28.303 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 22:47:28.304 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 22:47:28.305 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 22:47:37.002 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - ==>  Preparing: SELECT COUNT( 1 ) FROM blog_article WHERE title = ? 
+2020-04-04 22:47:37.002 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - ==> Parameters: null
+2020-04-04 22:47:37.003 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - <==      Total: 1
+2020-04-04 22:47:37.004 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.ArticleMapper.insert - ==>  Preparing: INSERT INTO blog_article VALUES 
+2020-04-04 22:47:37.004 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.ArticleMapper.insert - ==> Parameters: 
+2020-04-04 22:49:47.962 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 22:49:58.216 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 22:49:58.220 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 22:49:58.244 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 22:49:58.244 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 22:49:58.271 [http-nio-8080-exec-2] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 22:49:58.271 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 22:50:34.046 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - ==>  Preparing: SELECT COUNT( 1 ) FROM blog_article WHERE title = ? 
+2020-04-04 22:50:34.047 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - ==> Parameters: null
+2020-04-04 22:50:34.049 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - <==      Total: 1
+2020-04-04 22:50:34.068 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.ArticleMapper.insert - ==>  Preparing: INSERT INTO blog_article VALUES 
+2020-04-04 22:50:34.069 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.ArticleMapper.insert - ==> Parameters: 
+2020-04-04 22:50:46.876 [http-nio-8080-exec-7] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 22:50:46.876 [http-nio-8080-exec-7] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 22:50:46.878 [http-nio-8080-exec-7] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 22:50:46.878 [http-nio-8080-exec-6] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 22:50:46.878 [http-nio-8080-exec-6] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 22:50:46.882 [http-nio-8080-exec-6] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 22:52:27.067 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - ==>  Preparing: SELECT COUNT( 1 ) FROM blog_article WHERE title = ? 
+2020-04-04 22:52:27.068 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - ==> Parameters: null
+2020-04-04 22:52:27.069 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - <==      Total: 1
+2020-04-04 22:52:27.071 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.ArticleMapper.insert - ==>  Preparing: INSERT INTO blog_article VALUES 
+2020-04-04 22:52:27.071 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.ArticleMapper.insert - ==> Parameters: 
+2020-04-04 22:54:01.426 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 22:54:05.916 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.UserMapper.selectById - ==>  Preparing: SELECT id,username,nickname,password,salt,email,email_md5,last_login,create_time,login_fail,is_disable FROM sys_user WHERE id=? 
+2020-04-04 22:54:05.942 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.UserMapper.selectById - ==> Parameters: 1(Long)
+2020-04-04 22:54:05.966 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.UserMapper.selectById - <==      Total: 1
+2020-04-04 22:54:07.181 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 22:54:07.181 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 22:54:07.183 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 22:54:07.314 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 22:54:07.314 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 22:54:07.317 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 22:55:16.442 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - ==>  Preparing: SELECT COUNT( 1 ) FROM blog_article WHERE title = ? 
+2020-04-04 22:55:16.444 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - ==> Parameters: 123123123(String)
+2020-04-04 22:55:16.454 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - <==      Total: 1
+2020-04-04 22:55:54.721 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.ArticleMapper.insert - ==>  Preparing: INSERT INTO blog_article ( title, summary, content_md, category_id, top, commented, original, source_url, status ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+2020-04-04 22:55:54.727 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.ArticleMapper.insert - ==> Parameters: 123123123(String), 312hslhfjsdhflkjsdf(String), 123123123(String), 5(Long), 0(Integer), 0(Integer), 0(Integer), (String), 0(Integer)
+2020-04-04 22:55:54.740 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.ArticleMapper.insert - <==    Updates: 1
+2020-04-04 22:56:02.978 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.ArticleTagMapper.insert - ==>  Preparing: INSERT INTO blog_article_tag ( article_id, tag_id ) VALUES ( ?, ? ) 
+2020-04-04 22:56:02.985 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.ArticleTagMapper.insert - ==> Parameters: 1(Long), 3(Long)
+2020-04-04 22:56:02.987 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.ArticleTagMapper.insert - ==> Parameters: 1(Long), 6(Long)
+2020-04-04 22:56:44.853 [http-nio-8080-exec-7] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 22:56:44.853 [http-nio-8080-exec-7] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 22:56:44.855 [http-nio-8080-exec-7] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 22:56:44.859 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 22:56:44.859 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 22:56:44.861 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 22:57:11.959 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - ==>  Preparing: SELECT COUNT( 1 ) FROM blog_article WHERE title = ? 
+2020-04-04 22:57:11.959 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - ==> Parameters: asdafsdafasdfsdf(String)
+2020-04-04 22:57:11.960 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - <==      Total: 1
+2020-04-04 22:57:11.962 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.ArticleMapper.insert - ==>  Preparing: INSERT INTO blog_article ( title, summary, content_md, category_id, top, commented, original, source_url, status ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+2020-04-04 22:57:11.963 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.ArticleMapper.insert - ==> Parameters: asdafsdafasdfsdf(String), 1231231231231231231231231(String), dfsadfsdfasdfsadfsdfsdf
+sdfsdfsdfsdfsdfsdf(String), 7(Long), 1(Integer), 0(Integer), 1(Integer), (String), 0(Integer)
+2020-04-04 22:57:11.977 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.ArticleMapper.insert - <==    Updates: 1
+2020-04-04 22:57:11.978 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.ArticleTagMapper.insert - ==>  Preparing: INSERT INTO blog_article_tag ( article_id, tag_id ) VALUES ( ?, ? ) 
+2020-04-04 22:57:11.978 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.ArticleTagMapper.insert - ==> Parameters: 1(Long), 1(Long)
+2020-04-04 22:57:11.979 [http-nio-8080-exec-9] DEBUG com.ponking.pblog.mapper.ArticleTagMapper.insert - ==> Parameters: 1(Long), 4(Long)
+2020-04-04 23:02:01.962 [http-nio-8080-exec-10] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - ==>  Preparing: SELECT COUNT( 1 ) FROM blog_article WHERE title = ? 
+2020-04-04 23:02:01.962 [http-nio-8080-exec-10] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - ==> Parameters: asdafsdafasdfsdf(String)
+2020-04-04 23:02:01.963 [http-nio-8080-exec-10] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - <==      Total: 1
+2020-04-04 23:02:32.597 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 23:02:43.355 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 23:02:51.352 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.UserMapper.selectById - ==>  Preparing: SELECT id,username,nickname,password,salt,email,email_md5,last_login,create_time,login_fail,is_disable FROM sys_user WHERE id=? 
+2020-04-04 23:02:51.373 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.UserMapper.selectById - ==> Parameters: 1(Long)
+2020-04-04 23:02:51.396 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.UserMapper.selectById - <==      Total: 1
+2020-04-04 23:02:52.444 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 23:02:52.444 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 23:02:52.446 [http-nio-8080-exec-3] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 23:02:52.701 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 23:02:52.702 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 23:02:52.704 [http-nio-8080-exec-4] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 23:03:09.509 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - ==>  Preparing: SELECT COUNT( 1 ) FROM blog_article WHERE title = ? 
+2020-04-04 23:03:09.510 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - ==> Parameters: 发士大夫撒地方(String)
+2020-04-04 23:03:09.511 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - <==      Total: 1
+2020-04-04 23:03:09.525 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.ArticleMapper.insert - ==>  Preparing: INSERT INTO blog_article ( title, summary, content_md, category_id, top, commented, original, source_url, status ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+2020-04-04 23:03:09.526 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.ArticleMapper.insert - ==> Parameters: 发士大夫撒地方(String), 发射点发射点发生(String), 123123123(String), 3(Long), 0(Integer), 0(Integer), 0(Integer), (String), 0(Integer)
+2020-04-04 23:03:09.533 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.ArticleMapper.insert - <==    Updates: 1
+2020-04-04 23:03:27.276 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.ArticleTagMapper.insert - ==>  Preparing: INSERT INTO blog_article_tag ( article_id, tag_id ) VALUES ( ?, ? ) 
+2020-04-04 23:03:27.277 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.ArticleTagMapper.insert - ==> Parameters: 1(Long), 2(Long)
+2020-04-04 23:03:27.278 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.ArticleTagMapper.insert - ==> Parameters: 1(Long), 5(Long)
+2020-04-04 23:03:27.278 [http-nio-8080-exec-5] DEBUG com.ponking.pblog.mapper.ArticleTagMapper.insert - ==> Parameters: 1(Long), 6(Long)
+2020-04-04 23:04:03.776 [http-nio-8080-exec-7] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_tag 
+2020-04-04 23:04:03.776 [http-nio-8080-exec-7] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - ==> Parameters: 
+2020-04-04 23:04:03.778 [http-nio-8080-exec-7] DEBUG com.ponking.pblog.mapper.TagMapper.selectList - <==      Total: 7
+2020-04-04 23:04:03.805 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==>  Preparing: SELECT id,name FROM blog_category 
+2020-04-04 23:04:03.806 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - ==> Parameters: 
+2020-04-04 23:04:03.811 [http-nio-8080-exec-8] DEBUG com.ponking.pblog.mapper.CategoryMapper.selectList - <==      Total: 8
+2020-04-04 23:04:05.674 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 23:04:18.932 [restartedMain] DEBUG com.ponking.pblog.PBlogApplication - Running with Spring Boot v2.1.10.RELEASE, Spring v5.1.11.RELEASE
+2020-04-04 23:04:45.685 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - ==>  Preparing: SELECT COUNT( 1 ) FROM blog_article WHERE title = ? 
+2020-04-04 23:04:45.706 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - ==> Parameters: 出色的防守(String)
+2020-04-04 23:04:45.724 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.ArticleMapper.selectCount - <==      Total: 1
+2020-04-04 23:04:45.742 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.ArticleMapper.insert - ==>  Preparing: INSERT INTO blog_article ( title, summary, content_md, category_id, top, commented, original, source_url, status ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+2020-04-04 23:04:45.743 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.ArticleMapper.insert - ==> Parameters: 出色的防守(String), 12312312312(String), 发大水发射点发射点发(String), 3(Long), 1(Integer), 0(Integer), 0(Integer), (String), 0(Integer)
+2020-04-04 23:04:45.748 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.ArticleMapper.insert - <==    Updates: 1
+2020-04-04 23:04:45.759 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.ArticleTagMapper.insert - ==>  Preparing: INSERT INTO blog_article_tag ( article_id, tag_id ) VALUES ( ?, ? ) 
+2020-04-04 23:04:45.759 [http-nio-8080-exec-1] DEBUG com.ponking.pblog.mapper.ArticleTagMapper.insert - ==> Parameters: 12(Long), 3(Long)

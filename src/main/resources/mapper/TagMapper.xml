@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ponking.pblog.mapper.TagMapper">
+    <select id="selectTagColumnInfo" resultType="com.ponking.pblog.model.vo.TagColumnVO">
+        select t.id,t.name,count(t.id) count
+        from blog_article_tag a INNER JOIN blog_tag t on a.tag_id = t.id
+        GROUP BY t.id
+    </select>
+</mapper>

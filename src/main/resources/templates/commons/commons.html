@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+
+    <meta name="generator" content="Hexo 3.8.0"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+    <title>有冇</title>
+
+
+    <meta name="description" content="我喜欢学习，学习使我快乐">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="有冇">
+    <meta property="og:url" content="www.ponking.com/index.html">
+    <meta property="og:site_name" content="有冇">
+    <meta property="og:description" content="我喜欢学习，学习使我快乐">
+    <meta property="og:locale" content="zh-CN">
+    <meta property="og:image" content="/images/og_image.png" th:href="@{/images/og_image.png}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="有冇">
+    <meta name="twitter:description" content="我喜欢学习，学习使我快乐">
+    <meta name="twitter:image" content="/images/og_image.png" th:href="@{/images/og_image.png}">
+
+
+    <link rel="icon" href="/images/favicon.svg" th:href="@{/images/favicon.svg}">
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    <style>body > .footer, body > .navbar, body > .section {
+        opacity: 0
+    }</style>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    <link rel="stylesheet" href="/css/back-to-top.css" th:href="@{/css/back-to-top.css}">
+
+
+    <link rel="stylesheet" href="/css/progressbar.css" th:href="@{/css/progressbar.css}">
+    <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+
+    <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
+</head>
+<body class="is-3-column">
+<!--导航栏-->
+<nav class="navbar navbar-main" th:fragment="navbar_header(index)">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+
+                <img src="/images/logo.svg" alt="有冇" height="28">
+
+            </a>
+        </div>
+        <div class="navbar-menu">
+
+            <div class="navbar-start">
+
+                <a class="navbar-item" th:classappend="${index}==1?'is-active':''"
+                   href="/home">Home</a>
+
+                <a class="navbar-item" th:classappend="${index}==2?'is-active':''"
+                   href="/archives">Archives</a>
+
+                <a class="navbar-item" th:classappend="${index}==3?'is-active':''"
+                   href="/categories">Categories</a>
+
+                <a class="navbar-item" th:classappend="${index}==4?'is-active':''"
+                   href="/tags">Tags</a>
+
+                <a class="navbar-item" th:classappend="${index}==5?'is-active':''"
+                   href="/about">About</a>
+
+            </div>
+
+            <div class="navbar-end">
+
+
+                <a class="navbar-item" target="_blank" title="Download on GitHub"
+                   href="https://github.com/ppoffice/hexo-theme-icarus">
+
+                    <i class="fab fa-github"></i>
+
+                </a>
+
+
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section class="section">
+    <div class="container">
+        <div class="columns">
+
+            <!--左侧栏-->
+            <div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky" th:fragment="left_column">
+
+                <!--作者详情卡片-->
+                <div class="card widget">
+                    <div class="card-content">
+                        <nav class="level">
+                            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                                <div>
+
+                                    <figure class="image is-128x128 has-mb-6">
+                                        <img class="" src="/images/avatar.png" alt="Your name">
+                                    </figure>
+
+                                    <p class="is-size-4 is-block">
+                                        Your name
+                                    </p>
+
+
+                                    <p class="is-size-6 is-block">
+                                        Your title
+                                    </p>
+
+
+                                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                                        <span>Your location</span>
+                                    </p>
+
+                                </div>
+                            </div>
+                        </nav>
+                        <nav class="level is-mobile">
+                            <div class="level-item has-text-centered is-marginless">
+                                <div>
+                                    <p class="heading">
+                                        文章
+                                    </p>
+                                    <p class="title has-text-weight-normal">
+                                        38
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="level-item has-text-centered is-marginless">
+                                <div>
+                                    <p class="heading">
+                                        分类
+                                    </p>
+                                    <p class="title has-text-weight-normal">
+                                        9
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="level-item has-text-centered is-marginless">
+                                <div>
+                                    <p class="heading">
+                                        标签
+                                    </p>
+                                    <p class="title has-text-weight-normal">
+                                        25
+                                    </p>
+                                </div>
+                            </div>
+                        </nav>
+                        <div class="level">
+                            <a class="level-item button is-link is-rounded" href="https://github.com/ppoffice"
+                               target="_blank">
+                                关注我-new</a>
+                        </div>
+
+
+                        <div class="level is-mobile">
+
+                            <a class="level-item button is-white is-marginless" target="_blank"
+                               title="Github" href="https://github.com/ppoffice">
+
+                                <i class="fab fa-github"></i>
+
+                            </a>
+
+                            <a class="level-item button is-white is-marginless" target="_blank"
+                               title="Facebook" href="https://facebook.com">
+
+                                <i class="fab fa-facebook"></i>
+
+                            </a>
+
+                            <a class="level-item button is-white is-marginless" target="_blank"
+                               title="Twitter" href="https://twitter.com">
+
+                                <i class="fab fa-twitter"></i>
+
+                            </a>
+
+                            <a class="level-item button is-white is-marginless" target="_blank"
+                               title="Dribbble" href="https://dribbble.com">
+
+                                <i class="fab fa-dribbble"></i>
+
+                            </a>
+
+                            <a class="level-item button is-white is-marginless" target="_blank"
+                               title="RSS" href="/">
+
+                                <i class="fas fa-rss"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!--友情链接卡片-->
+                <div class="card widget">
+                    <div class="card-content">
+                        <div class="menu">
+                            <h3 class="menu-label">
+                                链接
+                            </h3>
+                            <ul class="menu-list">
+
+                                <li th:each="link:${links}">
+                                    <a class="level is-mobile" th:href="${link.url}" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item" th:text="${link.name}">Hexo</span>
+                    </span>
+                                        <span class="level-right">
+                        <span class="level-item tag" th:text="${link.type}">hexo.io</span>
+                    </span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!--分类卡片-->
+                <div class="card widget">
+                    <div class="card-content">
+                        <div class="menu">
+                            <h3 class="menu-label">
+                                分类
+                            </h3>
+                            <ul class="menu-list">
+                                <li th:each="category:${categories}">
+                                    <a class="level is-marginless" href="/categories/ACM/">
+            <span class="level-start">
+                <span class="level-item" th:text="${category.name}">ACM</span>
+            </span>
+                                        <span class="level-end">
+                <span class="level-item tag" th:text="${category.count}">4</span>
+            </span>
+                                    </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!--标签云卡片-->
+                <div class="card widget" hidden>
+                    <div class="card-content">
+                        <h3 class="menu-label">
+                            标签云
+                        </h3>
+                        <a href="/tags/ACM/" style="font-size: 16px;">ACM</a> <a href="/tags/DFS/"
+                                                                                 style="font-size: 12px;">DFS</a> <a
+                            href="/tags/Dijkstra/" style="font-size: 10px;">Dijkstra</a> <a href="/tags/Java/"
+                                                                                            style="font-size: 10px;">Java</a>
+                        <a href="/tags/MarkDown/" style="font-size: 10px;">MarkDown</a> <a href="/tags/PAT/"
+                                                                                           style="font-size: 20px;">PAT</a>
+                        <a href="/tags/Spring/" style="font-size: 14px;">Spring</a> <a href="/tags/dfs/"
+                                                                                       style="font-size: 10px;">dfs</a>
+                        <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/中等/"
+                                                                                   style="font-size: 10px;">中等</a> <a
+                            href="/tags/困难/" style="font-size: 10px;">困难</a> <a href="/tags/大小比较/"
+                                                                                style="font-size: 10px;">大小比较</a> <a
+                            href="/tags/奇偶剪枝/" style="font-size: 10px;">奇偶剪枝</a> <a href="/tags/字符串空格注意/"
+                                                                                    style="font-size: 10px;">字符串空格注意</a>
+                        <a href="/tags/学习/" style="font-size: 10px;">学习</a> <a href="/tags/心得/"
+                                                                               style="font-size: 10px;">心得</a> <a
+                            href="/tags/排名/" style="font-size: 10px;">排名</a> <a href="/tags/散列/"
+                                                                                style="font-size: 16px;">散列</a> <a
+                            href="/tags/数据溢出/" style="font-size: 10px;">数据溢出</a> <a href="/tags/数据结构/"
+                                                                                    style="font-size: 10px;">数据结构</a> <a
+                            href="/tags/最长回文子串/" style="font-size: 10px;">最长回文子串</a> <a href="/tags/深度优先搜索/"
+                                                                                        style="font-size: 12px;">深度优先搜索</a>
+                        <a href="/tags/笔记/" style="font-size: 16px;">笔记</a> <a href="/tags/简单/"
+                                                                               style="font-size: 18px;">简单</a> <a
+                            href="/tags/算法/" style="font-size: 14px;">算法</a>
+                    </div>
+                </div>
+
+                <!--隐藏的，缩进自适配-->
+                <div class="column-right-shadow is-hidden-widescreen is-sticky">
+
+                    <!--最新文章卡片-->
+                    <div class="card widget">
+                        <div class="card-content">
+                            <h3 class="menu-label">
+                                最新文章
+                            </h3>
+                            <article class="media" th:each="newArticle:${newArticles}">
+
+                                <a href="/2019/09/10/PAT甲级1040/" class="media-left">
+                                    <p class="image is-64x64">
+                                        <img class="thumbnail" src="/images/thumbnail.svg" th:src="@{${newArticle.image}}"
+                                             alt="PAT 甲级 1040 Longest Symmetric String (25 分)">
+                                    </p>
+                                </a>
+
+                                <div class="media-content">
+                                    <div class="content">
+                                        <div>
+                                            <time class="has-text-grey is-size-7 is-uppercase"
+                                                  datetime="2019-09-10T15:10:11.000Z" th:text="${#dates.format(newArticle.updateTime,'yyyy-MM-dd')}">2019-09-10
+                                            </time>
+                                        </div>
+                                        <a href="/2019/09/10/PAT甲级1040/"
+                                           class="title has-link-black-ter is-size-6 has-text-weight-normal" th:text="${newArticle.title}">PAT 甲级 1040
+                                            Longest Symmetric String (25 分)</a>
+                                        <p class="is-size-7 is-uppercase">
+                                            <a class="has-link-grey -link" href="/categories/PAT/" th:text="${newArticle.category.name}">PAT</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <!-- 归档卡片 -->
+                    <div class="card widget">
+                        <div class="card-content">
+                            <div class="menu">
+                                <h3 class="menu-label">
+                                    归档
+                                </h3>
+                                <ul class="menu-list">
+
+                                    <li th:each="archive:${archives}">
+                                        <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item" th:text="${#dates.format(archive.years,'M月 Y')}">九月 2019</span>
+                </span>
+                                            <span class="level-end">
+                    <span class="level-item tag" th:text="${archive.count}">4</span>
+                </span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--标签卡片-->
+                    <div class="card widget">
+                        <div class="card-content">
+                            <div class="menu">
+                                <h3 class="menu-label">
+                                    标签
+                                </h3>
+                                <div class="field is-grouped is-grouped-multiline">
+
+                                    <div class="control" th:each="tag:${tags}">
+                                        <a class="tags has-addons" href="/tags/ACM/">
+                                            <span class="tag" th:text="${tag.name}">ACM</span>
+                                            <span class="tag is-grey" th:text="${tag.count}">4</span>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!--右侧栏-->
+            <div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky" th:fragment="right_column">
+
+                <!--最新文章卡片-->
+                <div class="card widget">
+                    <div class="card-content">
+                        <h3 class="menu-label">
+                            最新文章
+                        </h3>
+                        <article class="media" th:each="newArticle:${newArticles}">
+
+                            <a href="/2019/09/10/PAT甲级1040/" class="media-left">
+                                <p class="image is-64x64">
+                                    <img class="thumbnail" src="/images/thumbnail.svg" th:src="@{${newArticle.image}}"
+                                         alt="PAT 甲级 1040 Longest Symmetric String (25 分)">
+                                </p>
+                            </a>
+
+                            <div class="media-content">
+                                <div class="content">
+                                    <div>
+                                        <time class="has-text-grey is-size-7 is-uppercase"
+                                              datetime="2019-09-10T15:10:11.000Z" th:text="${#dates.format(newArticle.updateTime,'yyyy-MM-dd')}">2019-09-10
+                                        </time>
+                                    </div>
+                                    <a href="/2019/09/10/PAT甲级1040/"
+                                       class="title has-link-black-ter is-size-6 has-text-weight-normal" th:text="${newArticle.title}">PAT 甲级 1040
+                                        Longest Symmetric String (25 分)</a>
+                                    <p class="is-size-7 is-uppercase">
+                                        <a class="has-link-grey -link" href="/categories/PAT/" th:text="${newArticle.category.name}">PAT</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- 归档卡片 -->
+                <div class="card widget">
+                    <div class="card-content">
+                        <div class="menu">
+                            <h3 class="menu-label">
+                                归档
+                            </h3>
+                            <ul class="menu-list">
+
+                                <li th:each="archive:${archives}">
+                                    <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item" th:text="${#dates.format(archive.years,'M月 Y')}">九月 2019</span>
+                </span>
+                                        <span class="level-end">
+                    <span class="level-item tag" th:text="${archive.count}">4</span>
+                </span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!--标签卡片-->
+                <div class="card widget">
+                    <div class="card-content">
+                        <div class="menu">
+                            <h3 class="menu-label">
+                                标签
+                            </h3>
+                            <div class="field is-grouped is-grouped-multiline">
+
+                                <div class="control" th:each="tag:${tags}">
+                                    <a class="tags has-addons" href="/tags/ACM/">
+                                        <span class="tag" th:text="${tag.name}">ACM</span>
+                                        <span class="tag is-grey" th:text="${tag.count}">4</span>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+<footer class="footer" th:fragment="footer">
+    <div class="container">
+        <div class="level">
+            <!--底部网页详情-->
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+
+                    <img src="/images/logo.svg" alt="有冇" height="28">
+
+                </a>
+                <p class="is-size-7">
+                    &copy; 2020 Ponking&nbsp;急啊急啊
+                    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+
+                </p>
+            </div>
+            <!-- 底部链接-->
+            <div class="level-end">
+
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+
+
+                    <p class="control">
+                        <a class="button is-white is-large" target="_blank" title="Creative Commons"
+                           href="https://creativecommons.org/">
+
+                            <i class="fab fa-creative-commons"></i>
+
+                        </a>
+                    </p>
+
+                    <p class="control">
+                        <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International"
+                           href="https://creativecommons.org/licenses/by/4.0/">
+
+                            <i class="fab fa-creative-commons-by"></i>
+
+                        </a>
+                    </p>
+
+                    <p class="control">
+                        <a class="button is-white is-large" target="_blank" title="Download on GitHub"
+                           href="https://github.com/ppoffice/hexo-theme-icarus">
+
+                            <i class="fab fa-github"></i>
+
+                        </a>
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+<script>
+    var IcarusThemeSettings = {
+        article: {
+            highlight: {
+                clipboard: true,
+                fold: 'unfolded'
+            }
+        }
+    };
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+<script src="/js/animation.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+        my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$', '$'],
+                    ['\\(', '\\)']
+                ]
+            }
+        });
+    });
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+<script src="/js/main.js" defer></script>
+
+
+<div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..."/>
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+
+</body>
+</html>
