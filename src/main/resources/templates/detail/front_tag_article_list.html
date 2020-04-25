@@ -7,24 +7,24 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-    <title>有冇</title>
+    <title>标签: ACM - 有冇</title>
 
 
     <meta name="description" content="我喜欢学习，学习使我快乐">
     <meta property="og:type" content="website">
     <meta property="og:title" content="有冇">
-    <meta property="og:url" content="www.ponking.com/index.html">
+    <meta property="og:url" content="www.ponking.com/tags/ACM/index.html">
     <meta property="og:site_name" content="有冇">
     <meta property="og:description" content="我喜欢学习，学习使我快乐">
     <meta property="og:locale" content="zh-CN">
-    <meta property="og:image" content="/images/og_image.png" th:href="@{/images/og_image.png}">
+    <meta property="og:image" content="/images/og_image.png">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="有冇">
     <meta name="twitter:description" content="我喜欢学习，学习使我快乐">
-    <meta name="twitter:image" content="/images/og_image.png" th:href="@{/images/og_image.png}">
+    <meta name="twitter:image" content="/images/og_image.png">
 
 
-    <link rel="icon" href="/images/favicon.svg" th:href="@{/images/favicon.svg}">
+    <link rel="icon" href="/images/favicon.svg">
 
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
@@ -46,77 +46,40 @@
           href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
 
 
-    <link rel="stylesheet" href="/css/back-to-top.css" th:href="@{/css/back-to-top.css}">
+    <link rel="stylesheet" href="/css/back-to-top.css">
 
 
-    <link rel="stylesheet" href="/css/progressbar.css" th:href="@{/css/progressbar.css}">
+    <link rel="stylesheet" href="/css/progressbar.css">
     <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
 
 
-    <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body class="is-3-column">
-<!--导航栏-->
-<nav class="navbar navbar-main" th:replace="commons/commons::navbar_header(1)">
-    <div class="container">
-        <div class="navbar-brand is-flex-center">
-            <a class="navbar-item navbar-logo" href="/">
-
-                <img src="/images/logo.svg" alt="有冇" height="28">
-
-            </a>
-        </div>
-        <div class="navbar-menu">
-
-            <div class="navbar-start">
-
-                <a class="navbar-item is-active"
-                   href="/">Home</a>
-
-                <a class="navbar-item"
-                   href="/archives">Archives</a>
-
-                <a class="navbar-item"
-                   href="/categories">Categories</a>
-
-                <a class="navbar-item"
-                   href="/tags">Tags</a>
-
-                <a class="navbar-item"
-                   href="/about">About</a>
-
-            </div>
-
-            <div class="navbar-end">
-
-
-                <a class="navbar-item" target="_blank" title="Download on GitHub"
-                   href="https://github.com/ppoffice/hexo-theme-icarus">
-
-                    <i class="fab fa-github"></i>
-
-                </a>
-
-
-                <a class="navbar-item search" title="搜索" href="javascript:;">
-                    <i class="fas fa-search"></i>
-                </a>
-
-            </div>
-        </div>
-    </div>
+<nav class="navbar navbar-main" th:replace="commons/commons :: navbar_header(0)">
 </nav>
 
 <section class="section">
     <div class="container">
         <div class="columns">
-            <!--文章列表(中间内容)-->
-            <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main" th:fragment="middle_container">
+            <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+                <div class="card">
+                    <div class="card-content">
+                        <nav class="breadcrumb" aria-label="breadcrumbs">
+                            <ul>
+                                <li><a href="/categories" th:href="@{/tags}">标签</a></li>
+
+                                <li class="is-active"><a href="#" aria-current="page" th:text="${tag.name}">ACM</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
 
                 <div class="card" th:each="article : ${articles.records}">
                     <div class="card-image">
                         <a class="image is-7by3"
-                           href="/hexo-theme-icarus/uncategorized/getting-started-with-icarus/" th:href="@{/articles/{id}(id=${article.id})}"><img
+                           href="/hexo-theme-icarus/uncategorized/getting-started-with-icarus/"
+                           th:href="@{/article/{id}(id=${article.id})}"><img
                                 class="thumbnail" src="https://i.picsum.photos/id/1002/4312/2868.jpg"
                                 th:src="@{${article.image}}"
                                 alt="Getting Started with Icarus">
@@ -126,7 +89,8 @@
                     <div class="card-content article ">
                         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                             <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-08-18T07:41:01.000Z" th:datetime="${article.updateTime}">2019-08-18
+                                <time class="level-item has-text-grey" datetime="2019-08-18T07:41:01.000Z"
+                                      th:datetime="${article.updateTime}">2019-08-18
                                 </time>
 
                                 <div class="level-item">
@@ -145,22 +109,23 @@
                         </div>
 
                         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                            <a class="has-link-black-ter" href="/2019/08/18/Spring笔记整理_01/" th:href="@{/articles/{id}(id=${article.id})}" th:text="${article.title}">
+                            <a class="has-link-black-ter" href="/2019/08/18/Spring笔记整理_01/"
+                               th:href="@{/article/{id}(id=${article.id})}" th:text="${article.title}">
                                 Spring笔记整理一
                             </a>
                         </h1>
 
                         <div class="content">
-<!--                            <h1 id="Spring框架概述">-->
-<!--                                <a href="#Spring框架概述" class="headerlink" title="Spring框架概述:"></a>-->
-<!--                                Spring框架概述:-->
-<!--                            </h1>-->
-<!--                            <p>-->
-<!--                                Spring框架是由于软件开发的复杂性而创建的。-->
-<!--                                Spring使用的是基本的JavaBean来完成以前只可能由EJB完成的事情。-->
-<!--                                然而，Spring的用途不仅仅限于服务器端的开发。-->
-<!--                                从简单性、可测试性和松耦合性角度而言，绝大部分Java应用都可以从Spring中受益。-->
-<!--                            </p>-->
+                            <!--                            <h1 id="Spring框架概述">-->
+                            <!--                                <a href="#Spring框架概述" class="headerlink" title="Spring框架概述:"></a>-->
+                            <!--                                Spring框架概述:-->
+                            <!--                            </h1>-->
+                            <!--                            <p>-->
+                            <!--                                Spring框架是由于软件开发的复杂性而创建的。-->
+                            <!--                                Spring使用的是基本的JavaBean来完成以前只可能由EJB完成的事情。-->
+                            <!--                                然而，Spring的用途不仅仅限于服务器端的开发。-->
+                            <!--                                从简单性、可测试性和松耦合性角度而言，绝大部分Java应用都可以从Spring中受益。-->
+                            <!--                            </p>-->
                             <p th:text="${article.summary}"></p>
                         </div>
 
@@ -168,7 +133,8 @@
                         <div class="level is-mobile">
                             <div class="level-start">
                                 <div class="level-item">
-                                    <a class="button is-size-7 is-light" href="/2019/08/18/Spring笔记整理_01/#more" th:href="@{/articles/{id}(id=${article.id})}">
+                                    <a class="button is-size-7 is-light" href="/2019/08/18/Spring笔记整理_01/#more"
+                                       th:href="@{/article/{id}(id=${article.id})}">
                                         阅读更多
                                     </a>
                                 </div>
@@ -181,16 +147,22 @@
 
                 <div class="card card-transparent">
                     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-                        <div class="pagination-previous" th:classappend="${articles.current<=1}?'is-invisible is-hidden-mobile':''">
-                            <a class="is-flex-grow has-text-black-ter" href="/page/0/" th:href="@{/home(page=${articles.current}-1)}">上一页</a>
+                        <div class="pagination-previous"
+                             th:classappend="${articles.current<=1}?'is-invisible is-hidden-mobile':''">
+                            <a class="is-flex-grow has-text-black-ter" href="/page/0/"
+                               th:href="@{/tags/{id}(id=${tag.id},page=${articles.current}-1)}">上一页</a>
                         </div>
-                        <div class="pagination-next" th:classappend="${articles.current>=articles.pages}?'is-invisible is-hidden-mobile':''">
-                            <a class="is-flex-grow has-text-black-ter" href="/page/2/" th:href="@{/home(page=${articles.current}+1)}">下一页</a>
+                        <div class="pagination-next"
+                             th:classappend="${articles.current>=articles.pages}?'is-invisible is-hidden-mobile':''">
+                            <a class="is-flex-grow has-text-black-ter" href="/page/2/"
+                               th:href="@{/tags/{id}(id=${tag.id},page=${articles.current}+1)}">下一页</a>
                         </div>
                         <ul class="pagination-list is-hidden-mobile">
 
                             <li th:each="i:${#numbers.sequence(articles.current-1>0?articles.current-1:1,articles.current+3>articles.pages?articles.pages:articles.current+3)}">
-                                <a class="pagination-link" href="/" th:href="@{/home(page=${i})}" th:text="${i}" th:classappend="${articles.current==i?'is-current':'has-text-black-ter'}">1</a>
+                                <a class="pagination-link" href="/" th:href="@{/tags/{id}(id=${tag.id},page=${i})}"
+                                   th:text="${i}"
+                                   th:classappend="${articles.current==i?'is-current':'has-text-black-ter'}">1</a>
                             </li>
 
                             <!--
@@ -202,22 +174,23 @@
                         </ul>
                     </nav>
                 </div>
+
+
             </div>
 
 
-            <!--左侧栏-->
-            <div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky" th:replace="commons/commons::left_column">
+            <div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky"
+                 th:replace="commons/commons :: left_column">
             </div>
 
 
-            <!--右侧栏-->
-            <div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky" th:replace="commons/commons::right_column">
+            <div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky"
+                 th:replace="commons/commons :: right_column">
             </div>
-
         </div>
     </div>
 </section>
-<footer class="footer" th:replace="commons/commons::footer">
+<footer class="footer" th:replace="commons/commons :: footer">
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
@@ -292,7 +265,10 @@
     <i class="fas fa-chevron-up"></i>
 </a>
 <script src="/js/back-to-top.js" defer></script>
+
+
 <script src="/js/main.js" defer></script>
+
 
 <div class="searchbox ins-search">
     <div class="searchbox-container ins-search-container">

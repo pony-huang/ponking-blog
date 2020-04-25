@@ -7,13 +7,13 @@ import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.common.exception.GlobalException;
 import com.ponking.pblog.model.dto.ArticleEditDto;
-import com.ponking.pblog.model.dto.ArticleFrontListDto;
+import com.ponking.pblog.model.dto.ArticleInfoDto;
+import com.ponking.pblog.model.dto.ArticleWithCategoryFrontDto;
 import com.ponking.pblog.model.entity.Article;
 import com.ponking.pblog.mapper.ArticleMapper;
 import com.ponking.pblog.model.entity.ArticleTag;
 import com.ponking.pblog.model.vo.ArchiveColumnVO;
 import com.ponking.pblog.model.vo.ArchiveVO;
-import com.ponking.pblog.model.vo.ArchivesFrontVO;
 import com.ponking.pblog.model.vo.ArticleTopColumnVO;
 import com.ponking.pblog.service.IArticleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -124,8 +124,8 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
      * @return
      */
     @Override
-    public Page<ArticleFrontListDto> getArticleFrontPage(IPage page,@Param(Constants.WRAPPER) Wrapper<ArticleFrontListDto> queryWrapper) {
-        return articleMapper.selectArticleFrontList(page,queryWrapper);
+    public Page<ArticleInfoDto> getArticleFrontPage(IPage page, @Param(Constants.WRAPPER) Wrapper<ArticleInfoDto> queryWrapper) {
+        return articleMapper.selectArticleInfoDtoList(page,queryWrapper);
     }
 
     /**
@@ -147,14 +147,24 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         return articleMapper.selectListArticleTopColumn();
     }
 
-    /**
-     * 归档页列表
-     *
-     * @return
-     */
     @Override
     public List<ArchiveVO> listArchiveFront() {
         return articleMapper.selectArchiveFrontAll();
+    }
+
+    @Override
+    public IPage<ArchiveVO> pageArchiveFront(IPage page, Wrapper<ArchiveVO> queryWrapper) {
+        return articleMapper.selectArchiveFrontPage(page,queryWrapper);
+    }
+
+    @Override
+    public IPage<ArticleInfoDto> articleInfoOfTagDtoList(IPage<ArticleInfoDto> iPage, QueryWrapper<ArticleInfoDto> wrapper) {
+        return articleMapper.selectArticleInfoOfTagDtoList(iPage,wrapper);
+    }
+
+    @Override
+    public ArticleInfoDto getArticleInfoById(Long id) {
+        return articleMapper.selectArticleInfoDtoOne(id);
     }
 
     @Override

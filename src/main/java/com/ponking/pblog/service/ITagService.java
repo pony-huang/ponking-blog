@@ -1,5 +1,10 @@
 package com.ponking.pblog.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.ponking.pblog.model.dto.ArticleInfoDto;
+import com.ponking.pblog.model.dto.ArticleWithCategoryFrontDto;
+import com.ponking.pblog.model.dto.TagInfoDto;
 import com.ponking.pblog.model.entity.Tag;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ponking.pblog.model.vo.TagColumnVO;
@@ -21,4 +26,13 @@ public interface ITagService extends IService<Tag> {
      * @return
      */
     List<TagColumnVO> listTagColumnInfo();
+
+
+    /**
+     * fdfd
+     * @param iPage
+     * @param wrapper
+     * @return
+     */
+    IPage<TagInfoDto> getArticleFrontPage(IPage<TagInfoDto> iPage, QueryWrapper<TagInfoDto> wrapper);
 }

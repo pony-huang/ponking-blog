@@ -5,7 +5,7 @@ import com.ponking.pblog.model.entity.Category;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.ArrayList;;
 import java.util.Date;
 import java.util.List;
 
@@ -20,14 +20,14 @@ public class ArchivesFrontVO {
     /**
      * 归档时间
      */
-    private Date year;
-    @JsonProperty("children")
+    private Date date;
+
     private List<ArchiveVO> archiveList = new ArrayList<>();
 
     public ArchivesFrontVO() {
     }
 
-    public ArchivesFrontVO(Date year) {
-        this.year = year;
+    public ArchivesFrontVO(Date date) {
+        this.date = date;
     }
 }

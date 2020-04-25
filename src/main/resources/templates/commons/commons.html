@@ -122,22 +122,21 @@
                                 <div>
 
                                     <figure class="image is-128x128 has-mb-6">
-                                        <img class="" src="/images/avatar.png" alt="Your name">
+                                        <img class="" src="/images/avatar.png" alt="Your name" th:src="@{${info.avatar}}">
                                     </figure>
 
-                                    <p class="is-size-4 is-block">
-                                        Your name
+                                    <p class="is-size-4 is-block" th:text="${info.name}">
                                     </p>
 
 
-                                    <p class="is-size-6 is-block">
+                                    <p class="is-size-6 is-block" th:text="${info.title}">
                                         Your title
                                     </p>
 
 
                                     <p class="is-size-6 is-flex is-flex-center has-text-grey">
                                         <i class="fas fa-map-marker-alt has-mr-7"></i>
-                                        <span>Your location</span>
+                                        <span th:text="${info.city}">Your location</span>
                                     </p>
 
                                 </div>
@@ -149,7 +148,7 @@
                                     <p class="heading">
                                         文章
                                     </p>
-                                    <p class="title has-text-weight-normal">
+                                    <p class="title has-text-weight-normal" th:text="${info.articleCount}">
                                         38
                                     </p>
                                 </div>
@@ -159,7 +158,7 @@
                                     <p class="heading">
                                         分类
                                     </p>
-                                    <p class="title has-text-weight-normal">
+                                    <p class="title has-text-weight-normal" th:text="${info.tagCount}">
                                         9
                                     </p>
                                 </div>
@@ -169,7 +168,7 @@
                                     <p class="heading">
                                         标签
                                     </p>
-                                    <p class="title has-text-weight-normal">
+                                    <p class="title has-text-weight-normal" th:text="${info.categoryCount}">
                                         25
                                     </p>
                                 </div>
@@ -178,7 +177,7 @@
                         <div class="level">
                             <a class="level-item button is-link is-rounded" href="https://github.com/ppoffice"
                                target="_blank">
-                                关注我-new</a>
+                                关注我</a>
                         </div>
 
 
@@ -258,13 +257,13 @@
                             </h3>
                             <ul class="menu-list">
                                 <li th:each="category:${categories}">
-                                    <a class="level is-marginless" href="/categories/ACM/">
-            <span class="level-start">
-                <span class="level-item" th:text="${category.name}">ACM</span>
-            </span>
-                                        <span class="level-end">
-                <span class="level-item tag" th:text="${category.count}">4</span>
-            </span>
+                                    <a class="level is-marginless" href="/categories/ACM/" th:href="@{/categories/{id}(id=${category.id})}">
+                                        <span class="level-start">
+                                            <span class="level-item" th:text="${category.name}">ACM</span>
+                                        </span>
+                                                                    <span class="level-end">
+                                            <span class="level-item tag" th:text="${category.count}">4</span>
+                                        </span>
                                     </a></li>
                             </ul>
                         </div>
@@ -334,7 +333,7 @@
                                            class="title has-link-black-ter is-size-6 has-text-weight-normal" th:text="${newArticle.title}">PAT 甲级 1040
                                             Longest Symmetric String (25 分)</a>
                                         <p class="is-size-7 is-uppercase">
-                                            <a class="has-link-grey -link" href="/categories/PAT/" th:text="${newArticle.category.name}">PAT</a>
+                                            <a class="has-link-grey -link" href="/categories/PAT/" th:href="@{/categories/{id}(id=${newArticle.category.id})}"  th:text="${newArticle.category.name}">PAT</a>
                                         </p>
                                     </div>
                                 </div>
@@ -352,13 +351,13 @@
                                 <ul class="menu-list">
 
                                     <li th:each="archive:${archives}">
-                                        <a class="level is-marginless" href="/archives/2019/09/">
-                <span class="level-start">
-                    <span class="level-item" th:text="${#dates.format(archive.years,'M月 Y')}">九月 2019</span>
-                </span>
-                                            <span class="level-end">
-                    <span class="level-item tag" th:text="${archive.count}">4</span>
-                </span>
+                                        <a class="level is-marginless" href="/archives/2019/09/" th:href="@{/archives(time=${#dates.format(archive.years,'YMM')})}">
+                                        <span class="level-start">
+                                            <span class="level-item" th:text="${#dates.format(archive.years,'M月 Y')}">九月 2019</span>
+                                        </span>
+                                        <span class="level-end">
+                                            <span class="level-item tag" th:text="${archive.count}">4</span>
+                                        </span>
                                         </a>
                                     </li>
 
@@ -404,7 +403,7 @@
                         </h3>
                         <article class="media" th:each="newArticle:${newArticles}">
 
-                            <a href="/2019/09/10/PAT甲级1040/" class="media-left">
+                            <a href="/2019/09/10/PAT甲级1040/" class="media-left" th:href="@{/articles/{id}(id=${newArticle.id})}">
                                 <p class="image is-64x64">
                                     <img class="thumbnail" src="/images/thumbnail.svg" th:src="@{${newArticle.image}}"
                                          alt="PAT 甲级 1040 Longest Symmetric String (25 分)">
@@ -418,11 +417,11 @@
                                               datetime="2019-09-10T15:10:11.000Z" th:text="${#dates.format(newArticle.updateTime,'yyyy-MM-dd')}">2019-09-10
                                         </time>
                                     </div>
-                                    <a href="/2019/09/10/PAT甲级1040/"
+                                    <a href="#" th:href="@{/articles/{id}(id=${newArticle.id})}"
                                        class="title has-link-black-ter is-size-6 has-text-weight-normal" th:text="${newArticle.title}">PAT 甲级 1040
                                         Longest Symmetric String (25 分)</a>
                                     <p class="is-size-7 is-uppercase">
-                                        <a class="has-link-grey -link" href="/categories/PAT/" th:text="${newArticle.category.name}">PAT</a>
+                                        <a class="has-link-grey -link" href="/categories/PAT/" th:href="@{/categories/{id}(id=${newArticle.category.id})}" th:text="${newArticle.category.name}">PAT</a>
                                     </p>
                                 </div>
                             </div>
@@ -440,13 +439,13 @@
                             <ul class="menu-list">
 
                                 <li th:each="archive:${archives}">
-                                    <a class="level is-marginless" href="/archives/2019/09/">
-                <span class="level-start">
-                    <span class="level-item" th:text="${#dates.format(archive.years,'M月 Y')}">九月 2019</span>
-                </span>
-                                        <span class="level-end">
-                    <span class="level-item tag" th:text="${archive.count}">4</span>
-                </span>
+                                    <a class="level is-marginless" href="/archives/2019/09/" th:href="@{/archives(time=${#dates.format(archive.years,'YMM')})}">
+                                        <span class="level-start">
+                                            <span class="level-item" th:text="${#dates.format(archive.years,'M月 Y')}">九月 2019</span>
+                                        </span>
+                                                                <span class="level-end">
+                                            <span class="level-item tag" th:text="${archive.count}">4</span>
+                                        </span>
                                     </a>
                                 </li>
 
@@ -465,7 +464,7 @@
                             <div class="field is-grouped is-grouped-multiline">
 
                                 <div class="control" th:each="tag:${tags}">
-                                    <a class="tags has-addons" href="/tags/ACM/">
+                                    <a class="tags has-addons" href="/tags/ACM/" th:href="@{/tags/{tagId}(tagId=${tag.id})}">
                                         <span class="tag" th:text="${tag.name}">ACM</span>
                                         <span class="tag is-grey" th:text="${tag.count}">4</span>
                                     </a>
@@ -492,7 +491,7 @@
 
                 </a>
                 <p class="is-size-7">
-                    &copy; 2020 Ponking&nbsp;急啊急啊
+                    &copy; 2020 Ponking&nbsp;
                     Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
 

@@ -7,11 +7,11 @@ import java.util.List;
 
 /**
  * @author Ponking
- * @ClassName CategoryDto
+ * @ClassName CategoryListDto
  * @date 2020/3/20--16:46
  **/
 @Data
-public class CategoryDto {
+public class CategoryListDto {
     /**
      * 总数
      */
@@ -22,7 +22,7 @@ public class CategoryDto {
      */
     private List<Category> items;
 
-    public CategoryDto(Integer total, List<Category> items) {
+    public CategoryListDto(Integer total, List<Category> items) {
         this.total = total;
         this.items = items;
     }

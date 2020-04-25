@@ -4,7 +4,7 @@ package com.ponking.pblog.controller.api;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.model.R;
 import com.ponking.pblog.model.entity.Category;
-import com.ponking.pblog.model.dto.CategoryDto;
+import com.ponking.pblog.model.dto.CategoryListDto;
 import com.ponking.pblog.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +37,7 @@ public class ApiCategoryController {
         List<Category> categories = categoryService.page(
                 new Page<>(page,limit)
         ).getRecords();
-        return R.success(new CategoryDto(categories.size(),categories));
+        return R.success(new CategoryListDto(categories.size(),categories));
     }
 
     /**

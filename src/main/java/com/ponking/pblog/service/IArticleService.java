@@ -1,16 +1,16 @@
 package com.ponking.pblog.service;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.model.dto.ArticleEditDto;
-import com.ponking.pblog.model.dto.ArticleFrontListDto;
+import com.ponking.pblog.model.dto.ArticleInfoDto;
+import com.ponking.pblog.model.dto.ArticleWithCategoryFrontDto;
 import com.ponking.pblog.model.entity.Article;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ponking.pblog.model.vo.ArchiveColumnVO;
 import com.ponking.pblog.model.vo.ArchiveVO;
-import com.ponking.pblog.model.vo.ArchivesFrontVO;
 import com.ponking.pblog.model.vo.ArticleTopColumnVO;
 import org.apache.ibatis.annotations.Param;
 
@@ -58,7 +58,7 @@ public interface IArticleService extends IService<Article> {
      * @param queryWrapper
      * @return
      */
-    IPage<ArticleFrontListDto> getArticleFrontPage(IPage page, @Param(Constants.WRAPPER) Wrapper<ArticleFrontListDto> queryWrapper);
+    IPage<ArticleInfoDto> getArticleFrontPage(IPage page, @Param(Constants.WRAPPER) Wrapper<ArticleInfoDto> queryWrapper);
 
     /**
      * 博客右侧栏归档列表
@@ -78,4 +78,30 @@ public interface IArticleService extends IService<Article> {
      * @return
      */
     List<ArchiveVO> listArchiveFront();
+
+
+    /**
+     * 归档页分页
+     * @param page
+     * @param queryWrapper
+     * @return
+     */
+    IPage<ArchiveVO> pageArchiveFront(IPage page, @Param(Constants.WRAPPER) Wrapper<ArchiveVO> queryWrapper);
+
+
+    /**
+     * 博客列表
+     * @param iPage
+     * @param wrapper
+     * @return
+     */
+    IPage<ArticleInfoDto> articleInfoOfTagDtoList(IPage<ArticleInfoDto> iPage, QueryWrapper<ArticleInfoDto> wrapper);
+
+
+    /**
+     * 根据id博客
+     * @param id
+     * @return
+     */
+    ArticleInfoDto getArticleInfoById(Long id);
 }

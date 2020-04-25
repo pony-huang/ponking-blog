@@ -1,11 +1,8 @@
 package com.ponking.pblog.controller.front;
 
 import com.ponking.pblog.controller.BaseController;
+import com.ponking.pblog.model.dto.ArticleInfoDto;
 import com.ponking.pblog.model.entity.Article;
-import com.ponking.pblog.model.vo.ArchiveColumnVO;
-import com.ponking.pblog.model.vo.ArticleTopColumnVO;
-import com.ponking.pblog.model.vo.CategoryColumnVO;
-import com.ponking.pblog.model.vo.TagColumnVO;
 import com.ponking.pblog.service.IArticleService;
 import com.ponking.pblog.service.ICategoryService;
 import com.ponking.pblog.service.ITagService;
@@ -14,8 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
 
 /**
  * @author Ponking
@@ -28,17 +23,12 @@ public class ArticleDetailController  extends BaseController {
     @Autowired
     private IArticleService articleService;
 
-    @Autowired
-    private ICategoryService categoryService;
 
-    @Autowired
-    private ITagService tagService;
-
-    @RequestMapping("/article/{id}")
-    public String articleDetail(Model model, @PathVariable("id") Integer id) {
-        Article article = articleService.getById(id);
+    @RequestMapping("/articles/{id}")
+    public String articleDetail(Model model, @PathVariable("id") Long id) {
+        ArticleInfoDto article = articleService.getArticleInfoById(id);
         model.addAttribute("article", article);
         getBlogInfoModel(model);
-        return "detail/article_detail";
+        return "detail/front_article_detail";
     }
 }

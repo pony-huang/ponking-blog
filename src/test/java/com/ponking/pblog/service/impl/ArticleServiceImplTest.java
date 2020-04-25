@@ -53,7 +53,7 @@ public class ArticleServiceImplTest {
         List<ArchiveVO> archivesFrontVOS = articleService.listArchiveFront();
         List<ArchivesFrontVO> archivesFrontVOList = ModelVoUtil.getArchivesFront(archivesFrontVOS);
         for (ArchivesFrontVO archivesFrontVO : archivesFrontVOList) {
-            System.out.println("------"+archivesFrontVO.getYear()+"------");
+            System.out.println("------"+archivesFrontVO.getDate()+"------");
             for (ArchiveVO data : archivesFrontVO.getArchiveList()) {
                 System.out.println(data.toString());
             }

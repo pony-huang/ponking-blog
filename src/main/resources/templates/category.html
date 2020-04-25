@@ -120,7 +120,7 @@
                             </h3>
                             <ul class="menu-list">
                                 <li th:each="category:${categories}">
-                                    <a class="level is-marginless" href="/categories/ACM/category.html" th:href="@{/categories/{categoryName}(categoryName=${category.path})}">
+                                    <a class="level is-marginless" href="/categories/ACM/category.html" th:href="@{/categories/{id}(id=${category.id})}">
                                         <span class="level-start">
                                             <span class="level-item" th:text="${category.name}">ACM</span>
                                         </span>

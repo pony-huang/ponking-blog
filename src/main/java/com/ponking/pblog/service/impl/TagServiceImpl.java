@@ -1,7 +1,11 @@
 package com.ponking.pblog.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ponking.pblog.common.exception.GlobalException;
+import com.ponking.pblog.model.dto.ArticleInfoDto;
+import com.ponking.pblog.model.dto.ArticleWithCategoryFrontDto;
+import com.ponking.pblog.model.dto.TagInfoDto;
 import com.ponking.pblog.model.entity.Tag;
 import com.ponking.pblog.mapper.TagMapper;
 import com.ponking.pblog.model.vo.TagColumnVO;
@@ -68,5 +72,10 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements ITagS
     @Override
     public List<TagColumnVO> listTagColumnInfo() {
         return tagMapper.selectTagColumnInfo();
+    }
+
+    @Override
+    public IPage<TagInfoDto> getArticleFrontPage(IPage<TagInfoDto> iPage, QueryWrapper<TagInfoDto> wrapper) {
+        return tagMapper.selectTagInfoPage(iPage,wrapper);
     }
 }

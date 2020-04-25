@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh" xmlns:th="">
 <head>
     <meta charset="utf-8"/>
 
@@ -7,12 +7,13 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-    <title>归档 - 有冇</title>
+    <title>归档: 2019/3 - 有冇</title>
+
 
     <meta name="description" content="我喜欢学习，学习使我快乐">
     <meta property="og:type" content="website">
     <meta property="og:title" content="有冇">
-    <meta property="og:url" content="www.ponking.com/archives/index.html">
+    <meta property="og:url" content="www.ponking.com/archives/2019/03/index.html">
     <meta property="og:site_name" content="有冇">
     <meta property="og:description" content="我喜欢学习，学习使我快乐">
     <meta property="og:locale" content="zh-CN">
@@ -55,7 +56,7 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body class="is-3-column">
-<nav class="navbar navbar-main" th:replace="commons/commons::navbar_header(2)">
+<nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
@@ -71,7 +72,7 @@
                 <a class="navbar-item"
                    href="/">Home</a>
 
-                <a class="navbar-item is-active"
+                <a class="navbar-item"
                    href="/archives">Archives</a>
 
                 <a class="navbar-item"
@@ -108,83 +109,175 @@
 <section class="section">
     <div class="container">
         <div class="columns">
-            <div id="template-archives" class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+            <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
 
-                <div class="card widget" th:each="archives : ${pageRecords}">
+                <div class="card widget">
                     <div class="card-content">
-                        <!--/*@thymesVar id="date" type="java.util.Date"*/-->
-                        <h3 class="tag is-link" th:text="${#dates.format(archives.date,'yyyy')}">
+                        <h3 class="tag is-link">
+                            三月 2019
                         </h3>
                         <div class="timeline">
-                            <article class="media" th:each="archive : ${archives.archiveList}">
+
+                            <article class="media">
 
                                 <div class="media-content">
                                     <div class="content">
-                                        <!--/*@thymesVar id="date" type="java.util.Date"*/-->
                                         <time class="has-text-grey is-size-7 is-block is-uppercase"
-                                              datetime="2018-08-12T13:07:59.000Z" th:text="${#dates.format(archive.date,'yyyy')}">
+                                              datetime="2019-03-31T15:35:41.000Z">2019-03-31
                                         </time>
-                                        <a href="<%= '/articles/'+archive.id %>" th:href="@{/articles/{id}(id=${archive.id})}"
-                                           class="title has-link-black-ter is-size-6 has-text-weight-normal" th:text="${archive.title}"></a>
+                                        <a href="/2019/03/31/PAT乙级1014/"
+                                           class="title has-link-black-ter is-size-6 has-text-weight-normal">PAT 甲级 1014
+                                            wr 代码</a>
                                         <div class="level article-meta is-mobile">
                                             <div class="level-left">
-                                                <div class="level-item is-size-7 is-uppercase">
-                                                    <a class="has-link-grey -link"
-                                                       href="<%= '/categories/'+archive.category.name %>" th:href="@{/categories/{name}(name=${archive.category.name})}" th:text="${archive.category.name}"></a>
-                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </article>
+
+                            <article class="media">
+
+                                <div class="media-content">
+                                    <div class="content">
+                                        <time class="has-text-grey is-size-7 is-block is-uppercase"
+                                              datetime="2019-03-29T15:04:48.000Z">2019-03-29
+                                        </time>
+                                        <a href="/2019/03/29/PAT乙级1013/"
+                                           class="title has-link-black-ter is-size-6 has-text-weight-normal">PAT 甲级 1013
+                                            数素数</a>
+                                        <div class="level article-meta is-mobile">
+                                            <div class="level-left">
+
+                                                <div class="level-item is-size-7 is-uppercase">
+                                                    <a class="has-link-grey -link" href="/categories/PAT/">PAT</a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="media">
+
+                                <div class="media-content">
+                                    <div class="content">
+                                        <time class="has-text-grey is-size-7 is-block is-uppercase"
+                                              datetime="2019-03-28T16:46:39.000Z">2019-03-29
+                                        </time>
+                                        <a href="/2019/03/29/PAT乙级1009/"
+                                           class="title has-link-black-ter is-size-6 has-text-weight-normal">PAT 甲级 1009
+                                            说反话</a>
+                                        <div class="level article-meta is-mobile">
+                                            <div class="level-left">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="media">
+
+                                <div class="media-content">
+                                    <div class="content">
+                                        <time class="has-text-grey is-size-7 is-block is-uppercase"
+                                              datetime="2019-03-27T14:57:37.000Z">2019-03-27
+                                        </time>
+                                        <a href="/2019/03/27/DataStructList/"
+                                           class="title has-link-black-ter is-size-6 has-text-weight-normal">严蔚敏单链表实现与理解</a>
+                                        <div class="level article-meta is-mobile">
+                                            <div class="level-left">
+
+                                                <div class="level-item is-size-7 is-uppercase">
+                                                    <a class="has-link-grey -link" href="/categories/数据结构/">数据结构</a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
                         </div>
                     </div>
                 </div>
 
-                <div class="card card-transparent">
-                    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-                        <div class="pagination-previous" th:classappend="${page.current<=1}?'is-invisible is-hidden-mobile':''">
-                            <a class="is-flex-grow has-text-black-ter" href="/page/0/" th:href="@{/archives(page=${page.current}-1,,time=${time})}">上一页</a>
-                        </div>
-                        <div class="pagination-next" th:classappend="${page.current>=page.pages}?'is-invisible is-hidden-mobile':''">
-                            <a class="is-flex-grow has-text-black-ter" href="/page/2/" th:href="@{/archives(page=${page.current}+1,time=${time})}">下一页</a>
-                        </div>
-                        <ul class="pagination-list is-hidden-mobile">
-
-                            <li th:each="i:${#numbers.sequence(page.current-1>0?page.current-1:1,page.current+3>page.pages?page.pages:page.current+3)}">
-                                <a class="pagination-link" href="/" th:href="@{/archives(page=${i},time=${time})}" th:text="${i}" th:classappend="${page.current==i?'is-current':'has-text-black-ter'}">1</a>
-                            </li>
-
-                            <!--
-                            <li><a class="pagination-link has-text-black-ter" href="/page/2/">2</a></li>
-                            <li><span class="pagination-ellipsis">…</span></li>
-                             <li><a class="pagination-link has-text-black-ter" href="/page/3/">3</a></li>
-                            -->
-
-                        </ul>
-                    </nav>
-                </div>
 
             </div>
 
 
-            <div class="column is-4-tablet is-4-desktop is-3-widescreen has-order-1 column-left is-sticky" th:replace="commons/commons::left_column">
+            <div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky"
+                 th:replace="commons/commons :: left_column">
             </div>
 
 
-            <div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky" th:replace="commons/commons::right_column">
-
+            <div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky"
+                 th:replace="commons/commons :: right_column">
             </div>
-
         </div>
     </div>
 </section>
-<footer class="footer" th:replace="commons/commons::footer">
+<footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+
+                    <img src="/images/logo.svg" alt="有冇" height="28">
+
+                </a>
+                <p class="is-size-7">
+                    &copy; 2020 Ponking&nbsp;
+                    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+
+                </p>
+            </div>
+            <div class="level-end">
+
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+
+
+                    <p class="control">
+                        <a class="button is-white is-large" target="_blank" title="Creative Commons"
+                           href="https://creativecommons.org/">
+
+                            <i class="fab fa-creative-commons"></i>
+
+                        </a>
+                    </p>
+
+                    <p class="control">
+                        <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International"
+                           href="https://creativecommons.org/licenses/by/4.0/">
+
+                            <i class="fab fa-creative-commons-by"></i>
+
+                        </a>
+                    </p>
+
+                    <p class="control">
+                        <a class="button is-white is-large" target="_blank" title="Download on GitHub"
+                           href="https://github.com/ppoffice/hexo-theme-icarus">
+
+                            <i class="fab fa-github"></i>
+
+                        </a>
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
-
 <script>moment.locale("zh-CN");</script>
+
 <script>
     var IcarusThemeSettings = {
         article: {
@@ -196,8 +289,13 @@
     };
 </script>
 
+
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
 <script src="/js/animation.js"></script>
+
+
 <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
 <script src="/js/gallery.js" defer></script>

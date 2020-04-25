@@ -7,11 +7,11 @@ import java.time.LocalDateTime;
 
 /**
  * @author Ponking
- * @ClassName ArticleFrontListDto
+ * @ClassName ArticleWithCategoryFrontDto
  * @date 2020/4/7--22:11
  **/
 @Data
-public class ArticleFrontListDto {
+public class ArticleWithCategoryFrontDto {
 
     private Long id;
 
