@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.model.dto.ArticleEditDto;
 import com.ponking.pblog.model.dto.ArticleInfoDto;
 import com.ponking.pblog.model.dto.ArticleWithCategoryFrontDto;
@@ -15,6 +16,7 @@ import com.ponking.pblog.model.vo.ArticleTopColumnVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -104,4 +106,12 @@ public interface IArticleService extends IService<Article> {
      * @return
      */
     ArticleInfoDto getArticleInfoById(Long id);
+
+    /**
+     * 归档
+     * @param page
+     * @param queryWrapper
+     * @return
+     */
+    IPage<ArchiveVO> pageArchiveYearMonthFront(Page page,QueryWrapper<ArchiveVO> queryWrapper);
 }

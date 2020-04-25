@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -165,6 +166,11 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     @Override
     public ArticleInfoDto getArticleInfoById(Long id) {
         return articleMapper.selectArticleInfoDtoOne(id);
+    }
+
+    @Override
+    public IPage<ArchiveVO> pageArchiveYearMonthFront(Page page,QueryWrapper<ArchiveVO> wrapper) {
+        return articleMapper.selectArticleByYearMonthDto(page,wrapper);
     }
 
     @Override

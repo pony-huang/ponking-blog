@@ -65,6 +65,12 @@
         ${ew.customSqlSegment}
     </select>
 
+    <select id="selectArticleByYearMonthDto" resultMap="ArchivesVoMap">
+        select id,title,category_id,update_time
+        from blog_article
+        ${ew.customSqlSegment}
+    </select>
+
 
     <select id="selectArticleInfoOfTagDtoList" resultMap="ArticleInfoMap">
         SELECT
@@ -84,14 +90,10 @@
     </select>
 
     <select id="selectArchiveColumnInfo" resultType="com.ponking.pblog.model.vo.ArchiveColumnVO">
-            select
-                update_time years,month(update_time) count
-            from
-                blog_article
-            where
-                update_time between date_sub(now(),interval 12 month) and now()
-            GROUP BY month(update_time)
-            ORDER BY month(update_time) DESC
+        select update_time years,count(date_format(update_time,'%Y-%M')) count
+        from blog_article
+        GROUP BY date_format(update_time,'%Y-%M')
+        ORDER BY month(update_time) ASC
     </select>
 
     <select id="selectListArticleTopColumn" resultMap="ArchiveColumn">

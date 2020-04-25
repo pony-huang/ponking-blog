@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -26,30 +27,44 @@ public class ArchivesController extends BaseController {
 
 
     @RequestMapping("/archives")
-    public String index(Model model, @RequestParam(value = "time",defaultValue = "202001")int time,
+    public String index(Model model, @RequestParam(value = "time",defaultValue = "-1")int time,
                         @RequestParam(value = "page",defaultValue = "1")int page){
         QueryWrapper<ArchiveVO> wrapper = new QueryWrapper<>();
         Calendar calendar = Calendar.getInstance();
         // 201909
-        int year = time / 100;
-        int month = time % 100;
-        calendar.set(year,month,1);
-        Date date = calendar.getTime();
-        wrapper.lt("update_time",date);
-        IPage<ArchiveVO> pageInfo = articleService.pageArchiveFront(new Page(page,4),wrapper);
-        List<ArchivesFrontVO> records = ModelVoUtil.getArchivesFront(pageInfo.getRecords());
+        Date date;
+        if(time != -1){
+            int year = time / 100;
+            int month = time % 100;
+            calendar.set(year,month-1,1);
+            date = calendar.getTime();
+            wrapper.apply("date_format(update_time,'%Y-%M') = date_format({0},'%Y-%M')",date).
+                    orderByDesc("update_time");
+
+        }else{
+            date = calendar.getTime();
+            wrapper.lt("update_time",date).
+                    orderByDesc("update_time");
+        }
+        /**
+         * 拼接 sql
+         * <p>!! 会有 sql 注入风险 !!</p>
+         * <p>例1: apply("id = 1")</p>
+         * <p>例2: apply("date_format(dateColumn,'%Y-%m-%d') = '2008-08-08'")</p>
+         * <p>例3: apply("date_format(dateColumn,'%Y-%m-%d') = {0}", LocalDate.now())</p>
+         *
+         * @param condition 执行条件
+         * @return children
+         */
+        IPage<ArchiveVO> pageInfo = articleService.pageArchiveYearMonthFront(new Page(page,4),wrapper);
+        List<ArchivesFrontVO> records = new ArrayList<>();
+        if(pageInfo.getRecords().size()>0){
+            records = ModelVoUtil.getArchivesFront(pageInfo.getRecords());
+        }
         getBlogInfoModel(model);
         model.addAttribute("pageRecords",records);
         model.addAttribute("page",pageInfo);
         model.addAttribute("time",time);
         return "archive";
-    }
-
-    @RequestMapping(value = "/archives/list",method = RequestMethod.GET)
-    @ResponseBody
-    public R list(){
-        List<ArchiveVO> archivesFrontVOS = articleService.listArchiveFront();
-        List<ArchivesFrontVO> archivesFrontList = ModelVoUtil.getArchivesFront(archivesFrontVOS);
-        return R.success(archivesFrontList);
     }
 }

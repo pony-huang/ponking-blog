@@ -15,6 +15,7 @@ import com.ponking.pblog.model.vo.ArticleTopColumnVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -60,7 +61,6 @@ public interface ArticleMapper extends BaseMapper<Article> {
      */
     IPage<ArchiveVO> selectArchiveFrontPage(IPage<ArchiveVO> page, @Param(Constants.WRAPPER) Wrapper<ArchiveVO> queryWrapper);
 
-
     /**
      * 博客主页列表
      * @param page
@@ -68,6 +68,15 @@ public interface ArticleMapper extends BaseMapper<Article> {
      * @return
      */
     Page<ArticleInfoDto> selectArticleInfoDtoList(IPage<ArticleInfoDto> page, @Param(Constants.WRAPPER) Wrapper<ArticleInfoDto> queryWrapper);
+
+
+    /**
+     * 博客主页列表()
+     * @param page
+     * @param queryWrapper
+     * @return
+     */
+    Page<ArchiveVO>  selectArticleByYearMonthDto(IPage<ArchiveVO> page, @Param(Constants.WRAPPER) Wrapper<ArchiveVO> queryWrapper);
 
 
     /**

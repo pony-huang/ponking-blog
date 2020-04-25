@@ -122,7 +122,7 @@
                                     <div class="content">
                                         <!--/*@thymesVar id="date" type="java.util.Date"*/-->
                                         <time class="has-text-grey is-size-7 is-block is-uppercase"
-                                              datetime="2018-08-12T13:07:59.000Z" th:text="${#dates.format(archive.date,'yyyy')}">
+                                              datetime="2018-08-12T13:07:59.000Z" th:text="${#dates.format(archive.date,'yyyy-MM-dd')}">
                                         </time>
                                         <a href="<%= '/articles/'+archive.id %>" th:href="@{/articles/{id}(id=${archive.id})}"
                                            class="title has-link-black-ter is-size-6 has-text-weight-normal" th:text="${archive.title}"></a>
