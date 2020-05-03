@@ -2,8 +2,9 @@ package com.ponking.pblog.mapper;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ponking.pblog.model.dto.ArticleInfoDto;
-import com.ponking.pblog.model.dto.ArticleWithCategoryFrontDto;
+import com.ponking.pblog.model.dto.ArticleDto;
+import com.ponking.pblog.model.vo.ArchiveColumnVO;
+import com.ponking.pblog.model.vo.ArchiveVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import java.util.List;
  **/
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class ArticleMapperTest {
+public class ArticleMapperTest  {
 
     @Autowired
     private ArticleMapper articleMapper;
@@ -30,9 +31,15 @@ public class ArticleMapperTest {
 
     @Test
     public void selectArticleFrontList() {
-        Page<ArticleInfoDto> articles = articleMapper.selectArticleInfoDtoList(new Page<>(1,10),new QueryWrapper<>());
-        for (ArticleInfoDto record : articles.getRecords()) {
+        Page<ArticleDto> articles = articleMapper.selectArticleDtoList(new Page<>(1,10),new QueryWrapper<>());
+        for (ArticleDto record : articles.getRecords()) {
             System.out.println(record.getTitle());
         }
+    }
+
+    @Test
+    public void selectArticleByYearMonthDto() {
+        List<ArchiveColumnVO> archiveColumnVOS = articleMapper.selectArchiveColumnInfo();
+        System.out.println(archiveColumnVOS);
     }
 }

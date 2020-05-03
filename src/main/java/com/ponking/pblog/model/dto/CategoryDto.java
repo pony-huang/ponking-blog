@@ -8,11 +8,11 @@ import java.util.List;
 
 /**
  * @author Ponking
- * @ClassName CategoryInfoDto
+ * @ClassName CategoryDto
  * @date 2020/4/24--21:22
  **/
 @Data
-public class CategoryInfoDto implements Serializable {
+public class CategoryDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;

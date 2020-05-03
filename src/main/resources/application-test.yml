@@ -1,17 +1,17 @@
 server:
-#  servlet:
-#    context-path: /dev-api
-  port: 8080
+  #  servlet:
+  #    context-path: /dev-api
+  port: 80
 
 spring:
   application:
     name: PBlog
   datasource:
     druid:
-      url: jdbc:mysql://localhost:3306/p-blog?userUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+      url: jdbc:mysql://47.115.57.48:3306/p-blog?userUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&relaxAutoCommit=true&zeroDateTimeBehavior=convertToNull
       password: root
       username: root
-      driver-class-name: com.mysql.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
   cache:
     ehcache:
       config: classpath:ehcache.xml

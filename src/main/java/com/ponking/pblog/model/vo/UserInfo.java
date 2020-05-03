@@ -1,4 +1,4 @@
-package com.ponking.pblog.model.from;
+package com.ponking.pblog.model.vo;
 
 import lombok.Data;
 

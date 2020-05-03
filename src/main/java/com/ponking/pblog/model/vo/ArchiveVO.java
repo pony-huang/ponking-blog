@@ -3,6 +3,7 @@ package com.ponking.pblog.model.vo;
 import com.ponking.pblog.model.entity.Category;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -12,7 +13,10 @@ import java.util.Date;
  * @date 2020/4/10--0:49
  **/
 @Data
-public class ArchiveVO{
+public class ArchiveVO implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     /**
      * 文章id
      */

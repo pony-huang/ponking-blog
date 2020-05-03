@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ponking.pblog.model.entity.Category;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;;
 import java.util.Date;
@@ -16,7 +17,10 @@ import java.util.List;
  * @Des 归档页内容
  **/
 @Data
-public class ArchivesFrontVO {
+public class ArchivesFrontVO implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     /**
      * 归档时间
      */

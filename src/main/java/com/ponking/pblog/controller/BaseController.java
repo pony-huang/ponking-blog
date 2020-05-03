@@ -45,7 +45,11 @@ public class BaseController {
     private String authorAvatar;
 
 
-
+    /**
+     * 左右侧栏信息
+     * @param model
+     * @return
+     */
     protected Model getBlogInfoModel(Model model){
         List<CategoryColumnVO> categoryColumnVOS = categoryService.listCategoryColumnInfo();
         List<TagColumnVO> tagColumnVOS = tagService.listTagColumnInfo();
@@ -57,6 +61,9 @@ public class BaseController {
         String city = authorLocation;
         String title = authorTitle;
         String avatar = authorAvatar;
+        /**
+         * 统计信息
+         */
         int articleCount = articleService.count();
         int tagCount = tagService.count();
         int cateCount = categoryService.count();

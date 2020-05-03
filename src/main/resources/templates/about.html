@@ -1,60 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8"/>
-
-    <meta name="generator" content="Hexo 3.8.0"/>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-    <title>关于我 - 有冇</title>
-
-
-    <meta name="description" content="我喜欢学习，学习使我快乐">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="关于我">
-    <meta property="og:url" content="www.ponking.com/about/index.html">
-    <meta property="og:site_name" content="有冇">
-    <meta property="og:description" content="我喜欢学习，学习使我快乐">
-    <meta property="og:locale" content="zh-CN">
-    <meta property="og:image" content="/images/og_image.png">
-    <meta property="og:updated_time" content="2019-04-07T14:55:02.762Z">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="关于我">
-    <meta name="twitter:description" content="我喜欢学习，学习使我快乐">
-    <meta name="twitter:image" content="/images/og_image.png">
-
-
-    <link rel="icon" href="/images/favicon.svg">
-
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
-
-
-    <style>body > .footer, body > .navbar, body > .section {
-        opacity: 0
-    }</style>
-
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
-
-
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
-
-
-    <link rel="stylesheet" href="/css/back-to-top.css">
-
-
-    <link rel="stylesheet" href="/css/progressbar.css">
-    <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
-
-
-    <link rel="stylesheet" href="/css/style.css">
+<head th:include="commons/commons::head('关于我')">
 </head>
 <body class="is-3-column">
 <nav class="navbar navbar-main" th:replace="commons/commons :: navbar_header(5)">
@@ -128,13 +74,15 @@
             </div>
 
 
-            <div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky" th:replace="commons/commons :: left_column">
+            <div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky"
+                 th:replace="commons/commons :: left_column">
 
             </div>
 
 
             <div class="column is-4-tablet is-4-desktop is-3-widescreen
-                    is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky" th:replace="commons/commons :: right_column">
+                    is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky"
+                 th:replace="commons/commons :: right_column">
 
             </div>
 

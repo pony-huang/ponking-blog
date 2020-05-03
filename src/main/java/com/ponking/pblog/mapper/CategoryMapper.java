@@ -2,7 +2,7 @@ package com.ponking.pblog.mapper;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ponking.pblog.model.dto.CategoryInfoDto;
+import com.ponking.pblog.model.dto.CategoryDto;
 import com.ponking.pblog.model.entity.Category;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ponking.pblog.model.vo.CategoryColumnVO;
@@ -30,5 +30,5 @@ public interface CategoryMapper extends BaseMapper<Category> {
      * @param wrapper
      * @return
      */
-    Page<CategoryInfoDto> selectCategoryInfo(Page page, QueryWrapper<CategoryInfoDto> wrapper);
+    Page<CategoryDto> selectCategoryInfo(Page page, QueryWrapper<CategoryDto> wrapper);
 }

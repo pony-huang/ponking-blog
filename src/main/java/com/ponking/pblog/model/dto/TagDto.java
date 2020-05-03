@@ -11,11 +11,11 @@ import java.util.List;
 
 /**
  * @author Ponking
- * @ClassName TagInfoDto
+ * @ClassName TagDto
  * @date 2020/4/24--21:15
  **/
 @Data
-public class TagInfoDto implements Serializable {
+public class TagDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;

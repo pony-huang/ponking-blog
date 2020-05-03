@@ -2,6 +2,8 @@ package com.ponking.pblog.model.vo;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @author Ponking
  * @ClassName PersonInfoVO
@@ -9,7 +11,8 @@ import lombok.Data;
  * @Des 博客个人信息
  **/
 @Data
-public class PersonInfoVO {
+public class PersonInfoVO implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String name;
     private String city;
     private String avatar;

@@ -3,6 +3,7 @@ package com.ponking.pblog.model.dto;
 import com.ponking.pblog.model.entity.Category;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,7 +12,8 @@ import java.util.List;
  * @date 2020/3/20--16:46
  **/
 @Data
-public class CategoryListDto {
+public class CategoryListDto implements Serializable {
+    private static final long serialVersionUID = 1L;
     /**
      * 总数
      */

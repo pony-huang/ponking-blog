@@ -10,7 +10,7 @@ import com.ponking.pblog.common.util.MD5Util;
 import com.ponking.pblog.model.R;
 import com.ponking.pblog.model.ResultCode;
 import com.ponking.pblog.model.entity.User;
-import com.ponking.pblog.model.from.UserInfo;
+import com.ponking.pblog.model.vo.UserInfo;
 import com.ponking.pblog.model.vo.LoginVO;
 import com.ponking.pblog.service.IUserService;
 import com.ponking.pblog.shiro.JwtToken;

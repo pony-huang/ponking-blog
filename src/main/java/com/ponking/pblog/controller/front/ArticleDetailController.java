@@ -1,11 +1,10 @@
 package com.ponking.pblog.controller.front;
 
 import com.ponking.pblog.controller.BaseController;
-import com.ponking.pblog.model.dto.ArticleInfoDto;
+import com.ponking.pblog.model.dto.ArticleDto;
 import com.ponking.pblog.model.entity.Article;
 import com.ponking.pblog.service.IArticleService;
-import com.ponking.pblog.service.ICategoryService;
-import com.ponking.pblog.service.ITagService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +25,14 @@ public class ArticleDetailController  extends BaseController {
 
     @RequestMapping("/articles/{id}")
     public String articleDetail(Model model, @PathVariable("id") Long id) {
-        ArticleInfoDto article = articleService.getArticleInfoById(id);
+        ArticleDto article = articleService.getArticleInfoById(id);
+        Article articleUpdateVisit = new Article();
+
+        /*更新阅读数*/
+        BeanUtils.copyProperties(article,articleUpdateVisit);
+        articleUpdateVisit.setVisits(articleUpdateVisit.getVisits()+1);
+        articleService.updateById(articleUpdateVisit);
+
         model.addAttribute("article", article);
         getBlogInfoModel(model);
         return "detail/front_article_detail";

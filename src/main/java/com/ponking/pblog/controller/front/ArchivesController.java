@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.common.util.ModelVoUtil;
 import com.ponking.pblog.controller.BaseController;
-import com.ponking.pblog.model.R;
 import com.ponking.pblog.model.vo.ArchiveVO;
 import com.ponking.pblog.model.vo.ArchivesFrontVO;
 import org.springframework.stereotype.Controller;
@@ -38,6 +37,15 @@ public class ArchivesController extends BaseController {
             int month = time % 100;
             calendar.set(year,month-1,1);
             date = calendar.getTime();
+            /**
+             * 拼接 sql
+             * <p>!! 会有 sql 注入风险 !!</p>
+             * <p>例1: apply("id = 1")</p>
+             * <p>例2: apply("date_format(dateColumn,'%Y-%m-%d') = '2008-08-08'")</p>
+             * <p>例3: apply("date_format(dateColumn,'%Y-%m-%d') = {0}", LocalDate.now())</p>
+             * @param condition 执行条件
+             * @return children
+             */
             wrapper.apply("date_format(update_time,'%Y-%M') = date_format({0},'%Y-%M')",date).
                     orderByDesc("update_time");
 
@@ -46,17 +54,8 @@ public class ArchivesController extends BaseController {
             wrapper.lt("update_time",date).
                     orderByDesc("update_time");
         }
-        /**
-         * 拼接 sql
-         * <p>!! 会有 sql 注入风险 !!</p>
-         * <p>例1: apply("id = 1")</p>
-         * <p>例2: apply("date_format(dateColumn,'%Y-%m-%d') = '2008-08-08'")</p>
-         * <p>例3: apply("date_format(dateColumn,'%Y-%m-%d') = {0}", LocalDate.now())</p>
-         *
-         * @param condition 执行条件
-         * @return children
-         */
-        IPage<ArchiveVO> pageInfo = articleService.pageArchiveYearMonthFront(new Page(page,4),wrapper);
+
+        IPage<ArchiveVO> pageInfo = articleService.pageArchiveYearMonthFront(new Page<>(page,4),wrapper);
         List<ArchivesFrontVO> records = new ArrayList<>();
         if(pageInfo.getRecords().size()>0){
             records = ModelVoUtil.getArchivesFront(pageInfo.getRecords());

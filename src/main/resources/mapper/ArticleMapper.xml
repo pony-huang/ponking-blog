@@ -2,7 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ponking.pblog.mapper.ArticleMapper">
 
-    <resultMap id="ArticleInfoMap" type="com.ponking.pblog.model.dto.ArticleInfoDto">
+    <!--    &lt;!&ndash; ehcache配置项 &ndash;&gt;-->
+    <!--    <cache type="org.mybatis.caches.ehcache.LoggingEhcache" >-->
+    <!--        <property name="timeToIdleSeconds" value="3600"/>&lt;!&ndash;1 hour&ndash;&gt;-->
+    <!--        <property name="timeToLiveSeconds" value="3600"/>&lt;!&ndash;1 hour&ndash;&gt;-->
+    <!--        <property name="maxEntriesLocalHeap" value="1000"/>-->
+    <!--        <property name="maxEntriesLocalDisk" value="10000000"/>-->
+    <!--        <property name="memoryStoreEvictionPolicy" value="LRU"/>-->
+    <!--    </cache>-->
+
+
+    <resultMap id="ArticleInfoMap" type="com.ponking.pblog.model.dto.ArticleDto">
         <id property="id" column="id"/>
         <result property="title" column="title"/>
         <result property="summary" column="summary"/>
@@ -59,7 +69,7 @@
     </resultMap>
 
 
-    <select id="selectArticleInfoDtoList" resultMap="ArticleInfoMap">
+    <select id="selectArticleDtoList" resultMap="ArticleInfoMap">
         select *
         from blog_article
         ${ew.customSqlSegment}
@@ -90,10 +100,10 @@
     </select>
 
     <select id="selectArchiveColumnInfo" resultType="com.ponking.pblog.model.vo.ArchiveColumnVO">
-        select update_time years,count(date_format(update_time,'%Y-%M')) count
+        select date_format(update_time,'%Y-%m-01 00:00:00') as 'years',COUNT(*) count
         from blog_article
-        GROUP BY date_format(update_time,'%Y-%M')
-        ORDER BY month(update_time) ASC
+        GROUP BY date_format(update_time,'%Y-%m-01 00:00:00')
+        ORDER BY date_format(update_time,'%Y-%m-01 00:00:00') DESC
     </select>
 
     <select id="selectListArticleTopColumn" resultMap="ArchiveColumn">
@@ -114,15 +124,6 @@
         ORDER BY month(update_time) DESC
     </select>
 
-
-    <select id="selectArchiveFrontPage" resultMap="ArchivesVoMap">
-        SELECT
-                id,title,category_id,update_time
-        FROM
-                blog_article
-        ${ew.customSqlSegment}
-        ORDER BY month(update_time) DESC
-    </select>
 
     <select id="selectArticleInfoDtoOne" resultMap="ArticleInfoMap">
         select *
@@ -147,8 +148,6 @@
         WHERE
             bc.id = #{id}
     </select>
-
-
 
 
 </mapper>

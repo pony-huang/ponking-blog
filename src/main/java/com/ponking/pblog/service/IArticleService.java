@@ -5,9 +5,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ponking.pblog.model.dto.ArticleDto;
 import com.ponking.pblog.model.dto.ArticleEditDto;
-import com.ponking.pblog.model.dto.ArticleInfoDto;
-import com.ponking.pblog.model.dto.ArticleWithCategoryFrontDto;
 import com.ponking.pblog.model.entity.Article;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ponking.pblog.model.vo.ArchiveColumnVO;
@@ -16,7 +15,6 @@ import com.ponking.pblog.model.vo.ArticleTopColumnVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -60,7 +58,7 @@ public interface IArticleService extends IService<Article> {
      * @param queryWrapper
      * @return
      */
-    IPage<ArticleInfoDto> getArticleFrontPage(IPage page, @Param(Constants.WRAPPER) Wrapper<ArticleInfoDto> queryWrapper);
+    IPage<ArticleDto> getArticleFrontPage(IPage page, @Param(Constants.WRAPPER) Wrapper<ArticleDto> queryWrapper);
 
     /**
      * 博客右侧栏归档列表
@@ -83,21 +81,12 @@ public interface IArticleService extends IService<Article> {
 
 
     /**
-     * 归档页分页
-     * @param page
-     * @param queryWrapper
-     * @return
-     */
-    IPage<ArchiveVO> pageArchiveFront(IPage page, @Param(Constants.WRAPPER) Wrapper<ArchiveVO> queryWrapper);
-
-
-    /**
      * 博客列表
      * @param iPage
      * @param wrapper
      * @return
      */
-    IPage<ArticleInfoDto> articleInfoOfTagDtoList(IPage<ArticleInfoDto> iPage, QueryWrapper<ArticleInfoDto> wrapper);
+    IPage<ArticleDto> articleInfoOfTagDtoList(IPage<ArticleDto> iPage,@Param(Constants.WRAPPER) QueryWrapper<ArticleDto> wrapper);
 
 
     /**
@@ -105,7 +94,7 @@ public interface IArticleService extends IService<Article> {
      * @param id
      * @return
      */
-    ArticleInfoDto getArticleInfoById(Long id);
+    ArticleDto getArticleInfoById(Long id);
 
     /**
      * 归档
@@ -113,5 +102,5 @@ public interface IArticleService extends IService<Article> {
      * @param queryWrapper
      * @return
      */
-    IPage<ArchiveVO> pageArchiveYearMonthFront(Page page,QueryWrapper<ArchiveVO> queryWrapper);
+    IPage<ArchiveVO> pageArchiveYearMonthFront(IPage<ArchiveVO> page,QueryWrapper<ArchiveVO> queryWrapper);
 }

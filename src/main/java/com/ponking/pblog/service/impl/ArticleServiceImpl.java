@@ -6,9 +6,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.common.exception.GlobalException;
+import com.ponking.pblog.model.dto.ArticleDto;
 import com.ponking.pblog.model.dto.ArticleEditDto;
-import com.ponking.pblog.model.dto.ArticleInfoDto;
-import com.ponking.pblog.model.dto.ArticleWithCategoryFrontDto;
 import com.ponking.pblog.model.entity.Article;
 import com.ponking.pblog.mapper.ArticleMapper;
 import com.ponking.pblog.model.entity.ArticleTag;
@@ -24,7 +23,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -121,12 +119,12 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     /**
      * 博客文章分页
      * @param page
-     * @param queryWrapper
+     * @param wrapper
      * @return
      */
     @Override
-    public Page<ArticleInfoDto> getArticleFrontPage(IPage page, @Param(Constants.WRAPPER) Wrapper<ArticleInfoDto> queryWrapper) {
-        return articleMapper.selectArticleInfoDtoList(page,queryWrapper);
+    public Page<ArticleDto> getArticleFrontPage(IPage page, @Param(Constants.WRAPPER) Wrapper<ArticleDto> wrapper) {
+        return articleMapper.selectArticleDtoList(page,wrapper);
     }
 
     /**
@@ -154,22 +152,17 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     }
 
     @Override
-    public IPage<ArchiveVO> pageArchiveFront(IPage page, Wrapper<ArchiveVO> queryWrapper) {
-        return articleMapper.selectArchiveFrontPage(page,queryWrapper);
-    }
-
-    @Override
-    public IPage<ArticleInfoDto> articleInfoOfTagDtoList(IPage<ArticleInfoDto> iPage, QueryWrapper<ArticleInfoDto> wrapper) {
+    public IPage<ArticleDto> articleInfoOfTagDtoList(IPage<ArticleDto> iPage, QueryWrapper<ArticleDto> wrapper) {
         return articleMapper.selectArticleInfoOfTagDtoList(iPage,wrapper);
     }
 
     @Override
-    public ArticleInfoDto getArticleInfoById(Long id) {
+    public ArticleDto getArticleInfoById(Long id) {
         return articleMapper.selectArticleInfoDtoOne(id);
     }
 
     @Override
-    public IPage<ArchiveVO> pageArchiveYearMonthFront(Page page,QueryWrapper<ArchiveVO> wrapper) {
+    public IPage<ArchiveVO> pageArchiveYearMonthFront(IPage<ArchiveVO> page, QueryWrapper<ArchiveVO> wrapper) {
         return articleMapper.selectArticleByYearMonthDto(page,wrapper);
     }
 
@@ -177,4 +170,5 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     public ArticleEditDto getArticleDTO(Serializable id) {
         return articleMapper.selectOneDTO(id);
     }
+
 }

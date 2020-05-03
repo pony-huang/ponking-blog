@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active: prod
   # thymeleaf模板配置
   thymeleaf:
     suffix: .html
@@ -19,3 +19,4 @@ file:
     uploadWindows: D:\\temp\\
     # Linux系统下访问的路径
     uploadLinux: /usr/images/
+

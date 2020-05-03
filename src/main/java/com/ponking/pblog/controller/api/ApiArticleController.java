@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.common.util.JwtUtil;
 import com.ponking.pblog.model.R;
-import com.ponking.pblog.model.dto.ArticleDto;
+import com.ponking.pblog.model.dto.ArticleListDto;
 import com.ponking.pblog.model.dto.ArticleEditDto;
 import com.ponking.pblog.model.entity.Article;
 import com.ponking.pblog.model.vo.AuthorVO;
@@ -56,7 +56,7 @@ public class ApiArticleController {
         }
         articleList =
                 articleService.page(new Page<>(page,limit),wrapper).getRecords();
-        return R.success(new ArticleDto(articleList.size(),articleList));
+        return R.success(new ArticleListDto(articleList.size(),articleList));
     }
 
     /**

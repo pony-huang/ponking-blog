@@ -4,9 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ponking.pblog.model.dto.ArticleDto;
 import com.ponking.pblog.model.dto.ArticleEditDto;
-import com.ponking.pblog.model.dto.ArticleInfoDto;
-import com.ponking.pblog.model.dto.ArticleWithCategoryFrontDto;
 import com.ponking.pblog.model.entity.Article;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ponking.pblog.model.vo.ArchiveColumnVO;
@@ -15,7 +14,6 @@ import com.ponking.pblog.model.vo.ArticleTopColumnVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -56,27 +54,21 @@ public interface ArticleMapper extends BaseMapper<Article> {
     List<ArchiveVO> selectArchiveFrontAll();
 
     /**
-     * 归档页列表
-     * @return
-     */
-    IPage<ArchiveVO> selectArchiveFrontPage(IPage<ArchiveVO> page, @Param(Constants.WRAPPER) Wrapper<ArchiveVO> queryWrapper);
-
-    /**
      * 博客主页列表
      * @param page
      * @param queryWrapper
      * @return
      */
-    Page<ArticleInfoDto> selectArticleInfoDtoList(IPage<ArticleInfoDto> page, @Param(Constants.WRAPPER) Wrapper<ArticleInfoDto> queryWrapper);
+    Page<ArticleDto> selectArticleDtoList(IPage<ArticleDto> page, @Param(Constants.WRAPPER) Wrapper<ArticleDto> queryWrapper);
 
 
     /**
      * 博客主页列表()
      * @param page
-     * @param queryWrapper
+     * @param wrapper
      * @return
      */
-    Page<ArchiveVO>  selectArticleByYearMonthDto(IPage<ArchiveVO> page, @Param(Constants.WRAPPER) Wrapper<ArchiveVO> queryWrapper);
+    Page<ArchiveVO>  selectArticleByYearMonthDto(IPage<ArchiveVO> page, @Param(Constants.WRAPPER) Wrapper wrapper);
 
 
     /**
@@ -85,7 +77,7 @@ public interface ArticleMapper extends BaseMapper<Article> {
      * @param queryWrapper
      * @return
      */
-    Page<ArticleInfoDto> selectArticleInfoOfTagDtoList(IPage<ArticleInfoDto> page, @Param(Constants.WRAPPER) Wrapper<ArticleInfoDto> queryWrapper);
+    Page<ArticleDto> selectArticleInfoOfTagDtoList(IPage<ArticleDto> page, @Param(Constants.WRAPPER) Wrapper<ArticleDto> queryWrapper);
 
 
     /**
@@ -93,5 +85,5 @@ public interface ArticleMapper extends BaseMapper<Article> {
      * @param id
      * @return
      */
-    ArticleInfoDto selectArticleInfoDtoOne(@Param("id") long id);
+    ArticleDto selectArticleInfoDtoOne(@Param("id") long id);
 }

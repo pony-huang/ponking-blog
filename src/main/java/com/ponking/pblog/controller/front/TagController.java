@@ -4,9 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.controller.BaseController;
-import com.ponking.pblog.model.dto.ArticleInfoDto;
-import com.ponking.pblog.model.dto.ArticleWithCategoryFrontDto;
-import com.ponking.pblog.model.dto.TagInfoDto;
+import com.ponking.pblog.model.dto.ArticleDto;
 import com.ponking.pblog.model.entity.Tag;
 import com.ponking.pblog.service.ITagService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +36,10 @@ public class TagController extends BaseController {
     @RequestMapping("/tags/{tagId}")
     public String list(Model model, @PathVariable Integer tagId,
                        @RequestParam(value = "page", defaultValue = "1") Integer page) {
-        IPage<ArticleInfoDto> iPage = new Page<>(page, 4);
-        QueryWrapper<ArticleInfoDto> wrapper = new QueryWrapper<>();
+        IPage<ArticleDto> iPage = new Page<>(page, 4);
+        QueryWrapper<ArticleDto> wrapper = new QueryWrapper<>();
         wrapper.eq("bt.id", tagId);
-        IPage<ArticleInfoDto> articles = articleService.articleInfoOfTagDtoList(iPage, wrapper);
+        IPage<ArticleDto> articles = articleService.articleInfoOfTagDtoList(iPage, wrapper);
         Tag tag = tagService.getById(tagId);
         model.addAttribute("articles", articles);
         model.addAttribute("tag", tag);

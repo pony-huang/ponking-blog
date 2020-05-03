@@ -4,8 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.controller.BaseController;
-import com.ponking.pblog.model.dto.ArticleInfoDto;
-import com.ponking.pblog.model.dto.ArticleWithCategoryFrontDto;
+import com.ponking.pblog.model.dto.ArticleDto;
 import com.ponking.pblog.model.entity.Category;
 import com.ponking.pblog.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +33,10 @@ public class CategoryController extends BaseController {
 
     @RequestMapping("/categories/{categoryId}")
     public String list(Model model, @PathVariable Integer categoryId,@RequestParam(value = "page",defaultValue = "1") Integer page){
-        IPage<ArticleInfoDto> iPage = new Page<>(page,4);
-        QueryWrapper<ArticleInfoDto> wrapper = new QueryWrapper<>();
+        IPage<ArticleDto> iPage = new Page<>(page,4);
+        QueryWrapper<ArticleDto> wrapper = new QueryWrapper<>();
         wrapper.eq("category_id",categoryId);
-        IPage<ArticleInfoDto> articles = articleService.getArticleFrontPage(iPage,wrapper);
+        IPage<ArticleDto> articles = articleService.getArticleFrontPage(iPage,wrapper);
         Category category = categoryService.getById(categoryId);
         model.addAttribute("articles",articles);
         model.addAttribute("category",category);
