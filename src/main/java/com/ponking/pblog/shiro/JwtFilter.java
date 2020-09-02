@@ -52,7 +52,7 @@ public class JwtFilter extends AccessControlFilter {
         try{
             // 1. 检查请求头中是否存在token
             HttpServletRequest request = (HttpServletRequest) servletRequest;
-            String token = request.getHeader("X-Token");
+            String token = request.getHeader("Authorization");
             Enumeration<String> headers =  request.getHeaderNames();
             // 2. 对该token进行验证
             JwtToken jwtToken = new JwtToken(token);

@@ -2,15 +2,13 @@ package com.ponking.pblog.controller.api;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ponking.pblog.common.util.JwtUtil;
 import com.ponking.pblog.model.R;
-import com.ponking.pblog.model.dto.ArticleListDto;
+import com.ponking.pblog.model.vo.ArticlePage;
 import com.ponking.pblog.model.dto.ArticleEditDto;
 import com.ponking.pblog.model.entity.Article;
-import com.ponking.pblog.model.vo.AuthorVO;
 import com.ponking.pblog.service.IArticleService;
-import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -54,9 +52,10 @@ public class ApiArticleController {
             // 模糊搜索
             wrapper.like("category_id",category);
         }
-        articleList =
-                articleService.page(new Page<>(page,limit),wrapper).getRecords();
-        return R.success(new ArticleListDto(articleList.size(),articleList));
+        IPage<Article> articleIPage = articleService.page(new Page<>(page, limit), wrapper);
+        articleList = articleIPage.getRecords();
+        long total = articleIPage.getTotal();
+        return R.success(new ArticlePage(total,articleList));
     }
 
     /**
@@ -65,13 +64,8 @@ public class ApiArticleController {
      * @return
      */
     @GetMapping("/{id}")
-    public R getArticleById(@PathVariable Integer id, HttpServletRequest request){
-        String token = request.getHeader("X-Token");
-        Claims claims = JwtUtil.parseJWT(token);
-        AuthorVO authorVO = new AuthorVO();
-        authorVO.setName(claims.getSubject());
-        ArticleEditDto articleEditDto = articleService.getArticleDTO(id);
-        articleEditDto.setAuthorVO(authorVO);
+    public R getArticleById(@PathVariable Integer id){
+        ArticleEditDto articleEditDto = articleService.getArticleEditInfo(id);
         return R.success(articleEditDto);
     }
 
@@ -96,6 +90,40 @@ public class ApiArticleController {
         articleService.updateById(articleEditDto);
         return R.success();
     }
+
+    /**
+     * 更新博客状态(发布,草稿,回收箱)状态
+     * @param articleEditDto
+     * @return
+     */
+    @PutMapping("/status")
+    public R updateArticleStatus(@RequestBody ArticleEditDto articleEditDto){
+        articleService.updateArticleStatusById(articleEditDto);
+        return R.success();
+    }
+
+    /**
+     * 更新博客创作状态
+     * @param articleEditDto
+     * @return
+     */
+    @PutMapping("/transfer/status")
+    public R updateArticleTransferStatus(@RequestBody ArticleEditDto articleEditDto){
+        articleService.updateTransferStatusById(articleEditDto);
+        return R.success();
+    }
+
+    /**
+     * 更新博客评论状态
+     * @param articleEditDto
+     * @return
+     */
+    @PutMapping("/comment/status")
+    public R updateArticleCommentStatus(@RequestBody ArticleEditDto articleEditDto){
+        articleService.updateCommentstatusById(articleEditDto);
+        return R.success();
+    }
+
 
     /**
      * 单个删除

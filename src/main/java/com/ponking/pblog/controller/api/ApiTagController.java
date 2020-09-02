@@ -3,7 +3,7 @@ package com.ponking.pblog.controller.api;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.model.R;
-import com.ponking.pblog.model.dto.TagListDto;
+import com.ponking.pblog.model.vo.TagPage;
 import com.ponking.pblog.model.entity.Tag;
 import com.ponking.pblog.service.ITagService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class ApiTagController {
         List<Tag> tags = tagService.page(
                 new Page<>(page,limit)
         ).getRecords();
-        return R.success(new TagListDto(tags.size(),tags));
+        return R.success(new TagPage(tags.size(),tags));
     }
 
     /**

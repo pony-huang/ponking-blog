@@ -34,9 +34,4 @@ public class Tag implements Serializable {
      * 标签名
      */
     private String name;
-
-
-    @TableField(exist = false)
-    private Article article;
-
 }

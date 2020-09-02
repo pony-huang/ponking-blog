@@ -1,4 +1,4 @@
-package com.ponking.pblog.model.dto;
+package com.ponking.pblog.model.vo;
 
 import com.ponking.pblog.model.entity.Tag;
 import lombok.Data;
@@ -8,11 +8,11 @@ import java.util.List;
 
 /**
  * @author Ponking
- * @ClassName TagListDto
+ * @ClassName TagPage
  * @date 2020/3/16--22:02
  **/
 @Data
-public class TagListDto implements Serializable {
+public class TagPage implements Serializable {
 
     private static final long serialVersionUID = 1L;
     /**
@@ -25,7 +25,7 @@ public class TagListDto implements Serializable {
      */
     private List<Tag> items;
 
-    public TagListDto(Integer total, List<Tag> items) {
+    public TagPage(Integer total, List<Tag> items) {
         this.total = total;
         this.items = items;
     }

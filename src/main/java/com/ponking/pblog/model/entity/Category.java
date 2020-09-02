@@ -39,8 +39,4 @@ public class Category implements Serializable {
      * 路径
      */
     private String path;
-
-    @TableField(exist = false)
-    private Article article;
-
 }

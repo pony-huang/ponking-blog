@@ -102,10 +102,4 @@ public class Article implements Serializable {
      */
     private Integer status;
 
-    @TableField(exist = false)
-    private Category category;
-
-    @TableField(exist = false)
-    private List<Tag> tags;
-
 }

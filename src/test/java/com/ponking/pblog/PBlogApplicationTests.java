@@ -17,7 +17,8 @@ public class PBlogApplicationTests {
 
     @Test
     public void contextLoads() {
-        ArticleEditDto articleEditDto = articleMapper.selectOneDTO(1);
+        // todo 作者动态变化
+        ArticleEditDto articleEditDto = articleMapper.selectArticleEditInfo(1);
         System.out.println(articleEditDto);
     }
 

@@ -33,7 +33,7 @@ public interface IArticleService extends IService<Article> {
      * @param id
      * @return
      */
-    ArticleEditDto getArticleDTO(Serializable id);
+    ArticleEditDto getArticleEditInfo(Serializable id);
 
     /**
      * 根据id值查询博客文章,用于后台插入
@@ -103,4 +103,22 @@ public interface IArticleService extends IService<Article> {
      * @return
      */
     IPage<ArchiveVO> pageArchiveYearMonthFront(IPage<ArchiveVO> page,QueryWrapper<ArchiveVO> queryWrapper);
+
+    /**
+     * 更新博客创作状态
+     * @param articleEditDto
+     */
+    void updateTransferStatusById(ArticleEditDto articleEditDto);
+
+    /**
+     * 更新博客评论状态
+     * @param articleEditDto
+     */
+    void updateCommentstatusById(ArticleEditDto articleEditDto);
+
+    /**
+     * 更新博客状态(发布,草稿,回收箱)状态
+     * @param articleEditDto
+     */
+    void updateArticleStatusById(ArticleEditDto articleEditDto);
 }

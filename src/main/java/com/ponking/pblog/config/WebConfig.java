@@ -15,24 +15,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    @Value("${file.commons.uploadWindows}")
-    private String filePathWindow;
-
-    @Value("${file.commons.uploadLinux}")
-    private String filePathLinux;
-
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        String os = System.getProperty("os.name");
-//        registry.addResourceHandler("/static/**").addResourceLocations(ResourceUtils.CLASSPATH_PREFIX+"/static/");
-        if(os.toLowerCase().startsWith("win")){
-            registry.addResourceHandler("/test/image/**").addResourceLocations("file:"+filePathWindow);
-        }else{
-            registry.addResourceHandler("/test/image/**").addResourceLocations("file:"+filePathLinux);
-        }
-
-    }
-
 
     /**
      * 跨域
@@ -47,4 +29,22 @@ public class WebConfig implements WebMvcConfigurer {
                 .maxAge(3600)
                 .allowedHeaders("*");
     }
+
+    //    @Value("${file.commons.uploadWindows}")
+//    private String filePathWindow;
+//
+//    @Value("${file.commons.uploadLinux}")
+//    private String filePathLinux;
+//
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        String os = System.getProperty("os.name");
+////        registry.addResourceHandler("/static/**").addResourceLocations(ResourceUtils.CLASSPATH_PREFIX+"/static/");
+//        if(os.toLowerCase().startsWith("win")){
+//            registry.addResourceHandler("/test/image/**").addResourceLocations("file:"+filePathWindow);
+//        }else{
+//            registry.addResourceHandler("/test/image/**").addResourceLocations("file:"+filePathLinux);
+//        }
+//
+//    }
 }

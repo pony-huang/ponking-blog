@@ -33,7 +33,7 @@ public interface ArticleMapper extends BaseMapper<Article> {
      * @param id
      * @return
      */
-    ArticleEditDto selectOneDTO(@Param("id") Serializable id);
+    ArticleEditDto selectArticleEditInfo(@Param("id") Serializable id);
 
     /**
      * 博客右侧栏归档列表

@@ -59,6 +59,8 @@ public class AuthConfig {
         factoryBean.setFilters(filterMap);
         // 配置过滤器规则，同上述
         Map<String,String> chain = new LinkedHashMap<>();
+        chain.put("/swagger-ui.html/**","anon");
+        // 认证
         chain.put("/sys/**","noSessionCreation,jwtFilter");
         chain.put("/login","noSessionCreation");
         factoryBean.setFilterChainDefinitionMap(chain);

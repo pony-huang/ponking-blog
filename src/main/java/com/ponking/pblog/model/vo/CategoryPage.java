@@ -1,4 +1,4 @@
-package com.ponking.pblog.model.dto;
+package com.ponking.pblog.model.vo;
 
 import com.ponking.pblog.model.entity.Category;
 import lombok.Data;
@@ -8,11 +8,11 @@ import java.util.List;
 
 /**
  * @author Ponking
- * @ClassName CategoryListDto
+ * @ClassName CategoryPage
  * @date 2020/3/20--16:46
  **/
 @Data
-public class CategoryListDto implements Serializable {
+public class CategoryPage implements Serializable {
     private static final long serialVersionUID = 1L;
     /**
      * 总数
@@ -24,7 +24,7 @@ public class CategoryListDto implements Serializable {
      */
     private List<Category> items;
 
-    public CategoryListDto(Integer total, List<Category> items) {
+    public CategoryPage(Integer total, List<Category> items) {
         this.total = total;
         this.items = items;
     }

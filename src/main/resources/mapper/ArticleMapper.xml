@@ -90,7 +90,7 @@
         ${ew.customSqlSegment}
     </select>
 
-    <select id="selectOneDTO" resultMap="ArticleDTO">
+    <select id="selectArticleEditInfo" resultMap="ArticleDTO">
         SELECT 
             id,title,summary,image,content,content_md,category_id,
             update_time,top,commented,original,source_url,status

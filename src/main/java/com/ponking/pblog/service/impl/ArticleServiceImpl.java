@@ -6,14 +6,15 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.common.exception.GlobalException;
+import com.ponking.pblog.mapper.ArticleMapper;
 import com.ponking.pblog.model.dto.ArticleDto;
 import com.ponking.pblog.model.dto.ArticleEditDto;
 import com.ponking.pblog.model.entity.Article;
-import com.ponking.pblog.mapper.ArticleMapper;
 import com.ponking.pblog.model.entity.ArticleTag;
 import com.ponking.pblog.model.vo.ArchiveColumnVO;
 import com.ponking.pblog.model.vo.ArchiveVO;
 import com.ponking.pblog.model.vo.ArticleTopColumnVO;
+import com.ponking.pblog.model.vo.AuthorVO;
 import com.ponking.pblog.service.IArticleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ponking.pblog.service.IArticleTagService;
@@ -37,8 +38,7 @@ import java.util.stream.Collectors;
 @Service
 public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> implements IArticleService {
 
-    @Autowired
-    private ArticleMapper articleMapper;
+
 
     @Autowired
     private IArticleTagService articleTagService;
@@ -49,7 +49,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         String title = article.getTitle();
         QueryWrapper<Article> wrapper = new QueryWrapper<>();
         wrapper.eq("title",title);
-        Integer count = articleMapper.selectCount(wrapper);
+        Integer count = baseMapper.selectCount(wrapper);
         if(count>0){
             throw new GlobalException("已存在【"+article.getTitle()+"】标题");
         }
@@ -67,7 +67,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         QueryWrapper<Article> wrapper = new QueryWrapper<>();
         String title = articleEditDto.getTitle();
         wrapper.eq("title",title);
-        Integer count = articleMapper.selectCount(wrapper);
+        Integer count = baseMapper.selectCount(wrapper);
         if(count>0){
             throw new GlobalException("已存在【"+ articleEditDto.getTitle()+"】标题");
         }
@@ -75,7 +75,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         Article article = new Article();
         BeanUtils.copyProperties(articleEditDto,article);
         // 获取新插入记录的主键
-        articleMapper.insert(article);
+        baseMapper.insert(article);
         Long articleId = article.getId();
         // 为新文章更新新的标签
         List<ArticleTag> articleTags = articleEditDto.getTagIds().stream()
@@ -95,16 +95,16 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         // 修改后的title
         String titleEdit = articleEditDto.getTitle();
         // 该id文章目前存在数据库的title
-        String titleDb = articleMapper.selectById(articleEditDto.getId()).getTitle();
+        String titleDb = baseMapper.selectById(articleEditDto.getId()).getTitle();
         wrapper1.eq("title",titleEdit);
-        Integer count = articleMapper.selectCount(wrapper1);
+        Integer count = baseMapper.selectCount(wrapper1);
         if(count>0&&!titleDb.equals(titleEdit)){
             throw new GlobalException("已存在【"+ articleEditDto.getTitle()+"】该标题");
         }
         // 2. article 复制属性，且更新文章
         Article article = new Article();
         BeanUtils.copyProperties(articleEditDto,article);
-        articleMapper.updateById(article);
+        baseMapper.updateById(article);
 
         // 3. 为新文章更新新的标签(先删除原来，再更新最新的)
         List<ArticleTag> articleTags = articleEditDto.getTagIds().stream()
@@ -124,7 +124,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
      */
     @Override
     public Page<ArticleDto> getArticleFrontPage(IPage page, @Param(Constants.WRAPPER) Wrapper<ArticleDto> wrapper) {
-        return articleMapper.selectArticleDtoList(page,wrapper);
+        return baseMapper.selectArticleDtoList(page,wrapper);
     }
 
     /**
@@ -134,7 +134,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
      */
     @Override
     public List<ArchiveColumnVO> listArchiveColumnInfo() {
-        return articleMapper.selectArchiveColumnInfo();
+        return baseMapper.selectArchiveColumnInfo();
     }
 
     /**
@@ -143,32 +143,72 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
      */
     @Override
     public List<ArticleTopColumnVO> listArticleTopColumn() {
-        return articleMapper.selectListArticleTopColumn();
+        return baseMapper.selectListArticleTopColumn();
     }
 
     @Override
     public List<ArchiveVO> listArchiveFront() {
-        return articleMapper.selectArchiveFrontAll();
+        return baseMapper.selectArchiveFrontAll();
     }
 
     @Override
     public IPage<ArticleDto> articleInfoOfTagDtoList(IPage<ArticleDto> iPage, QueryWrapper<ArticleDto> wrapper) {
-        return articleMapper.selectArticleInfoOfTagDtoList(iPage,wrapper);
+        return baseMapper.selectArticleInfoOfTagDtoList(iPage,wrapper);
     }
 
     @Override
     public ArticleDto getArticleInfoById(Long id) {
-        return articleMapper.selectArticleInfoDtoOne(id);
+        return baseMapper.selectArticleInfoDtoOne(id);
     }
 
     @Override
     public IPage<ArchiveVO> pageArchiveYearMonthFront(IPage<ArchiveVO> page, QueryWrapper<ArchiveVO> wrapper) {
-        return articleMapper.selectArticleByYearMonthDto(page,wrapper);
+        return baseMapper.selectArticleByYearMonthDto(page,wrapper);
     }
 
     @Override
-    public ArticleEditDto getArticleDTO(Serializable id) {
-        return articleMapper.selectOneDTO(id);
+    public void updateTransferStatusById(ArticleEditDto articleEditDto) {
+        Article article = new Article();
+        article.setOriginal(articleEditDto.getOriginal());
+        article.setId(articleEditDto.getId());
+        baseMapper.updateById(article);
+    }
+
+    @Override
+    public void updateCommentstatusById(ArticleEditDto articleEditDto) {
+        Article article = new Article();
+        article.setCommented(articleEditDto.getCommented());
+        article.setId(articleEditDto.getId());
+        baseMapper.updateById(article);
+    }
+
+    /**
+     * 更新博客状态(发布,草稿,回收箱)状态
+     *
+     * @param articleEditDto
+     */
+    @Override
+    public void updateArticleStatusById(ArticleEditDto articleEditDto) {
+        Article article = new Article();
+        article.setId(articleEditDto.getId());
+        article.setStatus(articleEditDto.getStatus());
+        baseMapper.updateById(article);
+    }
+
+    @Override
+    public ArticleEditDto getArticleEditInfo(Serializable id) {
+        // todo 动态变化作者信息
+        AuthorVO authorVO = new AuthorVO();
+        authorVO.setId(1);
+        authorVO.setName("PONKING");
+
+        ArticleEditDto article = baseMapper.selectArticleEditInfo(id);
+        List<Long> tagIds = articleTagService.list(new QueryWrapper<ArticleTag>().eq("article_id", id))
+                .stream()
+                .map(ArticleTag::getTagId).collect(Collectors.toList());
+        article.setAuthorVO(authorVO);
+        article.setTagIds(tagIds);
+        return article;
     }
 
 }

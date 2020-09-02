@@ -48,5 +48,4 @@ public class ArticleTag implements Serializable {
      * 标签ID
      */
     private Long tagId;
-
 }
