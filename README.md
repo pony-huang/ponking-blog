@@ -2,6 +2,7 @@
 
 ## 前台
 - 基于vue-admin-template
+- vue-admin-plog https://github.com/PonKing66/vue-admin-pblog
 ## 后台
 - mysql，mybatis-plus,lombok,springboot,jwt,shiro,swagger,druid
 ## 其他
