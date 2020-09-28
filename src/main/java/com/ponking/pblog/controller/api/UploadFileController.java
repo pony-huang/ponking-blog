@@ -1,23 +1,16 @@
 package com.ponking.pblog.controller.api;
 
 import com.ponking.pblog.common.exception.GlobalException;
-import com.ponking.pblog.model.R;
+import com.ponking.pblog.model.result.R;
 import com.ponking.pblog.service.IUploadService;
-import com.ponking.pblog.service.impl.UploadServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * @author Ponking

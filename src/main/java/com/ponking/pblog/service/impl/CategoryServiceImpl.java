@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ponking.pblog.common.exception.GlobalException;
 import com.ponking.pblog.model.entity.Category;
 import com.ponking.pblog.mapper.CategoryMapper;
-import com.ponking.pblog.model.vo.CategoryColumnVO;
+import com.ponking.pblog.model.vo.CategoryTableCardVo;
 import com.ponking.pblog.service.ICategoryService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,7 +71,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
      * @return
      */
     @Override
-    public List<CategoryColumnVO> listCategoryColumnInfo() {
+    public List<CategoryTableCardVo> listCategoryColumnInfo() {
         return categoryMapper.selectCategoryColumnInfo();
     }
 }

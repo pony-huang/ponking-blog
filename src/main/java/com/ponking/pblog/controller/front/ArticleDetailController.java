@@ -1,6 +1,5 @@
 package com.ponking.pblog.controller.front;
 
-import com.ponking.pblog.controller.BaseController;
 import com.ponking.pblog.model.dto.ArticleDto;
 import com.ponking.pblog.model.entity.Article;
 import com.ponking.pblog.service.IArticleService;
@@ -24,7 +23,7 @@ public class ArticleDetailController  extends BaseController {
 
 
     @RequestMapping("/articles/{id}")
-    public String articleDetail(Model model, @PathVariable("id") Long id) {
+    public String content(Model model, @PathVariable("id") Long id) {
         ArticleDto article = articleService.getArticleInfoById(id);
         Article articleUpdateVisit = new Article();
 
@@ -34,7 +33,7 @@ public class ArticleDetailController  extends BaseController {
         articleService.updateById(articleUpdateVisit);
 
         model.addAttribute("article", article);
-        getBlogInfoModel(model);
+        getBlogTableCardInfo(model);
         return "detail/front_article_detail";
     }
 }

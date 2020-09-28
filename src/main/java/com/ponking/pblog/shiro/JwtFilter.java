@@ -1,13 +1,15 @@
 package com.ponking.pblog.shiro;
 
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureException;
-import io.jsonwebtoken.UnsupportedJwtException;
+import com.ponking.pblog.common.cache.Cache;
+import com.ponking.pblog.common.constants.AuthConstants;
+import com.ponking.pblog.common.util.JwtUtil;
+import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.pam.UnsupportedTokenException;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 import javax.servlet.ServletRequest;
@@ -24,6 +26,7 @@ import java.util.List;
  **/
 @Slf4j
 public class JwtFilter extends AccessControlFilter {
+
     /**
      * 发起请求后响应的方法
      * @param servletRequest
@@ -38,7 +41,7 @@ public class JwtFilter extends AccessControlFilter {
     }
 
     /**
-     * token 认证未通过，执行下面的方法
+     * 自定义token 认证(权限检查)
      * @param servletRequest
      * @param servletResponse
      * @return
@@ -53,24 +56,14 @@ public class JwtFilter extends AccessControlFilter {
             // 1. 检查请求头中是否存在token
             HttpServletRequest request = (HttpServletRequest) servletRequest;
             String token = request.getHeader("Authorization");
-            Enumeration<String> headers =  request.getHeaderNames();
             // 2. 对该token进行验证
             JwtToken jwtToken = new JwtToken(token);
             // 3. 获取要主体认证
             Subject subject = SecurityUtils.getSubject();
             // 4. 发起对主体的认证
             subject.login(jwtToken);
-        }catch (ExpiredJwtException e) {
-            return false;
-        } catch (UnsupportedJwtException e) {
-            return false;
-        } catch (MalformedJwtException e) {
-            return false;
-        } catch (SignatureException e) {
-            return false;
-        } catch (IllegalArgumentException e) {
-            return false;
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
         log.info("on access denied success...");

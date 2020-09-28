@@ -3,7 +3,6 @@ package com.ponking.pblog.controller.front;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ponking.pblog.controller.BaseController;
 import com.ponking.pblog.model.dto.ArticleDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,12 +25,18 @@ public class HomeController extends BaseController {
     }
 
 
+    @RequestMapping("/sys/index")
+    public String admin(){
+        return "admin/index";
+    }
+
+
     @RequestMapping("/home")
-    public String home(Model model, @RequestParam(value = "page",defaultValue = "1")int page){
+    public String content(Model model, @RequestParam(value = "page",defaultValue = "1")int page){
         IPage<ArticleDto> iPage = new Page<>(page,3);
         IPage<ArticleDto> articles = articleService.getArticleFrontPage(iPage,new QueryWrapper<>());
         model.addAttribute("articles",articles);
-        getBlogInfoModel(model);
+        getBlogTableCardInfo(model);
         return "index";
     }
 }

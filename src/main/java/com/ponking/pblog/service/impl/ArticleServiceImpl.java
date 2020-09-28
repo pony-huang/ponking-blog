@@ -11,10 +11,10 @@ import com.ponking.pblog.model.dto.ArticleDto;
 import com.ponking.pblog.model.dto.ArticleEditDto;
 import com.ponking.pblog.model.entity.Article;
 import com.ponking.pblog.model.entity.ArticleTag;
-import com.ponking.pblog.model.vo.ArchiveColumnVO;
-import com.ponking.pblog.model.vo.ArchiveVO;
-import com.ponking.pblog.model.vo.ArticleTopColumnVO;
-import com.ponking.pblog.model.vo.AuthorVO;
+import com.ponking.pblog.model.vo.ArchiveTableCartVo;
+import com.ponking.pblog.model.vo.ArchiveVo;
+import com.ponking.pblog.model.vo.ArticleTopTableCardVo;
+import com.ponking.pblog.model.vo.AuthorVo;
 import com.ponking.pblog.service.IArticleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ponking.pblog.service.IArticleTagService;
@@ -133,7 +133,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
      * @return
      */
     @Override
-    public List<ArchiveColumnVO> listArchiveColumnInfo() {
+    public List<ArchiveTableCartVo> listArchiveColumnInfo() {
         return baseMapper.selectArchiveColumnInfo();
     }
 
@@ -142,12 +142,12 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
      * @return
      */
     @Override
-    public List<ArticleTopColumnVO> listArticleTopColumn() {
+    public List<ArticleTopTableCardVo> listArticleTopColumn() {
         return baseMapper.selectListArticleTopColumn();
     }
 
     @Override
-    public List<ArchiveVO> listArchiveFront() {
+    public List<ArchiveVo> listArchiveFront() {
         return baseMapper.selectArchiveFrontAll();
     }
 
@@ -162,7 +162,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     }
 
     @Override
-    public IPage<ArchiveVO> pageArchiveYearMonthFront(IPage<ArchiveVO> page, QueryWrapper<ArchiveVO> wrapper) {
+    public IPage<ArchiveVo> pageArchiveYearMonthFront(IPage<ArchiveVo> page, QueryWrapper<ArchiveVo> wrapper) {
         return baseMapper.selectArticleByYearMonthDto(page,wrapper);
     }
 
@@ -198,7 +198,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     @Override
     public ArticleEditDto getArticleEditInfo(Serializable id) {
         // todo 动态变化作者信息
-        AuthorVO authorVO = new AuthorVO();
+        AuthorVo authorVO = new AuthorVo();
         authorVO.setId(1);
         authorVO.setName("PONKING");
 

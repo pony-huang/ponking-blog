@@ -33,7 +33,7 @@
     </resultMap>
 
 
-    <resultMap id="TagInfoMap" type="com.ponking.pblog.model.dto.TagDto">
+    <resultMap id="TagInfoMap" type="com.ponking.pblog.model.vo.TagContentPage">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
         <collection property="articles" javaType="ArrayList" ofType="com.ponking.pblog.model.dto.ArticleDto"
@@ -73,7 +73,7 @@
             bc.id = #{id}
     </select>
 
-    <select id="selectTagColumnInfo" resultType="com.ponking.pblog.model.vo.TagColumnVO">
+    <select id="selectTagColumnInfo" resultType="com.ponking.pblog.model.vo.TagTableCardVo">
         select t.id,t.name,count(t.id) count
         from blog_article_tag a INNER JOIN blog_tag t on a.tag_id = t.id
         GROUP BY t.id

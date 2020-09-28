@@ -2,7 +2,7 @@ package com.ponking.pblog.service;
 
 import com.ponking.pblog.model.entity.Category;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.ponking.pblog.model.vo.CategoryColumnVO;
+import com.ponking.pblog.model.vo.CategoryTableCardVo;
 
 import java.util.List;
 
@@ -19,5 +19,5 @@ public interface ICategoryService extends IService<Category> {
      * 博客左侧栏分类列表
      * @return
      */
-    List<CategoryColumnVO> listCategoryColumnInfo();
+    List<CategoryTableCardVo> listCategoryColumnInfo();
 }

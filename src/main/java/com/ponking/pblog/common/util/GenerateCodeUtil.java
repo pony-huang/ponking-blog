@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/**
+/** 代码生成器
  * @author Ponking
  * @ClassName GenerateCodeUtil
  * @date 2020/3/14--21:31
@@ -112,6 +112,5 @@ public class GenerateCodeUtil {
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         mpg.execute();
-
     }
 }

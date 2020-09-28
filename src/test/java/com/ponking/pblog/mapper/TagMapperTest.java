@@ -3,7 +3,7 @@ package com.ponking.pblog.mapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ponking.pblog.model.dto.TagDto;
+import com.ponking.pblog.model.vo.TagContentPage;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +29,8 @@ public class TagMapperTest {
 
     @Test
     public void selectTagInfoPage() {
-        IPage<TagDto> articleFrontPage = tagMapper.selectTagInfoPage(new Page<>(1, 2), new QueryWrapper<>());
-        for (TagDto record : articleFrontPage.getRecords()) {
+        IPage<TagContentPage> articleFrontPage = tagMapper.selectTagInfoPage(new Page<>(1, 2), new QueryWrapper<>());
+        for (TagContentPage record : articleFrontPage.getRecords()) {
             System.out.println(record);
         }
     }

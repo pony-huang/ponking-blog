@@ -1,27 +1,24 @@
 package com.ponking.pblog.model.dto;
 
-import com.ponking.pblog.model.entity.Article;
 import lombok.Data;
 
-import java.io.Serializable;
-import java.util.List;
-
 /**
- * @author Ponking
- * @ClassName CategoryDto
- * @date 2020/4/24--21:22
+ * @author Peng
+ * @date 2020/9/2--15:17
  **/
 @Data
-public class CategoryDto implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class CategoryDto {
 
     private Long id;
 
     /**
-     * 标签名
+     * 分类名
      */
     private String name;
 
+    /**
+     * 路径
+     */
+    private String path;
 
-    private List<Article> articles;
 }

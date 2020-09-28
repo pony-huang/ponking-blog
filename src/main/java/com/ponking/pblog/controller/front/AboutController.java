@@ -1,6 +1,5 @@
 package com.ponking.pblog.controller.front;
 
-import com.ponking.pblog.controller.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AboutController extends BaseController {
 
     @RequestMapping("/about")
-    public String about(Model model){
-        getBlogInfoModel(model);
+    public String content(Model model){
+        getBlogTableCardInfo(model);
         return "about";
     }
 }

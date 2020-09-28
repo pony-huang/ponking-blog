@@ -34,7 +34,7 @@
     </resultMap>
 
 
-    <resultMap id="CategoryInfo" type="com.ponking.pblog.model.dto.CategoryDto">
+    <resultMap id="CategoryInfo" type="com.ponking.pblog.model.vo.CategoryContentPage">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
         <collection property="articles" javaType="ArrayList" ofType="com.ponking.pblog.model.dto.ArticleDto"
@@ -74,7 +74,7 @@
     </select>
 
 
-    <select id="selectCategoryColumnInfo" resultType="com.ponking.pblog.model.vo.CategoryColumnVO">
+    <select id="selectCategoryColumnInfo" resultType="com.ponking.pblog.model.vo.CategoryTableCardVo">
         select c.id,c.name,count(c.id) count,path
         from blog_article a INNER JOIN blog_category c on a.category_id = c.id
         GROUP BY c.id

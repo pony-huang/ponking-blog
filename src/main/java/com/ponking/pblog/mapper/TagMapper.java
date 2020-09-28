@@ -4,10 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ponking.pblog.model.dto.TagDto;
+import com.ponking.pblog.model.vo.TagContentPage;
 import com.ponking.pblog.model.entity.Tag;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.ponking.pblog.model.vo.TagColumnVO;
+import com.ponking.pblog.model.vo.TagTableCardVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -25,7 +25,7 @@ public interface TagMapper extends BaseMapper<Tag> {
      * 博客右侧栏标签
      * @return
      */
-    List<TagColumnVO> selectTagColumnInfo();
+    List<TagTableCardVo> selectTagColumnInfo();
 
 
     /**
@@ -34,5 +34,5 @@ public interface TagMapper extends BaseMapper<Tag> {
      * @param queryWrapper
      * @return
      */
-    Page<TagDto> selectTagInfoPage(IPage<TagDto> page, @Param(Constants.WRAPPER) Wrapper<TagDto> queryWrapper);
+    Page<TagContentPage> selectTagInfoPage(IPage<TagContentPage> page, @Param(Constants.WRAPPER) Wrapper<TagContentPage> queryWrapper);
 }

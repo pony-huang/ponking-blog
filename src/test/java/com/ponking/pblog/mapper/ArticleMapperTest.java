@@ -3,8 +3,7 @@ package com.ponking.pblog.mapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.model.dto.ArticleDto;
-import com.ponking.pblog.model.vo.ArchiveColumnVO;
-import com.ponking.pblog.model.vo.ArchiveVO;
+import com.ponking.pblog.model.vo.ArchiveTableCartVo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +38,7 @@ public class ArticleMapperTest  {
 
     @Test
     public void selectArticleByYearMonthDto() {
-        List<ArchiveColumnVO> archiveColumnVOS = articleMapper.selectArchiveColumnInfo();
-        System.out.println(archiveColumnVOS);
+        List<ArchiveTableCartVo> archiveTableCartVos = articleMapper.selectArchiveColumnInfo();
+        System.out.println(archiveTableCartVos);
     }
 }

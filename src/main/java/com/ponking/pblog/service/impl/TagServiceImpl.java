@@ -3,10 +3,10 @@ package com.ponking.pblog.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ponking.pblog.common.exception.GlobalException;
-import com.ponking.pblog.model.dto.TagDto;
+import com.ponking.pblog.model.vo.TagContentPage;
 import com.ponking.pblog.model.entity.Tag;
 import com.ponking.pblog.mapper.TagMapper;
-import com.ponking.pblog.model.vo.TagColumnVO;
+import com.ponking.pblog.model.vo.TagTableCardVo;
 import com.ponking.pblog.service.ITagService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,12 +68,12 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements ITagS
      * @return
      */
     @Override
-    public List<TagColumnVO> listTagColumnInfo() {
+    public List<TagTableCardVo> listTagColumnInfo() {
         return tagMapper.selectTagColumnInfo();
     }
 
     @Override
-    public IPage<TagDto> getArticleFrontPage(IPage<TagDto> iPage, QueryWrapper<TagDto> wrapper) {
+    public IPage<TagContentPage> getArticleFrontPage(IPage<TagContentPage> iPage, QueryWrapper<TagContentPage> wrapper) {
         return tagMapper.selectTagInfoPage(iPage,wrapper);
     }
 }

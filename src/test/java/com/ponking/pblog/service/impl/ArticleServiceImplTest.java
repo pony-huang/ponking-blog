@@ -4,8 +4,8 @@ package com.ponking.pblog.service.impl;
 import com.ponking.pblog.common.util.ModelVoUtil;
 import com.ponking.pblog.model.dto.ArticleEditDto;
 import com.ponking.pblog.model.entity.Tag;
-import com.ponking.pblog.model.vo.ArchiveVO;
-import com.ponking.pblog.model.vo.ArchivesFrontVO;
+import com.ponking.pblog.model.vo.ArchiveVo;
+import com.ponking.pblog.model.vo.ArchivesContentVo;
 import com.ponking.pblog.service.IArticleService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,11 +50,11 @@ public class ArticleServiceImplTest {
 
     @Test
     public void archiveFrontTest() {
-        List<ArchiveVO> archivesFrontVOS = articleService.listArchiveFront();
-        List<ArchivesFrontVO> archivesFrontVOList = ModelVoUtil.getArchivesFront(archivesFrontVOS);
-        for (ArchivesFrontVO archivesFrontVO : archivesFrontVOList) {
-            System.out.println("------"+archivesFrontVO.getDate()+"------");
-            for (ArchiveVO data : archivesFrontVO.getArchiveList()) {
+        List<ArchiveVo> archivesFrontVOS = articleService.listArchiveFront();
+        List<ArchivesContentVo> archivesContentVoList = ModelVoUtil.getArchivesFront(archivesFrontVOS);
+        for (ArchivesContentVo archivesContentVo : archivesContentVoList) {
+            System.out.println("------"+ archivesContentVo.getDate()+"------");
+            for (ArchiveVo data : archivesContentVo.getArchiveList()) {
                 System.out.println(data.toString());
             }
         }

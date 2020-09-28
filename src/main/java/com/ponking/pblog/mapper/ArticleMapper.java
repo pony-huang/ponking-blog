@@ -8,9 +8,9 @@ import com.ponking.pblog.model.dto.ArticleDto;
 import com.ponking.pblog.model.dto.ArticleEditDto;
 import com.ponking.pblog.model.entity.Article;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.ponking.pblog.model.vo.ArchiveColumnVO;
-import com.ponking.pblog.model.vo.ArchiveVO;
-import com.ponking.pblog.model.vo.ArticleTopColumnVO;
+import com.ponking.pblog.model.vo.ArchiveTableCartVo;
+import com.ponking.pblog.model.vo.ArchiveVo;
+import com.ponking.pblog.model.vo.ArticleTopTableCardVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.io.Serializable;
@@ -39,19 +39,19 @@ public interface ArticleMapper extends BaseMapper<Article> {
      * 博客右侧栏归档列表
      * @return
      */
-    List<ArchiveColumnVO> selectArchiveColumnInfo();
+    List<ArchiveTableCartVo> selectArchiveColumnInfo();
 
     /**
      * 博客右侧栏最新（置顶）列表
      * @return
      */
-    List<ArticleTopColumnVO> selectListArticleTopColumn();
+    List<ArticleTopTableCardVo> selectListArticleTopColumn();
 
     /**
      * 归档页列表
      * @return
      */
-    List<ArchiveVO> selectArchiveFrontAll();
+    List<ArchiveVo> selectArchiveFrontAll();
 
     /**
      * 博客主页列表
@@ -68,7 +68,7 @@ public interface ArticleMapper extends BaseMapper<Article> {
      * @param wrapper
      * @return
      */
-    Page<ArchiveVO>  selectArticleByYearMonthDto(IPage<ArchiveVO> page, @Param(Constants.WRAPPER) Wrapper wrapper);
+    Page<ArchiveVo>  selectArticleByYearMonthDto(IPage<ArchiveVo> page, @Param(Constants.WRAPPER) Wrapper wrapper);
 
 
     /**

@@ -1,7 +1,7 @@
 package com.ponking.pblog.common.util;
 
-import com.ponking.pblog.model.vo.ArchiveVO;
-import com.ponking.pblog.model.vo.ArchivesFrontVO;
+import com.ponking.pblog.model.vo.ArchiveVo;
+import com.ponking.pblog.model.vo.ArchivesContentVo;
 
 
 import java.util.ArrayList;
@@ -16,21 +16,21 @@ import java.util.List;
  **/
 public class ModelVoUtil {
 
-    public static List<ArchivesFrontVO> getArchivesFront(List<ArchiveVO> archiveVOList) {
-        List<ArchivesFrontVO> archivesFrontVOList = new ArrayList<>();
-        Date year = archiveVOList.get(0).getDate();
-        archivesFrontVOList.add(new ArchivesFrontVO(year));
+    public static List<ArchivesContentVo> getArchivesFront(List<ArchiveVo> archiveVoList) {
+        List<ArchivesContentVo> archivesContentVoList = new ArrayList<>();
+        Date year = archiveVoList.get(0).getDate();
+        archivesContentVoList.add(new ArchivesContentVo(year));
         int count = 0;
-        for (ArchiveVO archive : archiveVOList) {
+        for (ArchiveVo archive : archiveVoList) {
             if (year.getYear() == archive.getDate().getYear()) {
-                archivesFrontVOList.get(count).getArchiveList().add(archive);
+                archivesContentVoList.get(count).getArchiveList().add(archive);
             } else {
                 year = archive.getDate();
-                archivesFrontVOList.add(new ArchivesFrontVO(year));
+                archivesContentVoList.add(new ArchivesContentVo(year));
                 count++;
-                archivesFrontVOList.get(count).getArchiveList().add(archive);
+                archivesContentVoList.get(count).getArchiveList().add(archive);
             }
         }
-        return archivesFrontVOList;
+        return archivesContentVoList;
     }
 }

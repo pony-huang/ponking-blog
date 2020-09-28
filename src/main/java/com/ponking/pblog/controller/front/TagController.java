@@ -3,7 +3,6 @@ package com.ponking.pblog.controller.front;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ponking.pblog.controller.BaseController;
 import com.ponking.pblog.model.dto.ArticleDto;
 import com.ponking.pblog.model.entity.Tag;
 import com.ponking.pblog.service.ITagService;
@@ -27,7 +26,7 @@ public class TagController extends BaseController {
 
     @RequestMapping("/tags")
     public String index(Model model) {
-        getBlogInfoModel(model);
+        getBlogTableCardInfo(model);
         System.out.println();
         return "tag";
     }
@@ -43,7 +42,7 @@ public class TagController extends BaseController {
         Tag tag = tagService.getById(tagId);
         model.addAttribute("articles", articles);
         model.addAttribute("tag", tag);
-        getBlogInfoModel(model);
+        getBlogTableCardInfo(model);
         return "detail/front_tag_article_list";
     }
 }

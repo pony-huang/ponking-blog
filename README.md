@@ -1,15 +1,20 @@
 # PonkingBlog
 
 ## 前台
-- 基于vue-admin-template
+- [hexo-theme-icarus](https://github.com/ppoffice/hexo-theme-icarus)
 ## 后台
-- mysql，mybatis-plus,lombok,springboot,jwt,shiro,swagger,druid
+- 基于vue-admin-template
+## 后端
+- mysql,mybatis-plus,lombok,springboot,jwt,shiro,swagger,druid
 ## 其他
-- maven,mysql
+- maven,mysql,idea
 ## 更新日期
+### loading
+### 2020年9月28日
+- 添加PageUtil
+- 统一类名
+- 添加Cache缓存token,用于token注销判断
 ### 2020年9月2日
-> 修复若干bug
->
-> 整理前台vue
->
-> 重写Article
+-  修复若干bug
+-  整理前台vue
+-  重写ApiArticleController

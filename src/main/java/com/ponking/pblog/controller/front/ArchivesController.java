@@ -4,9 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.common.util.ModelVoUtil;
-import com.ponking.pblog.controller.BaseController;
-import com.ponking.pblog.model.vo.ArchiveVO;
-import com.ponking.pblog.model.vo.ArchivesFrontVO;
+import com.ponking.pblog.model.vo.ArchiveVo;
+import com.ponking.pblog.model.vo.ArchivesContentVo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,9 +25,9 @@ public class ArchivesController extends BaseController {
 
 
     @RequestMapping("/archives")
-    public String index(Model model, @RequestParam(value = "time",defaultValue = "-1")int time,
+    public String content(Model model, @RequestParam(value = "time",defaultValue = "-1")int time,
                         @RequestParam(value = "page",defaultValue = "1")int page){
-        QueryWrapper<ArchiveVO> wrapper = new QueryWrapper<>();
+        QueryWrapper<ArchiveVo> wrapper = new QueryWrapper<>();
         Calendar calendar = Calendar.getInstance();
         // 201909
         Date date;
@@ -55,12 +54,12 @@ public class ArchivesController extends BaseController {
                     orderByDesc("update_time");
         }
 
-        IPage<ArchiveVO> pageInfo = articleService.pageArchiveYearMonthFront(new Page<>(page,4),wrapper);
-        List<ArchivesFrontVO> records = new ArrayList<>();
+        IPage<ArchiveVo> pageInfo = articleService.pageArchiveYearMonthFront(new Page<>(page,4),wrapper);
+        List<ArchivesContentVo> records = new ArrayList<>();
         if(pageInfo.getRecords().size()>0){
             records = ModelVoUtil.getArchivesFront(pageInfo.getRecords());
         }
-        getBlogInfoModel(model);
+        getBlogTableCardInfo(model);
         model.addAttribute("pageRecords",records);
         model.addAttribute("page",pageInfo);
         model.addAttribute("time",time);

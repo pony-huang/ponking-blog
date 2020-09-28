@@ -2,10 +2,10 @@ package com.ponking.pblog.mapper;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ponking.pblog.model.dto.CategoryDto;
+import com.ponking.pblog.model.vo.CategoryContentPage;
 import com.ponking.pblog.model.entity.Category;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.ponking.pblog.model.vo.CategoryColumnVO;
+import com.ponking.pblog.model.vo.CategoryTableCardVo;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public interface CategoryMapper extends BaseMapper<Category> {
      * 博客左侧栏分类列表
      * @return
      */
-    List<CategoryColumnVO> selectCategoryColumnInfo();
+    List<CategoryTableCardVo> selectCategoryColumnInfo();
 
     /**
      * 按分类归分博客
@@ -30,5 +30,5 @@ public interface CategoryMapper extends BaseMapper<Category> {
      * @param wrapper
      * @return
      */
-    Page<CategoryDto> selectCategoryInfo(Page page, QueryWrapper<CategoryDto> wrapper);
+    Page<CategoryContentPage> selectCategoryInfo(Page page, QueryWrapper<CategoryContentPage> wrapper);
 }
