@@ -3,7 +3,7 @@
 ## 前台
 - [hexo-theme-icarus](https://github.com/ppoffice/hexo-theme-icarus)
 ## 后台
-- 基于vue-admin-template
+- [vue-admin-plog](https://github.com/PonKing66/vue-admin-pblog) 基于vue-admin-template
 ## 后端
 - mysql,mybatis-plus,lombok,springboot,jwt,shiro,swagger,druid
 ## 其他
