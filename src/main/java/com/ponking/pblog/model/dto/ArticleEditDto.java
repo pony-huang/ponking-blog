@@ -1,7 +1,6 @@
 package com.ponking.pblog.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.ponking.pblog.model.vo.AuthorVo;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -23,7 +22,7 @@ public class ArticleEditDto implements Serializable {
      * 作者
      */
     @JsonProperty("author")
-    private AuthorVo authorVO;
+    private AuthorDto authorDto;
 
     /**
      * 文章标题

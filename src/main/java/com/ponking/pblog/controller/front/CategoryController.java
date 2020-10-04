@@ -27,7 +27,7 @@ public class CategoryController extends BaseController {
     @RequestMapping("/categories")
     public String index(Model model){
         getBlogTableCardInfo(model);
-        return "category";
+        return "blog/category";
     }
 
     @RequestMapping("/categories/{categoryId}")
@@ -40,6 +40,6 @@ public class CategoryController extends BaseController {
         model.addAttribute("articles",articles);
         model.addAttribute("category",category);
         getBlogTableCardInfo(model);
-        return "detail/front_category_article_list";
+        return "blog/detail/front_category_article_list";
     }
 }

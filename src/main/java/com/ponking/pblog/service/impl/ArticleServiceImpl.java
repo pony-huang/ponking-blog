@@ -14,7 +14,7 @@ import com.ponking.pblog.model.entity.ArticleTag;
 import com.ponking.pblog.model.vo.ArchiveTableCartVo;
 import com.ponking.pblog.model.vo.ArchiveVo;
 import com.ponking.pblog.model.vo.ArticleTopTableCardVo;
-import com.ponking.pblog.model.vo.AuthorVo;
+import com.ponking.pblog.model.dto.AuthorDto;
 import com.ponking.pblog.service.IArticleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ponking.pblog.service.IArticleTagService;
@@ -202,15 +202,15 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     @Override
     public ArticleEditDto getArticleEditInfo(Serializable id) {
         // todo 动态变化作者信息
-        AuthorVo authorVO = new AuthorVo();
-        authorVO.setId(1);
-        authorVO.setName("PONKING");
+        AuthorDto authorDto = new AuthorDto();
+        authorDto.setId(1);
+        authorDto.setName("PONKING");
 
         ArticleEditDto article = baseMapper.selectArticleEditInfo(id);
         List<Long> tagIds = articleTagService.list(new QueryWrapper<ArticleTag>().eq("article_id", id))
                 .stream()
                 .map(ArticleTag::getTagId).collect(Collectors.toList());
-        article.setAuthorVO(authorVO);
+        article.setAuthorDto(authorDto);
         article.setTagIds(tagIds);
         return article;
     }

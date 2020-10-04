@@ -12,6 +12,7 @@
 ### loading
 ### 2020年10月4日
 - 添加评论接口
+- 前后端整合（vue-admin-plog整合SpringBoot）
 ### 2020年9月28日
 - 添加PageUtil
 - 统一类名

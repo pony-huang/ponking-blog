@@ -7,9 +7,10 @@ spring:
     mode: HTML5
     encoding: utf-8
     cache: false
+#    prefix: classpath:/templates/blog,/templates/admin
 
 jwt:
-  expire-time: 12000000 #
+  expire-time: 12000000
   secret-key: 19980606
 
 

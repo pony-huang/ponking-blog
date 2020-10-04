@@ -90,7 +90,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
         for (ArticleCommentsVo vo : source) {
             if (vo.getParentId().equals(parent.getId())) {
                 parents.add(vo);
-                parent.setChildren(getTreeCommentsOfChildren(vo,source));
+                vo.setChildren(getTreeCommentsOfChildren(vo,source));
             }
         }
         return parents;

@@ -60,9 +60,9 @@ public class ArchivesController extends BaseController {
             records = ModelVoUtil.getArchivesFront(pageInfo.getRecords());
         }
         getBlogTableCardInfo(model);
-        model.addAttribute("pageRecords",records);
+        model.addAttribute("items",records);
         model.addAttribute("page",pageInfo);
         model.addAttribute("time",time);
-        return "archive";
+        return "blog/archive";
     }
 }

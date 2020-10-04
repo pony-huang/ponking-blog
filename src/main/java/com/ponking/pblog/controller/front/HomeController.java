@@ -37,6 +37,6 @@ public class HomeController extends BaseController {
         IPage<ArticleDto> articles = articleService.getArticleFrontPage(iPage,new QueryWrapper<>());
         model.addAttribute("articles",articles);
         getBlogTableCardInfo(model);
-        return "index";
+        return "blog/index";
     }
 }

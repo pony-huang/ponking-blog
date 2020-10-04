@@ -28,7 +28,7 @@ public class TagController extends BaseController {
     public String index(Model model) {
         getBlogTableCardInfo(model);
         System.out.println();
-        return "tag";
+        return "blog/tag";
     }
 
 
@@ -43,6 +43,6 @@ public class TagController extends BaseController {
         model.addAttribute("articles", articles);
         model.addAttribute("tag", tag);
         getBlogTableCardInfo(model);
-        return "detail/front_tag_article_list";
+        return "blog/detail/front_tag_article_list";
     }
 }

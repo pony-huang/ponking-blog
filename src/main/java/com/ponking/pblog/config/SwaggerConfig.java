@@ -23,7 +23,7 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo())
                 .select()
                 // 需要生成文档的包的位置
-                .apis(RequestHandlerSelectors.basePackage("com.ponking.pblog.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.ponking.pblog.controller.api"))
                 .build();
     }
 

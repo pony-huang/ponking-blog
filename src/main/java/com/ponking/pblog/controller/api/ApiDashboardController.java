@@ -19,7 +19,7 @@ import java.util.stream.IntStream;
  * @author Peng
  * @date 2020/9/3--8:56
  **/
-@Api(value="主页信息controller",tags={"主页信息操作接口"})
+@Api(value="主页controller",tags={"欢迎页操作接口"})
 @RestController
 @RequestMapping("/sys")
 public class ApiDashboardController {

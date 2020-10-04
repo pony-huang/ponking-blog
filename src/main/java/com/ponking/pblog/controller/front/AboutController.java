@@ -15,6 +15,6 @@ public class AboutController extends BaseController {
     @RequestMapping("/about")
     public String content(Model model){
         getBlogTableCardInfo(model);
-        return "about";
+        return "blog/about";
     }
 }

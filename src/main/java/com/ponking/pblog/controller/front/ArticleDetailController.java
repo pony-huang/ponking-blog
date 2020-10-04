@@ -34,6 +34,6 @@ public class ArticleDetailController  extends BaseController {
 
         model.addAttribute("article", article);
         getBlogTableCardInfo(model);
-        return "detail/front_article_detail";
+        return "blog/detail/front_article_detail";
     }
 }
