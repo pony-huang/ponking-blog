@@ -7,27 +7,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-    <title>PAT 甲级 1014 wr 代码 - 有冇</title>
-
-
-    <meta name="description"
-          content="1014 福尔摩斯的约会 (20 分) 大侦探福尔摩斯接到一张奇怪的字条：我们约会吧！ 3485djDkxh4hhGE 2984akDfkkkkggEdsb s&amp;amp;hgsfdk d&amp;amp;Hyscvnm。大侦探很快就明白了，字条上奇怪的乱码实际上就是约会的时间星期四 14:04，因为前面两字符串中第 1 对相同的大写英文字母（大小写有区分）是第 4 个字母 D，代表星期四；第 2 对相同的">
-    <meta name="keywords" content="ACM,PAT">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="PAT 甲级 1014 wr 代码">
-    <meta property="og:url" content="www.ponking.com/2019/03/31/PAT乙级1014/index.html">
-    <meta property="og:site_name" content="有冇">
-    <meta property="og:description"
-          content="1014 福尔摩斯的约会 (20 分) 大侦探福尔摩斯接到一张奇怪的字条：我们约会吧！ 3485djDkxh4hhGE 2984akDfkkkkggEdsb s&amp;amp;hgsfdk d&amp;amp;Hyscvnm。大侦探很快就明白了，字条上奇怪的乱码实际上就是约会的时间星期四 14:04，因为前面两字符串中第 1 对相同的大写英文字母（大小写有区分）是第 4 个字母 D，代表星期四；第 2 对相同的">
-    <meta property="og:locale" content="zh-CN">
-    <meta property="og:image" content="/images/og_image.png">
-    <meta property="og:updated_time" content="2019-08-31T08:04:05.564Z">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="PAT 甲级 1014 wr 代码">
-    <meta name="twitter:description"
-          content="1014 福尔摩斯的约会 (20 分) 大侦探福尔摩斯接到一张奇怪的字条：我们约会吧！ 3485djDkxh4hhGE 2984akDfkkkkggEdsb s&amp;amp;hgsfdk d&amp;amp;Hyscvnm。大侦探很快就明白了，字条上奇怪的乱码实际上就是约会的时间星期四 14:04，因为前面两字符串中第 1 对相同的大写英文字母（大小写有区分）是第 4 个字母 D，代表星期四；第 2 对相同的">
-    <meta name="twitter:image" content="/images/og_image.png">
-
+    <title th:text="${article.title}">PAT 甲级 1014 wr 代码 - 有冇 </title>
 
     <link rel="icon" href="/images/favicon.svg">
 
@@ -75,7 +55,7 @@
 
                         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                             <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-03-31T15:35:41.000Z">2019-03-31
+                                <time th:datetime="${article.updateTime}" class="level-item has-text-grey" datetime="2019-03-31T15:35:41.000Z">2019-03-31
                                 </time>
 
                                 <span class="level-item has-text-grey">

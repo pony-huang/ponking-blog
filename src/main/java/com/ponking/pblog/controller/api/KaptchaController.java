@@ -1,6 +1,7 @@
 package com.ponking.pblog.controller.api;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,6 +22,7 @@ import java.io.ByteArrayOutputStream;
  * @Des
  **/
 @Controller
+@Api(value="验证码controller",tags={"验证码操作接口"})
 @CrossOrigin
 public class KaptchaController {
     /**

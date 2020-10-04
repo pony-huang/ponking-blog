@@ -73,6 +73,10 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         }
         // 2. 插入文章
         Article article = new Article();
+        // 若图片为空,插入默认图片
+        if (articleEditDto.getImage() == null) {
+            articleEditDto.setImage("https://ponking-blog.oss-cn-beijing.aliyuncs.com/2020/09/07/48709154400a43149d2f3435e3c7378e.png");
+        }
         BeanUtils.copyProperties(articleEditDto,article);
         // 获取新插入记录的主键
         baseMapper.insert(article);

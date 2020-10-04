@@ -1,23 +1,15 @@
 package com.ponking.pblog.shiro;
 
-import com.ponking.pblog.common.cache.Cache;
-import com.ponking.pblog.common.constants.AuthConstants;
-import com.ponking.pblog.common.util.JwtUtil;
-import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.pam.UnsupportedTokenException;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
-import org.springframework.beans.factory.annotation.Autowired;
 
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Enumeration;
-import java.util.List;
 
 /**
  * @author Ponking

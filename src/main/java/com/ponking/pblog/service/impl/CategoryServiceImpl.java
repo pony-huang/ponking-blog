@@ -40,7 +40,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
         if(count>0){
             throw new GlobalException("已存在【"+category.getName()+"】分类");
         }
-        return super.save(category);
+        return baseMapper.insert(category) > 0;
     }
 
     /**

@@ -3,6 +3,7 @@ package com.ponking.pblog.controller.api;
 import com.ponking.pblog.common.exception.GlobalException;
 import com.ponking.pblog.model.result.R;
 import com.ponking.pblog.service.IUploadService;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import java.util.Map;
  **/
 @Controller
 @Slf4j
+@Api(value="文件上传controller",tags={"文件上传操作接口"})
 @RequestMapping("/sys")
 public class UploadFileController {
 

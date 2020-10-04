@@ -9,6 +9,8 @@ import com.ponking.pblog.model.result.R;
 import com.ponking.pblog.model.dto.ArticleEditDto;
 import com.ponking.pblog.model.entity.Article;
 import com.ponking.pblog.service.IArticleService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +26,8 @@ import java.util.List;
  * @author peng
  * @since 2020-03-20
  */
+
+@Api(value="文章controller",tags={"文章操作接口"})
 @RestController
 @RequestMapping("/sys/articles")
 public class ApiArticleController {

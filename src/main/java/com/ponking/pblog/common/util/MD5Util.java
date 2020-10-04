@@ -22,6 +22,16 @@ public class MD5Util {
         return simpleHash.toString();
     }
 
+    public static String encrypt(String credential){
+        ByteSource credentialsSalt01 = ByteSource.Util.bytes(publicSalt);
+        //加密方式
+        String hashAlgorithmName = "MD5";
+        //1024指的是加密的次数
+        Object simpleHash = new SimpleHash(hashAlgorithmName, credential,
+                credentialsSalt01, 1024);
+        return simpleHash.toString();
+    }
+
     public static void main(String[] args) {
         System.out.println("加密后的值----->" + encrypt("123456","7af4a47cb431d8f4"));
     }

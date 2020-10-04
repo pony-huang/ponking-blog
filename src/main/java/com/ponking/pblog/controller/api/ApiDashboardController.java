@@ -5,6 +5,7 @@ import com.ponking.pblog.model.vo.DashboardArticleCommentsVo;
 import com.ponking.pblog.model.vo.DashboardArticleNumVo;
 import com.ponking.pblog.model.vo.DashboardArticleVisitsVo;
 import com.ponking.pblog.model.vo.DashboardVo;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,7 @@ import java.util.stream.IntStream;
  * @author Peng
  * @date 2020/9/3--8:56
  **/
+@Api(value="主页信息controller",tags={"主页信息操作接口"})
 @RestController
 @RequestMapping("/sys")
 public class ApiDashboardController {

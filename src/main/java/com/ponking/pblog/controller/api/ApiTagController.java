@@ -7,6 +7,7 @@ import com.ponking.pblog.model.result.R;
 import com.ponking.pblog.model.dto.TagDto;
 import com.ponking.pblog.model.entity.Tag;
 import com.ponking.pblog.service.ITagService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import java.util.List;
  * @author peng
  * @since 2020-03-14
  */
+@Api(value="标签controller",tags={"标签操作接口"})
 @RestController
 @RequestMapping("/sys/tags")
 public class ApiTagController {
@@ -49,7 +51,7 @@ public class ApiTagController {
     public R saveTag(@RequestBody TagDto tag){
         Tag t = new Tag();
         try {
-            BeanUtils.copyProperties(t,tag);
+            BeanUtils.copyProperties(tag,t);
         }catch (BeansException e){
             e.printStackTrace();
             return R.failed();

@@ -7,6 +7,7 @@ import com.ponking.pblog.model.result.R;
 import com.ponking.pblog.model.dto.CategoryDto;
 import com.ponking.pblog.model.entity.Category;
 import com.ponking.pblog.service.ICategoryService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import java.util.List;
  * @author peng
  * @since 2020-03-20
  */
+@Api(value="分类controller",tags={"分类操作接口"})
 @RestController
 @RequestMapping("/sys/categories")
 public class ApiCategoryController {
@@ -57,7 +59,7 @@ public class ApiCategoryController {
     public R saveCategory(@RequestBody CategoryDto category) {
         Category c = new Category();
         try {
-            BeanUtils.copyProperties(c, category);
+            BeanUtils.copyProperties(category, c);
         } catch (BeansException e) {
             e.printStackTrace();
             return R.failed();

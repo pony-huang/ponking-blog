@@ -17,7 +17,7 @@ import java.util.List;
  * @ClassName BaseController
  * @date 2020/4/8--14:24
  **/
-public class BaseController {
+public abstract class BaseController {
     @Autowired
     protected IArticleService articleService;
 
