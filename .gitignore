@@ -5,6 +5,8 @@ target/
 !**/src/test/**
 logs/
 image/
+key.txt
+application-dev.yml
 
 ### STS ###
 .apt_generated
@@ -33,3 +35,6 @@ build/
 
 ### VS Code ###
 .vscode/
+src/main/java/com/ponking/pblog/model/query/
+src/main/resources/key.txt
+src/main/resources/mapper/pblog/

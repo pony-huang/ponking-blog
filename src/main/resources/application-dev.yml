@@ -22,6 +22,14 @@ mybatis-plus:
     cache-enabled: true
 #  config-location: classpath:mybatis-config.xml
 
+aliyun:
+  oss:
+    endpoint: oss-cn-beijing.aliyuncs.com
+    bucket: ponking-blog
+    accessKeyId: LTAI4GDgoZkcQhERrfm6kEED
+    accessKeySecret: LFBEEawvtnRsOdsjbVtIEtYgxxmTJT
+
+
 pblog:
   author-name: PonKing
   author-title: 我就是我,颜色不一样的烟火

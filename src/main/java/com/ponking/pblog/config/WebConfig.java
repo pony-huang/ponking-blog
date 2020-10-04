@@ -35,21 +35,4 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/static/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX+"/static/");
     }
 
-    //    @Value("${file.commons.uploadWindows}")
-//    private String filePathWindow;
-//
-//    @Value("${file.commons.uploadLinux}")
-//    private String filePathLinux;
-//
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        String os = System.getProperty("os.name");
-////        registry.addResourceHandler("/static/**").addResourceLocations(ResourceUtils.CLASSPATH_PREFIX+"/static/");
-//        if(os.toLowerCase().startsWith("win")){
-//            registry.addResourceHandler("/test/image/**").addResourceLocations("file:"+filePathWindow);
-//        }else{
-//            registry.addResourceHandler("/test/image/**").addResourceLocations("file:"+filePathLinux);
-//        }
-//
-//    }
 }
