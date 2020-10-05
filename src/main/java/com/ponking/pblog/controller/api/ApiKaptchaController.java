@@ -23,7 +23,6 @@ import java.io.ByteArrayOutputStream;
  **/
 @Controller
 @Api(value="验证码controller",tags={"验证码操作接口"})
-@CrossOrigin
 public class ApiKaptchaController {
     /**
      * 验证码工具

@@ -75,9 +75,9 @@ public class ShiroConfig {
         //验证码
         chain.put("/defaultKaptcha/**","anon");
         // 认证
-//        chain.put("/sys/**","noSessionCreation,jwtFilter");
+        chain.put("/sys/**","noSessionCreation,jwtFilter");
         //测试专用
-        chain.put("/sys/**","anon");
+//        chain.put("/sys/**","anon");
         chain.put("/login","noSessionCreation");
         factoryBean.setFilterChainDefinitionMap(chain);
         return factoryBean;

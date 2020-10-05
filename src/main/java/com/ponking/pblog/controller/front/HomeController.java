@@ -25,7 +25,7 @@ public class HomeController extends BaseController {
     }
 
 
-    @RequestMapping("/sys/index")
+    @RequestMapping("/admin/index")
     public String admin(){
         return "admin/index";
     }
