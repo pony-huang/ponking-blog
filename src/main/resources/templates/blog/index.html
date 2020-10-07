@@ -31,12 +31,12 @@
                                 </time>
 
                                 <div class="level-item">
-                                    <a class="has-link-grey -link" href="/categories/笔记/">笔记</a>
+                                    <a class="has-link-grey -link" href="/categories/笔记/" th:href="@{/categories/{id}(id=${article.category.id})}" th:text="${article.category.name}">笔记</a>
                                 </div>
 
-                                <span class="level-item has-text-grey">
-                                    20 分钟 读完 (大约 3056 个字)
-                                </span>
+<!--                                <span class="level-item has-text-grey">-->
+<!--                                    20 分钟 读完 (大约 3056 个字)-->
+<!--                                </span>-->
 
                                 <span class="level-item has-text-grey">
                                     访问量:[[${article.visits}]]

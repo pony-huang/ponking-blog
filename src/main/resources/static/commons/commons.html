@@ -7,22 +7,9 @@
     <title th:text="${title}"></title>
     <meta name="generator" content="Hexo 3.8.0"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<!--    <meta name="description" content="我喜欢学习，学习使我快乐">-->
-<!--    <meta property="og:type" content="website">-->
-<!--    <meta property="og:url" content="www.ponking.com">-->
-<!--    <meta property="og:site_name" content="有冇">-->
-<!--    <meta property="og:description" content="我喜欢学习，学习使我快乐">-->
-<!--    <meta property="og:locale" content="zh-CN">-->
-<!--    <meta property="og:image" content="/images/og_image.png" th:href="@{/images/og_image.png}">-->
-<!--    <meta name="twitter:card" content="summary">-->
-<!--    <meta name="twitter:title" content="有冇">-->
-<!--    <meta name="twitter:description" content="我喜欢学习，学习使我快乐">-->
-<!--    <meta name="twitter:image" content="/images/og_image.png" th:href="@{/images/og_image.png}">-->
-
-
     <link rel="icon" href="/images/favicon.svg" th:href="@{/images/favicon.svg}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
-<!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">-->
+    <!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
     <style>body > .footer, body > .navbar, body > .section {
@@ -35,13 +22,9 @@
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
 
-
     <link rel="stylesheet" href="/css/back-to-top.css" th:href="@{/css/back-to-top.css}">
-
-
     <link rel="stylesheet" href="/css/progressbar.css" th:href="@{/css/progressbar.css}">
     <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
-
 
     <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
 </head>
@@ -61,38 +44,29 @@
             <div class="navbar-start">
 
                 <a class="navbar-item" th:classappend="${index}==1?'is-active':''"
-                   href="/home">Home</a>
+                   href="/home">主页</a>
 
                 <a class="navbar-item" th:classappend="${index}==2?'is-active':''"
-                   href="/archives">Archives</a>
+                   href="/archives">归档</a>
 
                 <a class="navbar-item" th:classappend="${index}==3?'is-active':''"
-                   href="/categories">Categories</a>
+                   href="/categories">分类</a>
 
                 <a class="navbar-item" th:classappend="${index}==4?'is-active':''"
-                   href="/tags">Tags</a>
+                   href="/tags">标签</a>
 
                 <a class="navbar-item" th:classappend="${index}==5?'is-active':''"
-                   href="/about">About</a>
+                   href="/about">关于我</a>
 
             </div>
 
-            <div class="navbar-end">
-
-
-                <a class="navbar-item" target="_blank" title="Download on GitHub"
-                   href="https://github.com/ppoffice/hexo-theme-icarus">
-
-                    <i class="fab fa-github"></i>
-
-                </a>
-
-
-                <a class="navbar-item search" title="搜索" href="javascript:;">
-                    <i class="fas fa-search"></i>
-                </a>
-
-            </div>
+            <div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Join Gitter"
+                                       href="https://gitter.im/hexo-theme-icarus/community"><i
+                    class="fab fa-gitter"></i></a><a class="navbar-item" target="_blank" rel="noopener"
+                                                     title="Download on GitHub"
+                                                     href="https://github.com/ppoffice/hexo-theme-icarus"><i
+                    class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i
+                    class="fas fa-search"></i></a></div>
         </div>
     </div>
 </nav>
@@ -102,7 +76,8 @@
         <div class="columns">
 
             <!--左侧栏-->
-            <div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky" th:fragment="left_column">
+            <div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky"
+                 th:fragment="left_column">
 
                 <!--作者详情卡片-->
                 <div class="card widget">
@@ -112,7 +87,8 @@
                                 <div>
 
                                     <figure class="image is-128x128 has-mb-6">
-                                        <img class="" src="/images/avatar.png" alt="Your name" th:src="@{${info.avatar}}">
+                                        <img class="" src="/images/avatar.png" alt="Your name"
+                                             th:src="@{${info.avatar}}">
                                     </figure>
 
                                     <p class="is-size-4 is-block" th:text="${info.name}">
@@ -165,7 +141,7 @@
                             </div>
                         </nav>
                         <div class="level">
-                            <a class="level-item button is-link is-rounded" href="https://github.com/ppoffice"
+                            <a class="level-item button is-link is-rounded" href="https://github.com/PonKing66"
                                target="_blank">
                                 关注我</a>
                         </div>
@@ -223,7 +199,8 @@
                             <ul class="menu-list">
 
                                 <li th:each="link:${links}">
-                                    <a class="level is-mobile" th:href="${link.url}" href="https://hexo.io" target="_blank">
+                                    <a class="level is-mobile" th:href="${link.url}" href="https://hexo.io"
+                                       target="_blank">
                     <span class="level-left">
                         <span class="level-item" th:text="${link.name}">Hexo</span>
                     </span>
@@ -247,11 +224,12 @@
                             </h3>
                             <ul class="menu-list">
                                 <li th:each="category:${categories}">
-                                    <a class="level is-marginless" href="/categories/ACM/" th:href="@{/categories/{id}(id=${category.id})}">
+                                    <a class="level is-marginless" href="/categories/ACM/"
+                                       th:href="@{/categories/{id}(id=${category.id})}">
                                         <span class="level-start">
                                             <span class="level-item" th:text="${category.name}">ACM</span>
                                         </span>
-                                                                    <span class="level-end">
+                                        <span class="level-end">
                                             <span class="level-item tag" th:text="${category.count}">4</span>
                                         </span>
                                     </a></li>
@@ -307,7 +285,8 @@
 
                                 <a href="/2019/09/10/PAT甲级1040/" class="media-left">
                                     <p class="image is-64x64">
-                                        <img class="thumbnail" src="/images/thumbnail.svg" th:src="@{${newArticle.image}}"
+                                        <img class="thumbnail" src="/images/thumbnail.svg"
+                                             th:src="@{${newArticle.image}}"
                                              alt="PAT 甲级 1040 Longest Symmetric String (25 分)">
                                     </p>
                                 </a>
@@ -316,14 +295,19 @@
                                     <div class="content">
                                         <div>
                                             <time class="has-text-grey is-size-7 is-uppercase"
-                                                  datetime="2019-09-10T15:10:11.000Z" th:text="${#dates.format(newArticle.updateTime,'yyyy-MM-dd')}">2019-09-10
+                                                  datetime="2019-09-10T15:10:11.000Z"
+                                                  th:text="${#dates.format(newArticle.updateTime,'yyyy-MM-dd')}">
+                                                2019-09-10
                                             </time>
                                         </div>
                                         <a href="/2019/09/10/PAT甲级1040/"
-                                           class="title has-link-black-ter is-size-6 has-text-weight-normal" th:text="${newArticle.title}">PAT 甲级 1040
+                                           class="title has-link-black-ter is-size-6 has-text-weight-normal"
+                                           th:text="${newArticle.title}">PAT 甲级 1040
                                             Longest Symmetric String (25 分)</a>
                                         <p class="is-size-7 is-uppercase">
-                                            <a class="has-link-grey -link" href="/categories/PAT/" th:href="@{/categories/{id}(id=${newArticle.category.id})}"  th:text="${newArticle.category.name}">PAT</a>
+                                            <a class="has-link-grey -link" href="/categories/PAT/"
+                                               th:href="@{/categories/{id}(id=${newArticle.category.id})}"
+                                               th:text="${newArticle.category.name}">PAT</a>
                                         </p>
                                     </div>
                                 </div>
@@ -341,11 +325,12 @@
                                 <ul class="menu-list">
 
                                     <li th:each="archive:${archives}">
-                                        <a class="level is-marginless" href="/archives/2019/09/" th:href="@{/archives(time=${#dates.format(archive.years,'yyyy-MM')})}">
+                                        <a class="level is-marginless" href="/archives/2019/09/"
+                                           th:href="@{/archives(time=${#dates.format(archive.years,'yyyy-MM')})}">
                                         <span class="level-start">
                                             <span class="level-item" th:text="${#dates.format(archive.years,'M月 Y')}">九月 2019</span>
                                         </span>
-                                        <span class="level-end">
+                                            <span class="level-end">
                                             <span class="level-item tag" th:text="${archive.count}">4</span>
                                         </span>
                                         </a>
@@ -383,7 +368,8 @@
 
 
             <!--右侧栏-->
-            <div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky" th:fragment="right_column">
+            <div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky"
+                 th:fragment="right_column">
 
                 <!--最新文章卡片-->
                 <div class="card widget">
@@ -393,7 +379,8 @@
                         </h3>
                         <article class="media" th:each="newArticle:${newArticles}">
 
-                            <a href="/2019/09/10/PAT甲级1040/" class="media-left" th:href="@{/articles/{id}(id=${newArticle.id})}">
+                            <a href="/2019/09/10/PAT甲级1040/" class="media-left"
+                               th:href="@{/articles/{id}(id=${newArticle.id})}">
                                 <p class="image is-64x64">
                                     <img class="thumbnail" src="/images/thumbnail.svg" th:src="@{${newArticle.image}}"
                                          alt="PAT 甲级 1040 Longest Symmetric String (25 分)">
@@ -404,14 +391,18 @@
                                 <div class="content">
                                     <div>
                                         <time class="has-text-grey is-size-7 is-uppercase"
-                                              datetime="2019-09-10T15:10:11.000Z" th:text="${#dates.format(newArticle.updateTime,'yyyy-MM-dd')}">2019-09-10
+                                              datetime="2019-09-10T15:10:11.000Z"
+                                              th:text="${#dates.format(newArticle.updateTime,'yyyy-MM-dd')}">2019-09-10
                                         </time>
                                     </div>
                                     <a href="#" th:href="@{/articles/{id}(id=${newArticle.id})}"
-                                       class="title has-link-black-ter is-size-6 has-text-weight-normal" th:text="${newArticle.title}">PAT 甲级 1040
+                                       class="title has-link-black-ter is-size-6 has-text-weight-normal"
+                                       th:text="${newArticle.title}">PAT 甲级 1040
                                         Longest Symmetric String (25 分)</a>
                                     <p class="is-size-7 is-uppercase">
-                                        <a class="has-link-grey -link" href="/categories/PAT/" th:href="@{/categories/{id}(id=${newArticle.category.id})}" th:text="${newArticle.category.name}">PAT</a>
+                                        <a class="has-link-grey -link" href="/categories/PAT/"
+                                           th:href="@{/categories/{id}(id=${newArticle.category.id})}"
+                                           th:text="${newArticle.category.name}">PAT</a>
                                     </p>
                                 </div>
                             </div>
@@ -429,11 +420,12 @@
                             <ul class="menu-list">
 
                                 <li th:each="archive:${archives}">
-                                    <a class="level is-marginless" href="/archives/2019/09/" th:href="@{/archives(time=${#dates.format(archive.years,'YMM')})}">
+                                    <a class="level is-marginless" href="/archives/2019/09/"
+                                       th:href="@{/archives(time=${#dates.format(archive.years,'YMM')})}">
                                         <span class="level-start">
                                             <span class="level-item" th:text="${#dates.format(archive.years,'M月 Y')}">九月 2019</span>
                                         </span>
-                                                                <span class="level-end">
+                                        <span class="level-end">
                                             <span class="level-item tag" th:text="${archive.count}">4</span>
                                         </span>
                                     </a>
@@ -454,7 +446,8 @@
                             <div class="field is-grouped is-grouped-multiline">
 
                                 <div class="control" th:each="tag:${tags}">
-                                    <a class="tags has-addons" href="/tags/ACM/" th:href="@{/tags/{tagId}(tagId=${tag.id})}">
+                                    <a class="tags has-addons" href="/tags/ACM/"
+                                       th:href="@{/tags/{tagId}(tagId=${tag.id})}">
                                         <span class="tag" th:text="${tag.name}">ACM</span>
                                         <span class="tag is-grey" th:text="${tag.count}">4</span>
                                     </a>
@@ -466,6 +459,34 @@
                 </div>
 
             </div>
+
+
+            <!--打赏-->
+            <div class="card" th:fragment="maryane">
+                <div class="card-content">
+                    <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+                    <div class="buttons is-centered">
+
+                        <a class="button is-info donate">
+                                <span class="icon is-small">
+                                    <i class="fab fa-alipay"></i>
+                                </span>
+                            <span>支付宝</span>
+                            <div class="qrcode"><img src="/images/wechat.png" alt="支付宝"></div>
+                        </a>
+
+                        <a class="button is-success donate">
+                                <span class="icon is-small">
+                                     <i class="fab fa-weixin"></i>
+                                </span>
+                            <span>微信</span>
+                            <div class="qrcode"><img src="/images/wechat.png" alt="微信"></div>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
 
         </div>
     </div>
@@ -595,8 +616,6 @@
     <i class="fas fa-chevron-up"></i>
 </a>
 <script src="/js/back-to-top.js" defer></script>
-
-
 <script src="/js/main.js" defer></script>
 
 

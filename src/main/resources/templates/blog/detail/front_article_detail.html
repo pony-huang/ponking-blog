@@ -85,47 +85,11 @@
 
 
                 <!--打赏-->
-                <div class="card">
-                    <div class="card-content">
-                        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
-                        <div class="buttons is-centered">
-
-                            <a class="button is-info donate">
-                                <span class="icon is-small">
-                                    <i class="fab fa-alipay"></i>
-                                </span>
-                                <span>支付宝</span>
-                                <div class="qrcode"><img src="/images/wechat.png" alt="支付宝"></div>
-                            </a>
-
-                            <a class="button is-success donate">
-                                <span class="icon is-small">
-                                     <i class="fab fa-weixin"></i>
-                                </span>
-                                <span>微信</span>
-                                <div class="qrcode"><img src="/images/wechat.png" alt="微信"></div>
-                            </a>
-
-                            <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
-
-<!--                            <div class="notification is-danger">-->
-<!--                                You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal.-->
-<!--                                Please set it in <code>_config.yml</code>.-->
-<!--                            </div>-->
-
-
-<!--                            <div class="notification is-danger">-->
-<!--                                You forgot to set the <code>url</code> Patreon. Please set it in-->
-<!--                                <code>_config.yml</code>.-->
-<!--                            </div>-->
-
-
-                        </div>
-                    </div>
+                <div class="card" th:replace="../static/commons/commons :: maryane">
                 </div>
 
 
-                <div class="card card-transparent">
+                <div class="card card-transparent" hidden>
                     <div class="level post-navigation is-flex-wrap is-mobile">
 
                         <div class="level-start">
@@ -166,58 +130,6 @@
     </div>
 </section>
 <footer class="footer" th:replace="../static/commons/commons :: footer">
-    <div class="container">
-        <div class="level">
-            <div class="level-start has-text-centered-mobile">
-                <a class="footer-logo is-block has-mb-6" href="/">
-
-                    <img src="/static/images/logo.svg" alt="PAT 甲级 1014 wr 代码" height="28">
-
-                </a>
-                <p class="is-size-7">
-                    &copy; 2020 Ponking&nbsp;
-                    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
-                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
-
-                </p>
-            </div>
-            <div class="level-end">
-
-                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
-
-
-                    <p class="control">
-                        <a class="button is-white is-large" target="_blank" title="Creative Commons"
-                           href="https://creativecommons.org/">
-
-                            <i class="fab fa-creative-commons"></i>
-
-                        </a>
-                    </p>
-
-                    <p class="control">
-                        <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International"
-                           href="https://creativecommons.org/licenses/by/4.0/">
-
-                            <i class="fab fa-creative-commons-by"></i>
-
-                        </a>
-                    </p>
-
-                    <p class="control">
-                        <a class="button is-white is-large" target="_blank" title="Download on GitHub"
-                           href="https://github.com/ppoffice/hexo-theme-icarus">
-
-                            <i class="fab fa-github"></i>
-
-                        </a>
-                    </p>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
