@@ -1,6 +1,6 @@
 # PonkingBlog
 - [前台展示链接](http://39.106.97.88:80)
-- [后台展示链接](http://39.106.97.88:80) 账户：admin,密码：123456
+- [后台展示链接](http://39.106.97.88:80/admin/index) 账户：admin,密码：123456
 ## 前台
 - [hexo-theme-icarus](https://github.com/ppoffice/hexo-theme-icarus)
 ![markdown](./images/fc6233ade79e0d5e5723c7f87a65700.png)
