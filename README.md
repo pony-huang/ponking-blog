@@ -15,6 +15,8 @@
 - maven,mysql,idea
 ## 更新日期
 ### loading
+### 2020年10月17日
+- 修复前台hexo样式若干问题
 ### 2020年10月4日
 - 添加评论接口
 - 前后端整合（vue-admin-plog整合SpringBoot）
