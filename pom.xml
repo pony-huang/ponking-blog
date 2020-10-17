@@ -134,10 +134,17 @@
         </dependency>
 
         <!-- kaptcha二维码 -->
+<!--        <dependency>-->
+<!--            <groupId>com.github.penggle</groupId>-->
+<!--            <artifactId>kaptcha</artifactId>-->
+<!--            <version>2.3.2</version>-->
+<!--        </dependency>-->
+        <!-- EasyCaptcha -->
         <dependency>
-            <groupId>com.github.penggle</groupId>
-            <artifactId>kaptcha</artifactId>
-            <version>2.3.2</version>
+            <groupId>com.github.whvcse</groupId>
+            <artifactId>easy-captcha</artifactId>
+            <version>1.6.2</version>
+<!--            <systemPath>${basedir}/libs/easy-captcha-1.6.2.jar</systemPath>-->
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->

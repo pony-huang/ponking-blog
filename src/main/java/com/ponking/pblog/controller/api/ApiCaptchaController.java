@@ -1,6 +1,7 @@
 package com.ponking.pblog.controller.api;
 
-import com.google.code.kaptcha.impl.DefaultKaptcha;
+import com.wf.captcha.GifCaptcha;
+import com.wf.captcha.base.Captcha;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,8 +14,11 @@ import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author peng
@@ -23,33 +27,42 @@ import java.io.ByteArrayOutputStream;
  **/
 @Controller
 @Api(value="验证码controller",tags={"验证码操作接口"})
-public class ApiKaptchaController {
+public class ApiCaptchaController {
     /**
      * 验证码工具
      */
-    @Autowired
-    private DefaultKaptcha defaultKaptcha;
+//    @Autowired
+//    private DefaultKaptcha defaultKaptcha;
+
 
     @RequestMapping("/defaultKaptcha")
     public void defaultKaptcha(HttpServletRequest request, HttpServletResponse response) throws Exception {
         byte[] captcha = null;
         ByteArrayOutputStream out = new ByteArrayOutputStream();
+
         try {
             // 将生成的验证码保存在session中
-            String createText = defaultKaptcha.createText();
+            // 三个参数分别为宽、高、位数
+            // gif类型
+            GifCaptcha gifCaptcha = new GifCaptcha(130, 45,5);
+            // 设置字体,有默认字体，可以不用设置
+            gifCaptcha.setFont(new Font("Verdana", Font.PLAIN, 32));
+            // 设置类型，纯数字、纯字母、字母数字混合
+            gifCaptcha.setCharType(Captcha.TYPE_NUM_AND_UPPER);
+            String createText = gifCaptcha.text().toLowerCase();
+            // todo 存入redis并设置过期时间为30分钟
+            // 输出到文件返回给前端
+            gifCaptcha.out(out);
             request.getSession().setAttribute("rightCode", createText);
-            BufferedImage bi = defaultKaptcha.createImage(createText);
-            ImageIO.write(bi, "jpg", out);
         } catch (Exception e) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
-
         captcha = out.toByteArray();
         response.setHeader("Cache-Control", "no-store");
         response.setHeader("Pragma", "no-cache");
         response.setDateHeader("Expires", 0);
-        response.setContentType("image/jpeg");
+        response.setContentType("image/gif");
         ServletOutputStream sout = response.getOutputStream();
         sout.write(captcha);
         sout.flush();

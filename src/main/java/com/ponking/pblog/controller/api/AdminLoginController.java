@@ -16,6 +16,8 @@ import com.ponking.pblog.model.params.UserInfo;
 import com.ponking.pblog.model.vo.LoginVo;
 import com.ponking.pblog.service.IUserService;
 import com.ponking.pblog.shiro.JwtToken;
+import com.wf.captcha.GifCaptcha;
+import com.wf.captcha.base.Captcha;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
@@ -29,6 +31,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -46,6 +50,7 @@ public class AdminLoginController {
 
     @Autowired
     private IUserService userService;
+
 
 
     /**
@@ -76,6 +81,7 @@ public class AdminLoginController {
         if (!rightCode.equals(tryCode)) {
             throw new CredentialsException("验证码错误");
         }
+
 
         // 是否存在该用户
         QueryWrapper<User> wrapper = new QueryWrapper<>();

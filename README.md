@@ -17,6 +17,7 @@
 ### loading
 ### 2020年10月17日
 - 修复前台hexo样式若干问题
+- 验证码插件改为 [EasyCaptcha](https://gitee.com/whvse/EasyCaptcha)
 ### 2020年10月4日
 - 添加评论接口
 - 前后端整合（vue-admin-plog整合SpringBoot）
