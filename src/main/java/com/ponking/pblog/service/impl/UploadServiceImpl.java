@@ -4,8 +4,12 @@ package com.ponking.pblog.service.impl;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.model.PutObjectRequest;
+import com.ponking.pblog.common.exception.GlobalException;
+import com.ponking.pblog.config.PBlogConfig;
+import com.ponking.pblog.model.params.AliyunOSS;
 import com.ponking.pblog.service.IUploadService;
 import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,28 +26,10 @@ import java.util.UUID;
 @Service
 public class UploadServiceImpl implements IUploadService {
 
+    @Autowired
+    private PBlogConfig config;
 
     /**
-     * Endpoint以杭州为例，其它Region请按实际情况填写
-     */
-    @Value("${aliyun.oss.endpoint}")
-    private String endpoint;
-
-    @Value("${aliyun.oss.bucket}")
-    private String bucketName;
-    /**
-     * 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，
-     * 请登录 https://ram.console.aliyun.com 创建RAM账号。
-     */
-    @Value("${aliyun.oss.accessKeyId}")
-    private String accessKeyId;
-
-    @Value("${aliyun.oss.accessKeySecret}")
-    private String accessKeySecret;
-
-
-    /**
-     *
      * @param file
      * @return
      */
@@ -51,6 +37,25 @@ public class UploadServiceImpl implements IUploadService {
     public String upload(MultipartFile file) {
 
         String uploadUrl = null;
+
+        AliyunOSS aliyunOSS = config.getAliyunOSS();
+        if(aliyunOSS == null){
+            throw new GlobalException("尚未配置AliyunOSS");
+        }
+
+        /**
+         * Endpoint以杭州为例，其它Region请按实际情况填写
+         */
+        String endpoint =  aliyunOSS.getEndpoint();
+
+        String bucketName = aliyunOSS.getBucket();
+        /**
+         * 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，
+         * 请登录 https://ram.console.aliyun.com 创建RAM账号。
+         */
+        String accessKeyId = aliyunOSS.getAccessKeyId();
+
+        String accessKeySecret = aliyunOSS.getAccessKeySecret();
 
         try {
             // <yourObjectName>上传文件到OSS时需要指定包含文件后缀在内的完整路径，例如abc/efg/123.jpg。

@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.common.exception.GlobalException;
+import com.ponking.pblog.config.PBlogConfig;
 import com.ponking.pblog.mapper.ArticleMapper;
 import com.ponking.pblog.model.dto.ArticleDto;
 import com.ponking.pblog.model.dto.ArticleEditDto;
@@ -43,6 +44,9 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     @Autowired
     private IArticleTagService articleTagService;
 
+    @Autowired
+    private PBlogConfig config;
+
     @Override
     public boolean save(Article article) {
         //1. 是否已存在该标题
@@ -51,7 +55,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         wrapper.eq("title",title);
         Integer count = baseMapper.selectCount(wrapper);
         if(count>0){
-            throw new GlobalException("已存在【"+article.getTitle()+"】标题");
+            throw new GlobalException("已存在"+article.getTitle()+"标题");
         }
         return super.save(article);
     }
@@ -69,13 +73,13 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         wrapper.eq("title",title);
         Integer count = baseMapper.selectCount(wrapper);
         if(count>0){
-            throw new GlobalException("已存在【"+ articleEditDto.getTitle()+"】标题");
+            throw new GlobalException("已存在"+ articleEditDto.getTitle()+"标题");
         }
         // 2. 插入文章
         Article article = new Article();
         // 若图片为空,插入默认图片
         if (articleEditDto.getImage() == null) {
-            articleEditDto.setImage("https://ponking-blog.oss-cn-beijing.aliyuncs.com/2020/09/07/48709154400a43149d2f3435e3c7378e.png");
+            articleEditDto.setImage(config.getDefaultImage());
         }
         BeanUtils.copyProperties(articleEditDto,article);
         // 获取新插入记录的主键
@@ -103,7 +107,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         wrapper1.eq("title",titleEdit);
         Integer count = baseMapper.selectCount(wrapper1);
         if(count>0&&!titleDb.equals(titleEdit)){
-            throw new GlobalException("已存在【"+ articleEditDto.getTitle()+"】该标题");
+            throw new GlobalException("已存在"+ articleEditDto.getTitle()+"该标题");
         }
         // 2. article 复制属性，且更新文章
         Article article = new Article();
@@ -127,7 +131,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
      * @return
      */
     @Override
-    public Page<ArticleDto> getArticleFrontPage(IPage page, @Param(Constants.WRAPPER) Wrapper<ArticleDto> wrapper) {
+    public Page getArticleFrontPage(IPage page, @Param(Constants.WRAPPER) Wrapper<ArticleDto> wrapper) {
         return baseMapper.selectArticleDtoList(page,wrapper);
     }
 
@@ -188,7 +192,6 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
 
     /**
      * 更新博客状态(发布,草稿,回收箱)状态
-     *
      * @param articleEditDto
      */
     @Override
@@ -204,7 +207,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         // todo 动态变化作者信息
         AuthorDto authorDto = new AuthorDto();
         authorDto.setId(1);
-        authorDto.setName("PONKING");
+        authorDto.setName(config.getBlogAuthor());
 
         ArticleEditDto article = baseMapper.selectArticleEditInfo(id);
         List<Long> tagIds = articleTagService.list(new QueryWrapper<ArticleTag>().eq("article_id", id))

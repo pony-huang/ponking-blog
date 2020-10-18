@@ -1,6 +1,4 @@
 server:
-  #  servlet:
-  #    context-path: /dev-api
   port: 80
 
 spring:
@@ -21,9 +19,3 @@ mybatis-plus:
   configuration:
     cache-enabled: true
 #  config-location: classpath:mybatis-config.xml
-
-pblog:
-  author-name: PonKing
-  author-title: 我就是我,颜色不一样的烟火
-  author-location: 广东肇庆
-  author-avatar: \images\avatar.jpg

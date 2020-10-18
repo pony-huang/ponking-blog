@@ -35,7 +35,7 @@ public class KaptchaConfig {
 //        properties.setProperty(Constants.KAPTCHA_TEXTPRODUCER_CHAR_LENGTH, "4");
 //        // 字体
 //        properties.setProperty(Constants.KAPTCHA_TEXTPRODUCER_FONT_NAMES, "宋体,楷体,微软雅黑");
-//        Config config = new Config(properties);
+//        BlogConfig config = new BlogConfig(properties);
 //        dk.setConfig(config);
 //
 //        return dk;

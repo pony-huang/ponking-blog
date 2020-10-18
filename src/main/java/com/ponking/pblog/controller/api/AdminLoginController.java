@@ -75,13 +75,12 @@ public class AdminLoginController {
         if(StringUtils.isEmpty(loginForm.getPassword())){
             throw new GlobalException("密码不能为空");
         }
-        // 验证码
+        // 验证码 todo 可以将验证码放置redis缓存 @see DefaultCapctch
         String rightCode = (String) request.getSession().getAttribute("rightCode");
         String tryCode = loginForm.getCode();
         if (!rightCode.equals(tryCode)) {
             throw new CredentialsException("验证码错误");
         }
-
 
         // 是否存在该用户
         QueryWrapper<User> wrapper = new QueryWrapper<>();
@@ -101,11 +100,15 @@ public class AdminLoginController {
         // 生成jwtToken
         String jwtToken = JwtUtil.generateToken(dbUser.getUsername());
         log.info("login success...");
-        // 用于注销登录
+        // 用于注销登录(若已在其他地方登录，刷新token)
+        if(cache.get(AuthConstants.JWT_TOKEN_CACHE_PREFIX+dbUser.getUsername())!=null){
+            cache.remove(AuthConstants.JWT_TOKEN_CACHE_PREFIX+dbUser.getUsername());
+        }
         cache.put(AuthConstants.JWT_TOKEN_CACHE_PREFIX+dbUser.getUsername(),jwtToken);
-        Map<String,String> token = new HashMap<>();
-        token.put("token",jwtToken);
-        return R.success(token);
+
+        Map<String,String> data = new HashMap<>();
+        data.put("token",jwtToken);
+        return R.success(data);
     }
 
     /**

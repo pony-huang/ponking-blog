@@ -28,20 +28,18 @@ import java.util.concurrent.TimeUnit;
 @Controller
 @Api(value="验证码controller",tags={"验证码操作接口"})
 public class ApiCaptchaController {
-    /**
-     * 验证码工具
-     */
+
+
 //    @Autowired
 //    private DefaultKaptcha defaultKaptcha;
 
 
-    @RequestMapping("/defaultKaptcha")
+    @RequestMapping("/captcha")
     public void defaultKaptcha(HttpServletRequest request, HttpServletResponse response) throws Exception {
         byte[] captcha = null;
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
         try {
-            // 将生成的验证码保存在session中
             // 三个参数分别为宽、高、位数
             // gif类型
             GifCaptcha gifCaptcha = new GifCaptcha(130, 45,5);
@@ -53,16 +51,18 @@ public class ApiCaptchaController {
             // todo 存入redis并设置过期时间为30分钟
             // 输出到文件返回给前端
             gifCaptcha.out(out);
+            // 将生成的验证码保存在session中
             request.getSession().setAttribute("rightCode", createText);
+            captcha = out.toByteArray();
         } catch (Exception e) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
-        captcha = out.toByteArray();
         response.setHeader("Cache-Control", "no-store");
         response.setHeader("Pragma", "no-cache");
         response.setDateHeader("Expires", 0);
         response.setContentType("image/gif");
+
         ServletOutputStream sout = response.getOutputStream();
         sout.write(captcha);
         sout.flush();

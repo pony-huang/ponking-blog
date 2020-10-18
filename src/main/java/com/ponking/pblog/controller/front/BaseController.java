@@ -1,5 +1,6 @@
 package com.ponking.pblog.controller.front;
 
+import com.ponking.pblog.config.PBlogConfig;
 import com.ponking.pblog.model.entity.Link;
 import com.ponking.pblog.model.vo.*;
 import com.ponking.pblog.service.IArticleService;
@@ -30,20 +31,8 @@ public abstract class BaseController {
     @Autowired
     protected ILinkService linkService;
 
-
-    @Value("${pblog.author-name}")
-    private String authorName;
-
-    @Value("${pblog.author-location}")
-    private String authorLocation;
-
-
-    @Value("${pblog.author-title}")
-    private String authorTitle;
-
-    @Value("${pblog.author-avatar}")
-    private String authorAvatar;
-
+    @Autowired
+    private PBlogConfig config;
 
     /**
      * 左右侧栏信息
@@ -57,10 +46,10 @@ public abstract class BaseController {
         List<ArticleTopTableCardVo> articleTopTableCardVoList = articleService.listArticleTopColumn();
         List<Link> links = linkService.list();
 
-        String name = authorName;
-        String city = authorLocation;
-        String title = authorTitle;
-        String avatar = authorAvatar;
+        String name = config.getBlogAuthor();
+        String city = config.getAuthorCity();
+        String title = config.getBlogTitle();
+        String avatar = config.getBlogAvatar();
         /**
          * 统计信息
          */

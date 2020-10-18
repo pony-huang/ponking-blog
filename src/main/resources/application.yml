@@ -13,11 +13,5 @@ jwt:
   expire-time: 12000000
   secret-key: 19980606
 
-#aliyun:
-#  oss:
-#    endpoint:
-#    bucket:
-#    accessKeyId:
-#    accessKeySecret:
 
 

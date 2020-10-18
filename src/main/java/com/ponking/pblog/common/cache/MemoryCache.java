@@ -12,6 +12,8 @@ public class MemoryCache implements Cache {
 
     private final Map<Object,Object> data = new HashMap<>();
 
+//    private final ThreadLocal<String> data = new ThreadLocal<>();
+
     @Override
     public void put(String key, Object object) {
         data.put(key,object);
