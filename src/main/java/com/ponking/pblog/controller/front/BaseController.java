@@ -1,6 +1,6 @@
 package com.ponking.pblog.controller.front;
 
-import com.ponking.pblog.config.PBlogConfig;
+import com.ponking.pblog.model.params.PBlogProperties;
 import com.ponking.pblog.model.entity.Link;
 import com.ponking.pblog.model.vo.*;
 import com.ponking.pblog.service.IArticleService;
@@ -8,7 +8,6 @@ import com.ponking.pblog.service.ICategoryService;
 import com.ponking.pblog.service.ILinkService;
 import com.ponking.pblog.service.ITagService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 
 import java.util.List;
@@ -32,7 +31,7 @@ public abstract class BaseController {
     protected ILinkService linkService;
 
     @Autowired
-    private PBlogConfig config;
+    private PBlogProperties config;
 
     /**
      * 左右侧栏信息

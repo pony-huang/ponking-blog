@@ -6,6 +6,7 @@ package com.ponking.pblog.controller.api;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ponking.pblog.common.cache.Cache;
 import com.ponking.pblog.common.constants.AuthConstants;
+import com.ponking.pblog.model.params.PBlogProperties;
 import com.ponking.pblog.common.exception.GlobalException;
 import com.ponking.pblog.common.util.JwtUtil;
 import com.ponking.pblog.common.util.MD5Util;
@@ -16,8 +17,6 @@ import com.ponking.pblog.model.params.UserInfo;
 import com.ponking.pblog.model.vo.LoginVo;
 import com.ponking.pblog.service.IUserService;
 import com.ponking.pblog.shiro.JwtToken;
-import com.wf.captcha.GifCaptcha;
-import com.wf.captcha.base.Captcha;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
@@ -31,8 +30,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -46,11 +43,14 @@ public class AdminLoginController {
 
 
     @Autowired
-    private Cache cache;
+    private Cache<String,Object> cache;
 
     @Autowired
     private IUserService userService;
 
+
+    @Autowired
+    private PBlogProperties config;
 
 
     /**
@@ -124,10 +124,12 @@ public class AdminLoginController {
 
         // 没有抛异常执行下一步
         UserInfo info = new UserInfo();
+        // todo 模拟权限
         String [] roles = {"templates/admin"};
         info.setRoles(roles);
-        info.setIntroduction("I am a super administrator");
-        info.setAvatar("https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
+        info.setIntroduction(config.getAuthorDescription());
+        info.setAvatar(config.getBlogAvatar());
+
         Claims claims = JwtUtil.parseJWT(token);
         info.setName(claims.getSubject());
         return R.success(info);

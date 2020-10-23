@@ -35,7 +35,7 @@ public class ApiCaptchaController {
 
 
     @RequestMapping("/captcha")
-    public void defaultKaptcha(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void createCaptcha(HttpServletRequest request, HttpServletResponse response) throws Exception {
         byte[] captcha = null;
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
@@ -44,7 +44,7 @@ public class ApiCaptchaController {
             // gif类型
             GifCaptcha gifCaptcha = new GifCaptcha(130, 45,5);
             // 设置字体,有默认字体，可以不用设置
-            gifCaptcha.setFont(new Font("Verdana", Font.PLAIN, 32));
+            gifCaptcha.setFont(new Font("Verdana", Font.PLAIN, 30));
             // 设置类型，纯数字、纯字母、字母数字混合
             gifCaptcha.setCharType(Captcha.TYPE_NUM_AND_UPPER);
             String createText = gifCaptcha.text().toLowerCase();

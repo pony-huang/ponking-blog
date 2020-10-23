@@ -20,9 +20,9 @@ import java.util.Map;
  **/
 @Controller
 @Slf4j
-@Api(value="文件上传controller",tags={"文件上传操作接口"})
+@Api(value = "文件上传controller", tags = {"文件上传操作接口"})
 @RequestMapping("/sys")
-public class UploadFileController {
+public class ApiUploadFileController {
 
 
     @Autowired
@@ -31,16 +31,16 @@ public class UploadFileController {
 
     @PostMapping("/image/upload")
     @ResponseBody
-    public R fileUpload(@RequestParam(value = "file")MultipartFile file){
-        if(file.isEmpty()){
+    public R imageUpload(@RequestParam(value = "file") MultipartFile file) {
+        if (file.isEmpty()) {
             throw new GlobalException("文件为空");
         }
-        String upload = uploadService.upload(file);
-        if(upload==null){
+        String imageUrl = uploadService.upload(file);
+        if (imageUrl == null) {
             throw new GlobalException("上传失败");
         }
-        Map<String,String> result = new HashMap<>();
-        result.put("imageUrl",upload);
+        Map<String, String> result = new HashMap<>();
+        result.put("imageUrl", imageUrl);
         return R.success(result);
     }
 
