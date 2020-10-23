@@ -34,6 +34,28 @@
                     select="selectTagsByArticleId"/>
     </resultMap>
 
+    <resultMap id="EsArticleMap" type="com.ponking.pblog.model.document.EsArticle">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="summary" column="summary"/>
+        <result property="image" column="image"/>
+        <result property="content" column="content"/>
+        <result property="contentMd" column="content_md"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="top" column="top"/>
+        <result property="commented" column="commented"/>
+        <result property="original" column="original"/>
+        <result property="sourceUrl" column="source_url"/>
+        <result property="visits" column="visits"/>
+        <result property="status" column="status"/>
+        <result property="categoryId" column="category_id"/>
+        <association property="category" javaType="com.ponking.pblog.model.entity.Category"
+                     column="{id=category_id}" select="selectCategoryByArticleId"/>
+        <collection property="tagArray" javaType="ArrayList" ofType="com.ponking.pblog.model.entity.Tag" column="{id=id}"
+                    select="selectTagsByArticleId"/>
+    </resultMap>
+
     <resultMap id="ArticleDTO" type="com.ponking.pblog.model.dto.ArticleEditDto">
         <id property="id" column="id"/>
         <result property="summary" column="summary"/>
@@ -73,6 +95,11 @@
         select *
         from blog_article
         ${ew.customSqlSegment}
+    </select>
+
+    <select id="selectEsArticleList" resultMap="EsArticleMap">
+        select *
+        from blog_article
     </select>
 
     <select id="selectArticleByYearMonthDto" resultMap="ArchivesVoMap">

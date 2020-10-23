@@ -39,4 +39,9 @@ public class Category implements Serializable {
      * 路径
      */
     private String path;
+
+    /**
+     * 描述
+     */
+    private String describe;
 }

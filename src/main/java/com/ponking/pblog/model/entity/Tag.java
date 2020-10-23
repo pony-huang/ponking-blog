@@ -34,4 +34,14 @@ public class Tag implements Serializable {
      * 标签名
      */
     private String name;
+
+    /**
+     * 路径
+     */
+    private String path;
+
+    /**
+     * 描述
+     */
+    private String describe;
 }
