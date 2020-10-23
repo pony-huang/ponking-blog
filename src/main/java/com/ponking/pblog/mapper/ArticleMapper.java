@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ponking.pblog.model.document.EsArticle;
 import com.ponking.pblog.model.dto.ArticleDto;
 import com.ponking.pblog.model.dto.ArticleEditDto;
 import com.ponking.pblog.model.entity.Article;
@@ -60,6 +61,13 @@ public interface ArticleMapper extends BaseMapper<Article> {
      * @return
      */
     Page<ArticleDto> selectArticleDtoList(IPage<ArticleDto> page, @Param(Constants.WRAPPER) Wrapper<ArticleDto> queryWrapper);
+
+
+    /**
+     * 获取博客全部列表
+     * @return
+     */
+    List<EsArticle> selectEsArticleList();
 
 
     /**
