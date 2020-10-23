@@ -3,18 +3,15 @@ package com.ponking.pblog.service.impl;
 
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
-import com.aliyun.oss.model.PutObjectRequest;
+import com.ponking.pblog.model.params.PBlogProperties;
 import com.ponking.pblog.common.exception.GlobalException;
-import com.ponking.pblog.config.PBlogConfig;
 import com.ponking.pblog.model.params.AliyunOSS;
 import com.ponking.pblog.service.IUploadService;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.UUID;
@@ -27,7 +24,7 @@ import java.util.UUID;
 public class UploadServiceImpl implements IUploadService {
 
     @Autowired
-    private PBlogConfig config;
+    private PBlogProperties config;
 
     /**
      * @param file

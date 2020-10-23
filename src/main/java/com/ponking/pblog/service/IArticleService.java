@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
+import com.ponking.pblog.model.document.EsArticle;
 import com.ponking.pblog.model.dto.ArticleDto;
 import com.ponking.pblog.model.dto.ArticleEditDto;
 import com.ponking.pblog.model.entity.Article;
@@ -120,4 +121,11 @@ public interface IArticleService extends IService<Article> {
      * @param articleEditDto
      */
     void updateArticleStatusById(ArticleEditDto articleEditDto);
+
+
+    /**
+     * 获取全部博客
+     * @return
+     */
+    List<EsArticle> listEsArticleAll();
 }

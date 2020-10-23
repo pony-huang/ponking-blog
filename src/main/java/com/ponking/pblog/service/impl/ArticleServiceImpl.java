@@ -5,8 +5,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ponking.pblog.model.document.EsArticle;
+import com.ponking.pblog.model.params.PBlogProperties;
 import com.ponking.pblog.common.exception.GlobalException;
-import com.ponking.pblog.config.PBlogConfig;
 import com.ponking.pblog.mapper.ArticleMapper;
 import com.ponking.pblog.model.dto.ArticleDto;
 import com.ponking.pblog.model.dto.ArticleEditDto;
@@ -45,7 +46,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     private IArticleTagService articleTagService;
 
     @Autowired
-    private PBlogConfig config;
+    private PBlogProperties config;
 
     @Override
     public boolean save(Article article) {
@@ -200,6 +201,11 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         article.setId(articleEditDto.getId());
         article.setStatus(articleEditDto.getStatus());
         baseMapper.updateById(article);
+    }
+
+    @Override
+    public List<EsArticle> listEsArticleAll() {
+        return baseMapper.selectEsArticleList();
     }
 
     @Override
