@@ -11,6 +11,31 @@
         <div class="columns">
             <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
 
+                <!--文章-->
+                <div class="card">
+                    <div class="card-content article ">
+
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
+                                <time th:datetime="${about.updateTime}" class="level-item has-text-grey" datetime="2019-03-31T15:35:41.000Z">2019-03-31
+                                </time>
+
+                                <!--                                <span class="level-item has-text-grey">-->
+                                <!--                                    4 分钟 读完 (大约 604 个字)-->
+                                <!--                                </span>-->
+
+                            </div>
+                        </div>
+
+                        <!--文章内容-->
+                        <div id="about_content" class="content">
+
+                        </div>
+
+
+                    </div>
+                </div>
+
                 <!--打赏-->
                 <div class="card" th:replace="../static/commons/commons :: maryane">
                 </div>
@@ -38,6 +63,44 @@
 <th:block th:replace="../static/commons/commons :: script">
 
 </th:block>
+<script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+<script th:inline="javascript">
 
+    function covertHtml() {
+        converter = new showdown.Converter()
+        text = [[${about.contentMd}]]
+        html = converter.makeHtml(text);
+        document.getElementById("about_content").innerHTML = html;
+        document.addEventListener('DOMContentLoaded', function () {
+            MathJax.Hub.Config({
+                'HTML-CSS': {
+                    matchFontHeight: false
+                },
+                SVG: {
+                    matchFontHeight: false
+                },
+                CommonHTML: {
+                    matchFontHeight: false
+                },
+                tex2jax: {
+                    inlineMath: [
+                        ['$', '$'],
+                        ['\\(', '\\)']
+                    ]
+                }
+            });
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            outdatedBrowser({
+                bgColor: '#f25648',
+                color: '#ffffff',
+                lowerThan: 'flex'
+            });
+        });
+    }
+
+    covertHtml()
+</script>
 </body>
 </html>

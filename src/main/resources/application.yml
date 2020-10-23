@@ -8,10 +8,20 @@ spring:
     encoding: utf-8
     cache: false
 #    prefix: classpath:/templates/blog,/templates/admin
+  # BANNER
+  banner:
+    location: classpath:banner.txt
+    image:
+      height: 50
+      margin: 2
+      invert: false
+      width: 50
+    charset: utf-8
 
 jwt:
   expire-time: 12000000
   secret-key: 19980606
+
 
 
 
