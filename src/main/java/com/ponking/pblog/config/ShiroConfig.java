@@ -27,10 +27,12 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 
+
     @Bean
-    public Cache cache(){
-        return new MemoryCache();
+    public Cache<String,Object> cache(){
+        return new MemoryCache<String,Object>();
     }
+
 
 
     @Bean
