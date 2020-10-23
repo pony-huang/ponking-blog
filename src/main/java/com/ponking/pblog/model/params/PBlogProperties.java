@@ -1,4 +1,4 @@
-package com.ponking.pblog.config;
+package com.ponking.pblog.model.params;
 
 import com.google.common.base.CaseFormat;
 import com.ponking.pblog.mapper.ConfigMapper;
@@ -22,7 +22,7 @@ import java.util.List;
  * @date 2020/10/17--16:54
  * @Des
  **/
-public class PBlogConfig {
+public class PBlogProperties {
 
     private String blogTitle;
 
@@ -59,6 +59,8 @@ public class PBlogConfig {
     private String authorCity;
 
     private AliyunOSS aliyunOSS;
+
+    private String blogAbout;
 
     public void setBlogTile(String blogTile) {
         this.blogTitle = blogTile;
@@ -206,5 +208,13 @@ public class PBlogConfig {
 
     public void setAliyunOSS(AliyunOSS aliyunOSS) {
         this.aliyunOSS = aliyunOSS;
+    }
+
+    public String getBlogAbout() {
+        return blogAbout;
+    }
+
+    public void setBlogAbout(String blogAbout) {
+        this.blogAbout = blogAbout;
     }
 }

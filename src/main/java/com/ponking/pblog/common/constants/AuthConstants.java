@@ -11,7 +11,7 @@ public class AuthConstants {
 
     }
 
-    public static final String JWT_TOKEN_HEARER_NAME = "X-Token";
+    public static final String JWT_TOKEN_HEARER_NAME = "Authorization";
 
     public static final String JWT_TOKEN_CACHE_PREFIX = "token:user:";
 }

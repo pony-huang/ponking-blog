@@ -5,5 +5,11 @@ package com.ponking.pblog.common.exception;
  * @date 2020/9/28--9:52
  * @Des
  **/
-public class AuthException {
+public class AuthException extends RuntimeException {
+
+    public AuthException(String message){
+        super(message);
+    }
+
+
 }

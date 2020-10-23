@@ -41,7 +41,6 @@ public class JwtFilter extends AccessControlFilter {
      */
     @Override
     protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
-        log.info("on access denied...");
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         response.setContentType("text/html;charset=UTF-8");
         try{
@@ -58,7 +57,6 @@ public class JwtFilter extends AccessControlFilter {
             e.printStackTrace();
             return false;
         }
-        log.info("on access denied success...");
         return true;
     }
 }

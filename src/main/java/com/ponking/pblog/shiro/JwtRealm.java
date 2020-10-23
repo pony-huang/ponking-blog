@@ -65,7 +65,7 @@ public class JwtRealm extends AuthorizingRealm {
         String username = claims.getSubject();
         Object tokenOfCache = cache.get(AuthConstants.JWT_TOKEN_CACHE_PREFIX + username);
         if (!token.equals(tokenOfCache)) {
-            throw new UnsupportedTokenException("token已注销...");
+            throw new UnsupportedTokenException("Token凭证已失效");
         }
         user.setUsername(claims.getSubject());
         log.info("认证成功...");
