@@ -1,5 +1,6 @@
 package com.ponking.pblog.common.util;
 
+import com.ponking.pblog.config.QuartzConfig;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -7,6 +8,7 @@ import redis.clients.jedis.params.SetParams;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -23,7 +25,7 @@ public class RedisUtil {
 
     static {
         try {
-            FileInputStream in = new FileInputStream("src\\main\\resources\\redis.properties");
+            InputStream in = RedisUtil.class.getClassLoader().getResourceAsStream("redis.properties");
             Properties properties = new Properties();
             properties.load(in);
             String host = properties.getProperty("redis.host");
@@ -103,8 +105,18 @@ public class RedisUtil {
     }
 
 
-    public static void main(String[] args) {
-        String set = RedisUtil.set("Hello", "World");
-        System.out.println(set);
+    /**
+     * 自增
+     * @param key
+     */
+    public static void increment(String key){
+        jedis.incr(key);
     }
-}
+
+    public static void decrement(String key){
+        jedis.decr(key);
+    }
+
+    /******************************************** 列表操作 ********************************************/
+
+ }
