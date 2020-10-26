@@ -1,6 +1,6 @@
 package com.ponking.pblog;
 
-import com.ponking.pblog.quartz.job.compoent.EsSearchJob;
+import com.ponking.pblog.quartz.job.EsSearchJob;
 import com.ponking.pblog.quartz.manager.SchedulerManager;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +29,7 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        manager.startJob("0/2 * * * * ?","elasticSearch","QuartzJobGroups", EsSearchJob.class);
+        manager.pauseJob("elasticSearch","QuartzJobGroups");
+//        manager.startJob("0/2 * * * * ?","elasticSearch","QuartzJobGroups", EsSearchJob.class);
     }
 }

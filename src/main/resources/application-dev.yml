@@ -24,3 +24,9 @@ mybatis-plus:
 logging:
   level:
     com.ponking.pblog: debug
+
+pblog:
+  elasticsearch:
+    host: 192.168.170.22
+    port: 9200
+    scheme: http
