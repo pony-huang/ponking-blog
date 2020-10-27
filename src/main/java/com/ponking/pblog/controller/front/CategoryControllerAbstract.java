@@ -5,8 +5,11 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.model.dto.ArticleDto;
 import com.ponking.pblog.model.entity.Category;
+import com.ponking.pblog.model.params.PBlogProperties;
+import com.ponking.pblog.service.IArticleService;
 import com.ponking.pblog.service.ICategoryService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ponking.pblog.service.ILinkService;
+import com.ponking.pblog.service.ITagService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,14 +18,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author Ponking
- * @ClassName CategoryController
+ * @ClassName CategoryControllerAbstract
  * @date 2020/4/7--21:42
  **/
 @Controller
-public class CategoryController extends BaseController {
+public class CategoryControllerAbstract extends AbstractBaseController {
 
-    @Autowired
-    private ICategoryService categoryService;
+
+    public CategoryControllerAbstract(IArticleService articleService,
+                                      ICategoryService categoryService,
+                                      ITagService tagService,
+                                      ILinkService linkService,
+                                      PBlogProperties config) {
+        super(articleService, categoryService, tagService, linkService, config);
+    }
 
     @RequestMapping("/categories")
     public String index(Model model){

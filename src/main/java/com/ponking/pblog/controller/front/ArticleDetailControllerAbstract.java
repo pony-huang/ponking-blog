@@ -2,9 +2,12 @@ package com.ponking.pblog.controller.front;
 
 import com.ponking.pblog.model.dto.ArticleDto;
 import com.ponking.pblog.model.entity.Article;
+import com.ponking.pblog.model.params.PBlogProperties;
 import com.ponking.pblog.service.IArticleService;
+import com.ponking.pblog.service.ICategoryService;
+import com.ponking.pblog.service.ILinkService;
+import com.ponking.pblog.service.ITagService;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,15 +15,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author Ponking
- * @ClassName ArticleDetailController
+ * @ClassName ArticleDetailControllerAbstract
  * @date 2020/4/8--14:58
  **/
 @Controller
-public class ArticleDetailController  extends BaseController {
+public class ArticleDetailControllerAbstract extends AbstractBaseController {
 
-    @Autowired
-    private IArticleService articleService;
 
+    public ArticleDetailControllerAbstract(IArticleService articleService, ICategoryService categoryService, ITagService tagService, ILinkService linkService, PBlogProperties config) {
+        super(articleService, categoryService, tagService, linkService, config);
+    }
 
     @RequestMapping("/articles/{id}")
     public String content(Model model, @PathVariable("id") Long id) {

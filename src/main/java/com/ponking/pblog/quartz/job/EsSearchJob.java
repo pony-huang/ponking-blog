@@ -7,6 +7,7 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 
 /**
@@ -20,9 +21,17 @@ public class EsSearchJob implements Job {
     @Autowired
     private IEsArticleService service;
 
+    @Value("${spring.profiles.active}")
+    private String profile;
+
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
+        // 为了方便测试，每次启动都删除在插入
+        if ("dev".equals(profile) && service.isExitsIndex()) {
+            service.deleteIndex();
+        }
+
         if (!service.isExitsIndex()) {
             log.info("import data into es...");
             service.createMappings();

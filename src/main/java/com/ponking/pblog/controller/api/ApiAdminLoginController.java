@@ -39,7 +39,7 @@ import java.util.Map;
  **/
 @RestController
 @Slf4j
-public class AdminLoginController {
+public class ApiAdminLoginController {
 
 
     @Autowired

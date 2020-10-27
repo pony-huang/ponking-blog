@@ -13,9 +13,43 @@
 ![markdown](./images/4f5d267468cfba4f2ad0cb2ee7d94h2.jpg)
 ## 技术栈
 ### 后端
-- mysql,mybatis-plus,lombok,springboot,jwt,shiro,swagger,druid,quartz,ElasticSearch
+- mysql,mybatis-plus
+- lombok
+- springboot
+- jwt
+- shiro
+- swagger
+- druid
+- quartz
+- ElasticSearch
+- redis
+### 前端
+- vue-admin-element
+- hexo-theme-icarus
+- vue
 ### 其他
 - maven,mysql,idea
+## 部署
+### 配置elasticSearch
+```yaml
+pblog:
+  elasticsearch:
+    host: 你的地址
+    port: 你的端口
+    scheme: 协议（http）
+
+```
+
+### 配置阿里云oss
+**在表中blog_config 字段FILE_STORAGE 添加信息，格式如下**
+```json
+{
+    "endpoint": "xxx",
+    "bucket": "xxx",
+    "accessKeyId": "xxx",
+    "accessKeySecret": "xxx"
+}
+```
 ## 更新日志
 **2020年10月23日**
 - 添加quartz定时任务,动态配置博客信息

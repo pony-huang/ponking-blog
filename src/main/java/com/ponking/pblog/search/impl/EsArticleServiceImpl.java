@@ -17,6 +17,8 @@ import com.ponking.pblog.search.IEsArticleService;
 import com.ponking.pblog.service.IArticleTagService;
 import com.ponking.pblog.service.ICategoryService;
 import com.ponking.pblog.service.ITagService;
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexAction;
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.delete.DeleteRequest;
@@ -24,6 +26,7 @@ import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.action.support.master.AcknowledgedResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.client.indices.CreateIndexRequest;
@@ -95,6 +98,30 @@ public class EsArticleServiceImpl implements IEsArticleService {
             e.printStackTrace();
             return 0;
         }
+    }
+
+    @Override
+    public List<EsArticle> queryMatchAll() {
+        SearchRequest searchRequest = new SearchRequest(EsConstant.ES_ARTICLE_INDEX);
+        SearchSourceBuilder searchRequestBuilder = new SearchSourceBuilder();
+        // todo 默认title
+        searchRequestBuilder.query(QueryBuilders.matchAllQuery());
+        searchRequest.source(searchRequestBuilder);
+        try {
+            SearchResponse response = client.search(searchRequest, RequestOptions.DEFAULT);
+            SearchHits hits = response.getHits();
+            List<EsArticle> articles = new ArrayList<>();
+            for (SearchHit hit : hits) {
+                Map<String, Object> source = hit.getSourceAsMap();
+                // map 转 Obj
+                EsArticle obj = (EsArticle) mapToObject(source, EsArticle.class);
+                articles.add(obj);
+            }
+            return articles;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -236,6 +263,18 @@ public class EsArticleServiceImpl implements IEsArticleService {
         return null;
     }
 
+    @Override
+    public boolean deleteIndex() {
+        DeleteIndexRequest request = new DeleteIndexRequest(EsConstant.ES_ARTICLE_INDEX);
+        try {
+            AcknowledgedResponse response = client.indices().delete(request, RequestOptions.DEFAULT);
+            return response.isAcknowledged();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     private static Object mapToObject(Map<String, Object> map, Class<?> clazz) throws IllegalAccessException, InstantiationException {
         Object obj = clazz.newInstance();
         Field[] fields = clazz.getDeclaredFields();
@@ -251,7 +290,10 @@ public class EsArticleServiceImpl implements IEsArticleService {
                     field.set(obj, Long.parseLong(value + ""));
                 } else if (field.getType() == LocalDateTime.class) {
                     field.set(obj, LocalDateTime.parse(value.toString()));
-                } else if (field.getType() == Category.class || field.getType() == List.class || field.getName().equals("contentMd")) {
+                } else if (field.getType() == Category.class) {
+                    Object target = mapToObject((Map<String, Object>) map.get(field.getName()), Category.class);
+                    field.set(obj,target);
+                } else if (field.getType() == List.class || field.getName().equals("contentMd")) {
                     // 排除不必要的信息
                     continue;
                 } else {

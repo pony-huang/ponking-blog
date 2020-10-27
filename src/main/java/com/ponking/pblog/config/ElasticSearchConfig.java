@@ -11,12 +11,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 
 /**
  * @author peng
  * @date 2020/10/22--22:09
  * @Des
  **/
+//@Component
 //@ConfigurationProperties(prefix = "pblog.elasticsearch")
 @Configuration
 public class ElasticSearchConfig  {

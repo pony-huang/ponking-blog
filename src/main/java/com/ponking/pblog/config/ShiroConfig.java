@@ -11,6 +11,7 @@ import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -19,10 +20,11 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
+ * shiro配置
  * @author Ponking
  * @ClassName ShiroAuthConfig
  * @date 2020/3/14--22:19
- * @Des shiro配置
+ * @Des
  **/
 @Configuration
 public class ShiroConfig {
@@ -42,27 +44,27 @@ public class ShiroConfig {
 
     /**
      * 配置安全管理器
-     * @return
+     * @return SecurityManager
      */
     @Bean
-    public SecurityManager securityManager() {
+    public SecurityManager securityManager(@Qualifier("realm")JwtRealm realm) {
         DefaultWebSecurityManager securityManager =
                 new DefaultWebSecurityManager();
         // 注入JWTRealm
-        securityManager.setRealm(realm());
+        securityManager.setRealm(realm);
         return securityManager;
     }
 
     /**
      * 配置权限过滤器
-     * @return
+     * @return ShiroFilterFactoryBean
      */
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean() {
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier("securityManager")SecurityManager securityManager) {
         ShiroFilterFactoryBean factoryBean =
                 new ShiroFilterFactoryBean();
         // 注入安全管理器
-        factoryBean.setSecurityManager(securityManager());
+        factoryBean.setSecurityManager(securityManager);
         // 如果用户未登录,跳转到未认证接口
         factoryBean.setLoginUrl("/login");
         // 设置自定义过滤器
@@ -87,19 +89,20 @@ public class ShiroConfig {
 
     /**
      * 启用Shiro注解
-     * @return
+     * @return AuthorizationAttributeSourceAdvisor
      */
     @Bean
-    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor() {
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(
+            @Qualifier("securityManager")SecurityManager securityManager) {
         AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
         // 注入安全管理器
-        advisor.setSecurityManager(securityManager());
+        advisor.setSecurityManager(securityManager);
         return advisor;
     }
 
     /**
      * 启用Shiro内部Bean生命周期管理
-     * @return
+     * @return LifecycleBeanPostProcessor
      */
     @Bean(name = "lifecycleBeanPostProcessor")
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
@@ -108,7 +111,7 @@ public class ShiroConfig {
 
     /**
      * 开启aop对shiro的bean的动态代理
-     * @return
+     * @return DefaultAdvisorAutoProxyCreator
      */
     @Bean
     @DependsOn("lifecycleBeanPostProcessor")

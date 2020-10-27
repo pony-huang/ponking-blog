@@ -5,8 +5,11 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.model.dto.ArticleDto;
 import com.ponking.pblog.model.entity.Tag;
+import com.ponking.pblog.model.params.PBlogProperties;
+import com.ponking.pblog.service.IArticleService;
+import com.ponking.pblog.service.ICategoryService;
+import com.ponking.pblog.service.ILinkService;
 import com.ponking.pblog.service.ITagService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,14 +18,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author Ponking
- * @ClassName TagController
+ * @ClassName TagControllerAbstract
  * @date 2020/4/7--21:44
  **/
 @Controller
-public class TagController extends BaseController {
+public class TagControllerAbstract extends AbstractBaseController {
 
-    @Autowired
-    private ITagService tagService;
+
+    public TagControllerAbstract(IArticleService articleService,
+                                 ICategoryService categoryService,
+                                 ITagService tagService,
+                                 ILinkService linkService,
+                                 PBlogProperties config) {
+        super(articleService, categoryService, tagService, linkService, config);
+    }
 
     @RequestMapping("/tags")
     public String index(Model model) {

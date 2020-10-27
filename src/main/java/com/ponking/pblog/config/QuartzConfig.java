@@ -32,7 +32,7 @@ import java.util.Properties;
 public class QuartzConfig {
 
     /**
-     * 1.通过name+group获取唯一的jobKey;2.通过groupname来获取其下的所有jobkey
+     * 通过JobName+group获取唯一的jobKey
      */
     final static String GROUP_NAME = "QuartzJobGroups";
 
@@ -87,8 +87,7 @@ public class QuartzConfig {
 
     /**
      * 加载触发器
-     * <p>
-     * 新建触发器进行job 的调度  例如 executeJobDetail
+     * 新建触发器进行job的调度
      *
      * @param jobDetail
      * @return
@@ -115,6 +114,7 @@ public class QuartzConfig {
         factoryBean.setJobClass(InvokingJobDetailFactory.class);
         factoryBean.setDurability(true);
         factoryBean.setRequestsRecovery(true);
+        // 默认两种配置方法，详情看springboot官网
         factoryBean.setGroup(GROUP_NAME);
         Map<String, String> map = new HashMap<>();
         map.put("targetMethod", "execute");

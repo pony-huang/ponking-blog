@@ -40,8 +40,4 @@ public class Tag implements Serializable {
      */
     private String path;
 
-    /**
-     * 描述
-     */
-    private String describe;
 }

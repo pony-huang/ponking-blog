@@ -7,38 +7,45 @@ import com.ponking.pblog.service.IArticleService;
 import com.ponking.pblog.service.ICategoryService;
 import com.ponking.pblog.service.ILinkService;
 import com.ponking.pblog.service.ITagService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
 import java.util.List;
 
 /**
  * @author Ponking
- * @ClassName BaseController
+ * @ClassName AbstractBaseController
  * @date 2020/4/8--14:24
  **/
-public abstract class BaseController {
-    @Autowired
-    protected IArticleService articleService;
+public abstract class AbstractBaseController {
 
-    @Autowired
-    protected ICategoryService categoryService;
+    protected final IArticleService articleService;
 
-    @Autowired
-    protected ITagService tagService;
+    protected final ICategoryService categoryService;
 
-    @Autowired
-    protected ILinkService linkService;
+    protected final ITagService tagService;
 
-    @Autowired
-    private PBlogProperties config;
+    protected final ILinkService linkService;
+
+    protected final PBlogProperties config;
+
+    public AbstractBaseController(IArticleService articleService,
+                                  ICategoryService categoryService,
+                                  ITagService tagService,
+                                  ILinkService linkService,
+                                  PBlogProperties config) {
+        this.articleService = articleService;
+        this.categoryService = categoryService;
+        this.tagService = tagService;
+        this.linkService = linkService;
+        this.config = config;
+    }
+
 
     /**
      * 左右侧栏信息
      * @param model
-     * @return
      */
-    protected Model getBlogTableCardInfo(Model model){
+    protected void getBlogTableCardInfo(Model model){
         List<CategoryTableCardVo> categoryTableCardVoList = categoryService.listCategoryColumnInfo();
         List<TagTableCardVo> tagTableCardVoList = tagService.listTagColumnInfo();
         List<ArchiveTableCartVo> archiveTableCartVoList = articleService.listArchiveColumnInfo();
@@ -63,6 +70,5 @@ public abstract class BaseController {
         model.addAttribute("archives", archiveTableCartVoList);
         model.addAttribute("newArticles", articleTopTableCardVoList);
         model.addAttribute("links",links);
-        return model;
     }
 }
