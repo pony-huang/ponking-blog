@@ -1,7 +1,7 @@
 # PBlog
 ## 链接
-- [前台展示链接](http://39.106.97.88:80) 
-- [后台展示链接 （账户：admin 密码：123456）](http://39.106.97.88:80/admin/index)  
+- [前台展示链接](http://121.36.90.108:80) 
+- [后台展示链接 （账户：admin 密码：123456）](http://121.36.90.108/admin/index)  
 ## 界面显示
 ### 前台
 **基于[hexo-theme-icarus](https://github.com/ppoffice/hexo-theme-icarus)**
