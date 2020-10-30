@@ -31,15 +31,8 @@ public class ShiroConfig {
 
 
     @Bean
-    public Cache<String,Object> cache(){
-        return new MemoryCache<String,Object>();
-    }
-
-
-
-    @Bean
-    public JwtRealm realm(){
-        return new JwtRealm(cache());
+    public JwtRealm realm(@Qualifier("cache") Cache<String,Object> cache){
+        return new JwtRealm(cache);
     }
 
     /**

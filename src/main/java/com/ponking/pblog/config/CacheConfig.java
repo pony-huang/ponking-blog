@@ -11,8 +11,8 @@ import org.springframework.core.annotation.Order;
  * @date 2020/10/20--13:30
  * @Des
  **/
-//@Order(-1)
-//@Configuration
+@Order(-1)
+@Configuration
 public class CacheConfig {
 
     @Bean

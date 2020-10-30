@@ -28,5 +28,5 @@ pblog:
     port: 9200
     scheme: http
   web:
-    domain: 39.106.97.88
+    domain: 121.36.90.108 #121.36.90.108 39.106.97.88
 

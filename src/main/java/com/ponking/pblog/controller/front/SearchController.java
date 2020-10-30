@@ -37,7 +37,6 @@ public class SearchController {
     @Value("${pblog.web.domain}")
     private String host;
 
-
     @GetMapping("/websocket/index")
     public String index() {
         return "blog/websocket";
