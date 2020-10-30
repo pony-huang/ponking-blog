@@ -1,5 +1,6 @@
 package com.ponking.pblog.controller.front;
 
+import com.ponking.pblog.common.cache.Cache;
 import com.ponking.pblog.model.params.PBlogProperties;
 import com.ponking.pblog.service.IArticleService;
 import com.ponking.pblog.service.ICategoryService;
@@ -19,11 +20,11 @@ import java.util.Map;
  * @date 2020/4/7--21:40
  **/
 @Controller
-public class AboutControllerAbstract extends AbstractBaseController {
+public class AboutController extends AbstractBaseController {
 
 
-    public AboutControllerAbstract(IArticleService articleService, ICategoryService categoryService, ITagService tagService, ILinkService linkService, PBlogProperties config) {
-        super(articleService, categoryService, tagService, linkService, config);
+    public AboutController(IArticleService articleService, ICategoryService categoryService, ITagService tagService, ILinkService linkService, Cache<String, Object> cache, PBlogProperties config) {
+        super(articleService, categoryService, tagService, linkService, cache, config);
     }
 
     @RequestMapping("/about")

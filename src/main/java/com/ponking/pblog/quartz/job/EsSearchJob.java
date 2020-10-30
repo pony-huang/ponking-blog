@@ -28,7 +28,8 @@ public class EsSearchJob implements Job {
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
         // 为了方便测试，每次启动都删除在插入
-        if ("dev".equals(profile) && service.isExitsIndex()) {
+        if ("prod".equals(profile) && service.isExitsIndex()) {
+            log.info("delete index esArticle ...");
             service.deleteIndex();
         }
 

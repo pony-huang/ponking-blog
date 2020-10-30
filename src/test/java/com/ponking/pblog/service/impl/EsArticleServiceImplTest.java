@@ -54,6 +54,7 @@ public class EsArticleServiceImplTest {
 
     @Test
     public void createData() {
+//        System.out.println(esArticleService.isExitsIndex());
         esArticleService.createMappings();
         esArticleService.importAll();
     }

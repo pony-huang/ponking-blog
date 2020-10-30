@@ -1,5 +1,6 @@
 package com.ponking.pblog.controller.front;
 
+import com.ponking.pblog.common.cache.Cache;
 import com.ponking.pblog.model.dto.ArticleDto;
 import com.ponking.pblog.model.entity.Article;
 import com.ponking.pblog.model.params.PBlogProperties;
@@ -19,11 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @date 2020/4/8--14:58
  **/
 @Controller
-public class ArticleDetailControllerAbstract extends AbstractBaseController {
+public class ArticleDetailController extends AbstractBaseController {
 
 
-    public ArticleDetailControllerAbstract(IArticleService articleService, ICategoryService categoryService, ITagService tagService, ILinkService linkService, PBlogProperties config) {
-        super(articleService, categoryService, tagService, linkService, config);
+    public ArticleDetailController(IArticleService articleService, ICategoryService categoryService, ITagService tagService, ILinkService linkService, Cache<String, Object> cache, PBlogProperties config) {
+        super(articleService, categoryService, tagService, linkService, cache, config);
     }
 
     @RequestMapping("/articles/{id}")

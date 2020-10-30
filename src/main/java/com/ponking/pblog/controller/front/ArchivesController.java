@@ -3,6 +3,7 @@ package com.ponking.pblog.controller.front;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ponking.pblog.common.cache.Cache;
 import com.ponking.pblog.common.util.ModelVoUtil;
 import com.ponking.pblog.model.params.PBlogProperties;
 import com.ponking.pblog.model.vo.ArchiveVo;
@@ -26,11 +27,11 @@ import java.util.List;
  * @date 2020/4/7--21:42
  **/
 @Controller
-public class ArchivesControllerAbstract extends AbstractBaseController {
+public class ArchivesController extends AbstractBaseController {
 
 
-    public ArchivesControllerAbstract(IArticleService articleService, ICategoryService categoryService, ITagService tagService, ILinkService linkService, PBlogProperties config) {
-        super(articleService, categoryService, tagService, linkService, config);
+    public ArchivesController(IArticleService articleService, ICategoryService categoryService, ITagService tagService, ILinkService linkService, Cache<String, Object> cache, PBlogProperties config) {
+        super(articleService, categoryService, tagService, linkService, cache, config);
     }
 
     @RequestMapping("/archives")

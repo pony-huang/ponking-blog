@@ -34,6 +34,9 @@ public class SearchController {
     @Value("${server.port}")
     private String port;
 
+    @Value("${pblog.web.domain}")
+    private String host;
+
 
     @GetMapping("/websocket/index")
     public String index() {
@@ -52,16 +55,19 @@ public class SearchController {
             SearchQueryVo.Description desc = new SearchQueryVo.Description();
             SearchQueryVo.TagWithCate cate = new SearchQueryVo.TagWithCate();
             try {
-                InetAddress addr = InetAddress.getLocalHost();
+                if(host == null || "".equals(host)){
+                    InetAddress addr = InetAddress.getLocalHost();
+                    host = addr.getHostAddress();
+                }
                 // posts
-                desc.setLink("http://" + addr.getHostAddress() + ":" + port + "/articles/" + item.getId());
+                desc.setLink("http://" + host + ":" + port + "/articles/" + item.getId());
                 desc.setTitle(item.getTitle());
                 desc.setText(item.getSummary());
 
                 // cate
                 cate.setSlug(item.getTitle());
                 cate.setName(item.getCategory().getName());
-                cate.setLink("http://" + addr.getHostAddress() + ":" + port + "/articles/" + item.getId());
+                cate.setLink("http://" + host + ":" + port + "/articles/" + item.getId());
                 categories.add(cate);
 
                 // tag "ACM;C++;C#;"
@@ -71,7 +77,7 @@ public class SearchController {
                         SearchQueryVo.TagWithCate tag = new SearchQueryVo.TagWithCate();
                         tag.setSlug(item.getTitle());
                         tag.setName(split[i]);
-                        tag.setLink("http://" + addr.getHostAddress() + ":" + port + "/articles/" + item.getId());
+                        tag.setLink("http://" + host + ":" + port + "/articles/" + item.getId());
                         tags.add(tag);
                     }
                 }

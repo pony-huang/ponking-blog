@@ -30,3 +30,5 @@ pblog:
     host: 192.168.170.22
     port: 9200
     scheme: http
+  web:
+    domain:

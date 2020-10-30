@@ -5,7 +5,7 @@ spring:
     name: PBlog
   datasource:
     druid:
-      url: jdbc:mysql://localhost:3306/p-blog?userUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+      url: jdbc:mysql://39.106.97.88:3306/p-blog?userUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
       password: root
       username: root
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -17,4 +17,16 @@ mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   configuration:
     cache-enabled: true
+#  config-location: classpath:mybatis-config.xml
+logging:
+  level:
+    com.ponking.pblog: debug
+
+pblog:
+  elasticsearch:
+    host: 39.106.97.88
+    port: 9200
+    scheme: http
+  web:
+    domain: 39.106.97.88
 

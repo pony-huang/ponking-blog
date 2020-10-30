@@ -1,5 +1,6 @@
 package com.ponking.pblog.controller.front;
 
+import com.ponking.pblog.common.cache.Cache;
 import com.ponking.pblog.model.params.PBlogProperties;
 import com.ponking.pblog.model.entity.Link;
 import com.ponking.pblog.model.vo.*;
@@ -28,16 +29,22 @@ public abstract class AbstractBaseController {
 
     protected final PBlogProperties config;
 
+    protected final Cache<String,Object> cache;
+
+    protected static final String TABLE_CARD_INFO_PREFIX = "TableCardInfo";
+
     public AbstractBaseController(IArticleService articleService,
                                   ICategoryService categoryService,
                                   ITagService tagService,
                                   ILinkService linkService,
+                                  Cache<String,Object> cache,
                                   PBlogProperties config) {
         this.articleService = articleService;
         this.categoryService = categoryService;
         this.tagService = tagService;
         this.linkService = linkService;
         this.config = config;
+        this.cache = cache;
     }
 
 

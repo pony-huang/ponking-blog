@@ -8,6 +8,7 @@ import com.ponking.pblog.common.util.PageUtil;
 import com.ponking.pblog.model.result.R;
 import com.ponking.pblog.model.dto.ArticleEditDto;
 import com.ponking.pblog.model.entity.Article;
+import com.ponking.pblog.search.IEsArticleService;
 import com.ponking.pblog.service.IArticleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,6 +35,9 @@ public class ApiArticleController {
 
     @Autowired
     private IArticleService articleService;
+
+    @Autowired
+    private IEsArticleService esArticleService;
 
     /**
      * 博客列表数据
@@ -69,7 +73,7 @@ public class ApiArticleController {
      * @return
      */
     @GetMapping("/{id}")
-    public R getArticleById(@PathVariable Integer id) {
+    public R getArticleById(@PathVariable Long id) {
         ArticleEditDto articleEditDto = articleService.getArticleEditInfo(id);
         return R.success(articleEditDto);
     }
@@ -83,6 +87,8 @@ public class ApiArticleController {
     @PostMapping("")
     public R save(@RequestBody ArticleEditDto articleEditDto) {
         articleService.save(articleEditDto);
+        // 插入索引
+        esArticleService.create(articleEditDto.getId()+"");
         return R.success();
     }
 
@@ -95,6 +101,7 @@ public class ApiArticleController {
     @PutMapping("")
     public R update(@RequestBody ArticleEditDto articleEditDto) {
         articleService.updateById(articleEditDto);
+        esArticleService.updatePutIndex(articleEditDto.getId()+"");
         return R.success();
     }
 
@@ -107,6 +114,7 @@ public class ApiArticleController {
     @PutMapping("/status")
     public R updateArticleStatus(@RequestBody ArticleEditDto articleEditDto) {
         articleService.updateArticleStatusById(articleEditDto);
+        esArticleService.updatePutIndex(articleEditDto.getId()+"");
         return R.success();
     }
 
@@ -119,6 +127,7 @@ public class ApiArticleController {
     @PutMapping("/transfer/status")
     public R updateArticleTransferStatus(@RequestBody ArticleEditDto articleEditDto) {
         articleService.updateTransferStatusById(articleEditDto);
+        esArticleService.updatePutIndex(articleEditDto.getId()+"");
         return R.success();
     }
 
@@ -131,6 +140,7 @@ public class ApiArticleController {
     @PutMapping("/comment/status")
     public R updateArticleCommentStatus(@RequestBody ArticleEditDto articleEditDto) {
         articleService.updateCommentstatusById(articleEditDto);
+        esArticleService.updatePutIndex(articleEditDto.getId()+"");
         return R.success();
     }
 
@@ -142,8 +152,10 @@ public class ApiArticleController {
      * @return
      */
     @DeleteMapping("/{id}")
-    public R deleteById(@PathVariable Integer id) {
+    public R deleteById(@PathVariable Long id) {
         articleService.removeById(id);
+        // 删除索引
+        esArticleService.delete(id+"");
         return R.success();
     }
 
@@ -157,6 +169,8 @@ public class ApiArticleController {
         String[] temp = ids.split(",");
         List<String> list = Arrays.asList(temp);
         articleService.removeByIds(list);
+        // 删除索引
+        esArticleService.delete(list);
         return R.success();
     }
 }

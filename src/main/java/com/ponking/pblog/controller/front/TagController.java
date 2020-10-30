@@ -3,6 +3,7 @@ package com.ponking.pblog.controller.front;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ponking.pblog.common.cache.Cache;
 import com.ponking.pblog.model.dto.ArticleDto;
 import com.ponking.pblog.model.entity.Tag;
 import com.ponking.pblog.model.params.PBlogProperties;
@@ -22,15 +23,11 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @date 2020/4/7--21:44
  **/
 @Controller
-public class TagControllerAbstract extends AbstractBaseController {
+public class TagController extends AbstractBaseController {
 
 
-    public TagControllerAbstract(IArticleService articleService,
-                                 ICategoryService categoryService,
-                                 ITagService tagService,
-                                 ILinkService linkService,
-                                 PBlogProperties config) {
-        super(articleService, categoryService, tagService, linkService, config);
+    public TagController(IArticleService articleService, ICategoryService categoryService, ITagService tagService, ILinkService linkService, Cache<String, Object> cache, PBlogProperties config) {
+        super(articleService, categoryService, tagService, linkService, cache, config);
     }
 
     @RequestMapping("/tags")

@@ -1,13 +1,16 @@
 package com.ponking.pblog.quartz.job.compoent;
 
+import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.CaseFormat;
 import com.google.gson.Gson;
+import com.ponking.pblog.common.util.StringUtil;
 import com.ponking.pblog.model.params.PBlogProperties;
 import com.ponking.pblog.mapper.ConfigMapper;
 import com.ponking.pblog.model.entity.BlogConfig;
 import com.ponking.pblog.model.params.AliyunOSS;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
@@ -44,7 +47,7 @@ public class PBlogConfigJob {
         List<BlogConfig> list = configMapper.selectList(null);
         PBlogProperties pBlogProperties = config;
         for (BlogConfig bc : list) {
-            String name = CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, bc.getName());
+            String name = StringUtil.toLowerCamel(bc.getName());
             try {
                 Field field = PBlogProperties.class.getDeclaredField(name);
                 field.setAccessible(true);
@@ -55,8 +58,7 @@ public class PBlogConfigJob {
         }
 
         String fileStorageJson = pBlogProperties.getFileStorage();
-        Gson gson = new Gson();
-        pBlogProperties.setAliyunOSS(gson.fromJson(fileStorageJson, AliyunOSS.class));
+        pBlogProperties.setAliyunOSS(JSONObject.parseObject(fileStorageJson,AliyunOSS.class));
         log.info(this.getClass().getName()+" finished job ");
     }
 

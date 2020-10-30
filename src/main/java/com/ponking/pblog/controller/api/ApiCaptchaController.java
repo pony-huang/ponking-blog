@@ -34,7 +34,8 @@ public class ApiCaptchaController {
 //    private DefaultKaptcha defaultKaptcha;
 
 
-    @RequestMapping("/captcha")
+//    @RequestMapping("/captcha")
+    @RequestMapping("/defaultKaptcha")
     public void createCaptcha(HttpServletRequest request, HttpServletResponse response) throws Exception {
         byte[] captcha = null;
         ByteArrayOutputStream out = new ByteArrayOutputStream();

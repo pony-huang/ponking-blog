@@ -28,17 +28,23 @@ public interface IEsArticleService {
     /**
      * 根据id删除文章
      */
-    void delete(Long id);
+    void delete(String id);
 
     /**
      * 根据id创建文章
      */
-    EsArticle create(Long id);
+    EsArticle create(String id);
+
+    /**
+     * 更新索引
+     * @param id
+     */
+    void updatePutIndex(String id);
 
     /**
      * 批量删除文章
      */
-    void delete(List<Long> ids);
+    void delete(List<String> ids);
 
     /**
      * 建立文章Mapping

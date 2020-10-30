@@ -13,8 +13,8 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * @date 2020/10/25--23:08
  * @Des
  **/
-@ServerEndpoint(value = "/websocket/search")
-@Component
+//@ServerEndpoint(value = "/websocket/search")
+//@Component
 @Log
 public class WebSocketServer {
 

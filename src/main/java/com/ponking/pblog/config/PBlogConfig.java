@@ -1,7 +1,10 @@
 package com.ponking.pblog.config;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.CaseFormat;
 import com.google.gson.Gson;
+import com.ponking.pblog.common.util.StringUtil;
 import com.ponking.pblog.model.params.PBlogProperties;
 import com.ponking.pblog.mapper.ConfigMapper;
 import com.ponking.pblog.model.entity.BlogConfig;
@@ -29,7 +32,7 @@ public class PBlogConfig {
         List<BlogConfig> list = configMapper.selectList(null);
         PBlogProperties pBlogProperties = new PBlogProperties();
         for (BlogConfig bc : list) {
-            String name = CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, bc.getName());
+            String name = StringUtil.toLowerCamel(bc.getName());
             try {
                 Field field = PBlogProperties.class.getDeclaredField(name);
                 field.setAccessible(true);
@@ -40,8 +43,7 @@ public class PBlogConfig {
         }
 
         String fileStorageJson = pBlogProperties.getFileStorage();
-        Gson gson = new Gson();
-        pBlogProperties.setAliyunOSS(gson.fromJson(fileStorageJson, AliyunOSS.class));
+        pBlogProperties.setAliyunOSS(JSONObject.parseObject(fileStorageJson,AliyunOSS.class));
         return pBlogProperties;
     }
 }

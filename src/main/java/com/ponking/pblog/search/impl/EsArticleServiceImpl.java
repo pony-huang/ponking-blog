@@ -124,6 +124,7 @@ public class EsArticleServiceImpl implements IEsArticleService {
         return null;
     }
 
+
     @Override
     public void createMappings() {
         CreateIndexRequest request = new CreateIndexRequest(EsConstant.ES_ARTICLE_INDEX);
@@ -166,7 +167,7 @@ public class EsArticleServiceImpl implements IEsArticleService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(String id) {
         DeleteRequest request = new DeleteRequest();
         request.index(EsConstant.ES_ARTICLE_INDEX).id(id + "");
         try {
@@ -178,7 +179,7 @@ public class EsArticleServiceImpl implements IEsArticleService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public EsArticle create(Long id) {
+    public EsArticle create(String id) {
         // todo 这里可以优化成一句sql语句 start
         Article article = articleService.getById(id);
         Category category = categoryService.getById(article.getCategoryId());
@@ -212,11 +213,17 @@ public class EsArticleServiceImpl implements IEsArticleService {
     }
 
     @Override
-    public void delete(List<Long> ids) {
+    public void updatePutIndex(String id) {
+        delete(id);
+        create(id);
+    }
+
+    @Override
+    public void delete(List<String> ids) {
         BulkRequest bulkRequest = new BulkRequest(EsConstant.ES_ARTICLE_INDEX);
-        for (Long id : ids) {
+        for (String id : ids) {
             DeleteRequest request = new DeleteRequest();
-            request.index(EsConstant.ES_ARTICLE_INDEX).id(id + "");
+            request.index(EsConstant.ES_ARTICLE_INDEX).id(id);
             bulkRequest.add(request);
         }
         try {
@@ -292,7 +299,7 @@ public class EsArticleServiceImpl implements IEsArticleService {
                     field.set(obj, LocalDateTime.parse(value.toString()));
                 } else if (field.getType() == Category.class) {
                     Object target = mapToObject((Map<String, Object>) map.get(field.getName()), Category.class);
-                    field.set(obj,target);
+                    field.set(obj, target);
                 } else if (field.getType() == List.class || field.getName().equals("contentMd")) {
                     // 排除不必要的信息
                     continue;
