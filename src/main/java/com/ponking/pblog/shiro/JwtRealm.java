@@ -3,6 +3,7 @@ package com.ponking.pblog.shiro;
 import com.ponking.pblog.common.cache.Cache;
 import com.ponking.pblog.common.constants.AuthConstants;
 import com.ponking.pblog.common.util.JwtUtil;
+import com.ponking.pblog.common.util.RedisUtil;
 import com.ponking.pblog.model.entity.User;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
@@ -20,16 +21,12 @@ import org.apache.shiro.subject.PrincipalCollection;
 /**
  * @author Ponking
  * @ClassName JwtRealm
+ * @see JwtFilter
  * @date 2020/3/14--22:22
  **/
 @Slf4j
 public class JwtRealm extends AuthorizingRealm {
 
-    private Cache cache;
-
-    public JwtRealm(Cache cache) {
-        this.cache = cache;
-    }
 
     /**
      * 授权
@@ -41,7 +38,12 @@ public class JwtRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         // 简单授权信息对象，对象中包含用户的角色和权限信息
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        for (Object principal : principals) {
+            System.out.println(principal.toString());
+        }
         info.addRole("system");
+        info.addStringPermission("system");
+        info.addStringPermission("");
         log.info("授权完成....");
         return info;
     }
@@ -59,17 +61,20 @@ public class JwtRealm extends AuthorizingRealm {
         JwtToken jwtToken = (JwtToken) authenticationToken;
 
         String token = (String) jwtToken.getCredentials();
-        User user = new User();
-        // 对 token 解析，对 token 合法性进行校验
-        Claims claims = JwtUtil.parseJWT(token);
-        String username = claims.getSubject();
-        Object tokenOfCache = cache.get(AuthConstants.JWT_TOKEN_CACHE_PREFIX + username);
-        if (!token.equals(tokenOfCache)) {
-            throw new UnsupportedTokenException("Token凭证已失效");
+
+        String account = JwtUtil.getAccount(token);
+
+        // 开始认证token合法性进行校验，要AccessToken认证通过，且Redis中存在RefreshToken，且两个Token时间戳一致
+        if (JwtUtil.verify(token) && RedisUtil.exists(AuthConstants.PREFIX_SHIRO_REFRESH_TOKEN + account)) {
+            // 获取RefreshToken的时间戳
+            String currentTimeMillisRedis = RedisUtil.getObject(AuthConstants.PREFIX_SHIRO_REFRESH_TOKEN + account).toString();
+            // 获取AccessToken时间戳，与RefreshToken的时间戳对比
+            if (JwtUtil.getClaim(token, AuthConstants.CURRENT_TIME_MILLIS).equals(currentTimeMillisRedis)) {
+                log.info("认证成功(Authentication success)");
+                return new SimpleAuthenticationInfo(token, token, "jwtRealm");
+            }
         }
-        user.setUsername(claims.getSubject());
-        log.info("认证成功...");
-        return new SimpleAuthenticationInfo(user, token, getName());
+        throw new AuthenticationException("Token已过期(Token expired or incorrect.)");
     }
 
     /**
@@ -81,4 +86,13 @@ public class JwtRealm extends AuthorizingRealm {
     public Class<?> getAuthenticationTokenClass() {
         return JwtToken.class;
     }
+
+    /**
+     * 大坑，必须重写此方法，不然Shiro会报错
+     */
+    @Override
+    public boolean supports(AuthenticationToken authenticationToken) {
+        return authenticationToken instanceof JwtToken;
+    }
+
 }

@@ -2,8 +2,12 @@ package com.ponking.pblog.config;
 
 import com.ponking.pblog.common.cache.Cache;
 import com.ponking.pblog.common.cache.MemoryCache;
+import com.ponking.pblog.common.cache.ShiroCacheManager;
 import com.ponking.pblog.shiro.JwtFilter;
 import com.ponking.pblog.shiro.JwtRealm;
+import org.apache.shiro.cache.CacheManager;
+import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
+import org.apache.shiro.mgt.DefaultSubjectDAO;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -29,22 +33,27 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 
-
-    @Bean
-    public JwtRealm realm(@Qualifier("cache") Cache<String,Object> cache){
-        return new JwtRealm(cache);
-    }
-
     /**
      * 配置安全管理器
      * @return SecurityManager
      */
     @Bean
-    public SecurityManager securityManager(@Qualifier("realm")JwtRealm realm) {
+    public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager =
                 new DefaultWebSecurityManager();
-        // 注入JWTRealm
-        securityManager.setRealm(realm);
+        // 设置自定义JRealm
+        securityManager.setRealm(new JwtRealm());
+        // 设置自定义Cache缓存
+        securityManager.setCacheManager(new ShiroCacheManager());
+        // 关闭Shiro自带的session
+        DefaultSubjectDAO subjectDAO = new DefaultSubjectDAO();
+        DefaultSessionStorageEvaluator defaultSessionStorageEvaluator = new DefaultSessionStorageEvaluator();
+        defaultSessionStorageEvaluator.setSessionStorageEnabled(false);
+        subjectDAO.setSessionStorageEvaluator(defaultSessionStorageEvaluator);
+        securityManager.setSubjectDAO(subjectDAO);
+
+//        securityManager.setRememberMeManager();
+
         return securityManager;
     }
 
@@ -71,14 +80,23 @@ public class ShiroConfig {
         chain.put("/swagger-ui.html/**","anon");
         //验证码
         chain.put("/defaultKaptcha/**","anon");
-        // 认证
-        chain.put("/sys/**","noSessionCreation,jwtFilter");
+        chain.put("/captcha/**","anon");
+        // 登录
+        chain.put("/login","anon");
+        // 认证,其余拦截
+//        chain.put("/sys/**","noSessionCreation,jwtFilter");
+        chain.put("/sys/**","jwtFilter");
         //测试专用
 //        chain.put("/sys/**","anon");
-        chain.put("/login","noSessionCreation");
+
         factoryBean.setFilterChainDefinitionMap(chain);
         return factoryBean;
     }
+
+
+    /**
+     * 下面的代码是添加注解支持
+     */
 
     /**
      * 启用Shiro注解
@@ -110,6 +128,8 @@ public class ShiroConfig {
     @DependsOn("lifecycleBeanPostProcessor")
     public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
         DefaultAdvisorAutoProxyCreator creator = new DefaultAdvisorAutoProxyCreator();
+        // 强制使用cglib，防止重复代理和可能引起代理出错的问题，https://zhuanlan.zhihu.com/p/29161098
+        creator.setProxyTargetClass(true);
         return creator;
     }
 }

@@ -11,10 +11,14 @@ import org.bouncycastle.util.Strings;
  **/
 public class StringUtil {
 
+    private StringUtil() {
+
+    }
 
     /**
      * example: MAX_VALUE -> maxValue
      * 驼峰命名
+     *
      * @param source
      * @return
      */
@@ -50,9 +54,4 @@ public class StringUtil {
         return first;
     }
 
-
-    public static void main(String[] args) {
-        String value = "_OF_VALUE_FUCK_";
-        System.out.println(toLowerCamel(value));
-    }
 }

@@ -62,8 +62,8 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
         if(token == null){
             comment.setIsAdmin(0);
         }else{
-            Claims claims = JwtUtil.parseJWT(token);
-            String username = claims.getSubject();
+
+            String username = JwtUtil.getAccount(token);
             Object tokenOfCache = cache.get(AuthConstants.JWT_TOKEN_CACHE_PREFIX + username);
             if(tokenOfCache.equals(token)){
                 comment.setIsAdmin(1);

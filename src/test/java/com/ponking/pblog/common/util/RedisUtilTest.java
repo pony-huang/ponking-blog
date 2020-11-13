@@ -13,7 +13,7 @@ public class RedisUtilTest {
 //        RedisUtil.set("text","1");
 //        RedisUtil.increment("text");
         RedisUtil.set("num","text");
-        RedisUtil.increment("num");
+//        RedisUtil.increment("num");
     }
 
 }
