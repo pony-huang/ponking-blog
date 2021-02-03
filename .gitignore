@@ -15,7 +15,7 @@ application-dev.yml
 .project
 .settings
 .springBeans
-.sts4-cache
+.sts4-com.ponking.pblog.cache
 
 
 
@@ -35,6 +35,6 @@ build/
 
 ### VS Code ###
 .vscode/
-src/main/java/com/ponking/pblog/model/query/
+pblog-model/src/main/java/com/ponking/pblog/model/query/
 src/main/resources/key.txt
 src/main/resources/mapper/pblog/
