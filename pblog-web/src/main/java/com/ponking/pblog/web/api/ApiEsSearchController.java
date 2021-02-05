@@ -3,6 +3,7 @@ package com.ponking.pblog.web.api;
 import com.ponking.pblog.common.result.R;
 import com.ponking.pblog.search.IEsArticleService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ public class ApiEsSearchController {
 
 
     @GetMapping("/es/import")
+    @ApiOperation("导入数据（测试）")
     public R importAll(){
         int i = esArticleService.importAll();
         return R.success(i);

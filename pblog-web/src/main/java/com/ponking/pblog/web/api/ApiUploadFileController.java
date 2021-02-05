@@ -4,6 +4,7 @@ import com.ponking.pblog.common.result.R;
 import com.ponking.pblog.common.exception.GlobalException;
 import com.ponking.pblog.service.IUploadService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,7 @@ public class ApiUploadFileController {
 
     @PostMapping("/image/upload")
     @ResponseBody
+    @ApiOperation("上传")
     public R imageUpload(@RequestParam(value = "file") MultipartFile file) {
         if (file.isEmpty()) {
             throw new GlobalException("文件为空");

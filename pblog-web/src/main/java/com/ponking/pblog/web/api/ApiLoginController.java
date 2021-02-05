@@ -18,6 +18,7 @@ import com.ponking.pblog.shiro.util.Md5Utils;
 import com.ponking.pblog.shiro.util.UserHelper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.CredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -69,7 +70,7 @@ public class ApiLoginController {
      * @loginForm
      */
     @PostMapping("/login")
-    @ApiModelProperty("登陆")
+    @ApiOperation("登陆")
     public R login(@RequestBody LoginVo loginForm, HttpServletRequest request, HttpServletResponse response) {
         if (StringUtils.isEmpty(loginForm.getUsername())) {
             throw new GlobalException("用户名不能为空");
@@ -110,7 +111,7 @@ public class ApiLoginController {
      * @return
      */
     @GetMapping("/info")
-    @ApiModelProperty("获取用户信息")
+    @ApiOperation("获取用户信息")
     public R userInfo(@RequestParam String token) {
         User user = null;
         UserInfoDTO info = new UserInfoDTO();
@@ -129,7 +130,7 @@ public class ApiLoginController {
     }
 
     @PostMapping("/logout")
-    @ApiModelProperty("注销")
+    @ApiOperation("注销")
     public R logout(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
         Assert.notNull(token, "注销失败，Account不存在(Deletion Failed. Account does not exist.)");

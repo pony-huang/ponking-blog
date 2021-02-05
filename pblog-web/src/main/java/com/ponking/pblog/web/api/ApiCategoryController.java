@@ -9,6 +9,7 @@ import com.ponking.pblog.service.ICategoryService;
 import com.ponking.pblog.util.PageUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ public class ApiCategoryController {
      * @return
      */
     @GetMapping("page")
-    @ApiModelProperty("分页查询")
+    @ApiOperation("分页查询")
     public R page(@RequestParam("page") Integer page, @RequestParam("limit") Integer limit) {
         PageUtil.BlogSysPage sysPage = PageUtil.getPage(categoryService.page(new Page<>(page, limit)));
         return R.success(sysPage);
@@ -52,14 +53,14 @@ public class ApiCategoryController {
      * @return
      */
     @GetMapping("/list")
-    @ApiModelProperty("列表数据")
+    @ApiOperation("列表数据")
     public R list() {
         List<Category> categories = categoryService.list();
         return R.success(categories);
     }
 
     @PostMapping
-    @ApiModelProperty("添加分类")
+    @ApiOperation("添加分类")
     public R save(@RequestBody CategoryDto category) {
         Category c = new Category();
         try {
@@ -73,7 +74,7 @@ public class ApiCategoryController {
     }
 
     @DeleteMapping("/{id}")
-    @ApiModelProperty("单个删除")
+    @ApiOperation("单个删除")
     public R removeById(@PathVariable Integer id) {
         boolean result = categoryService.removeById(id);
         if (!result) {
@@ -89,7 +90,7 @@ public class ApiCategoryController {
      * @return
      */
     @PutMapping
-    @ApiModelProperty("更新分类")
+    @ApiOperation("更新分类")
     public R update(@RequestBody CategoryDto category) {
         Category c = new Category();
         try {

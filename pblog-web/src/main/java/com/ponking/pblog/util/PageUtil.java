@@ -12,10 +12,10 @@ import java.util.List;
  **/
 public class PageUtil {
 
-    public static<T> BlogSysPage getPage(IPage<T> iPage){
+    public static <T> BlogSysPage<T> getPage(IPage<T> iPage) {
         long total = iPage.getTotal();
         List<T> items = iPage.getRecords();
-        return new BlogSysPage(total, items);
+        return new BlogSysPage<T>(total, items);
     }
 
     public static class BlogSysPage<T> implements Serializable {

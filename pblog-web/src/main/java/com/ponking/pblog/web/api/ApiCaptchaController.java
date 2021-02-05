@@ -4,6 +4,7 @@ import com.wf.captcha.GifCaptcha;
 import com.wf.captcha.base.Captcha;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,13 +20,15 @@ import java.io.ByteArrayOutputStream;
  * @date 2020/9/3--10:51
  * @Des
  **/
-@Controller
+
 @Api(tags = {"验证码操作接口"})
+@Controller
+@Slf4j
 public class ApiCaptchaController {
 
     @GetMapping("/captcha")
     @ApiModelProperty("获取验证码")
-    public void captcha(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void captcha(HttpServletRequest request, HttpServletResponse response, String randomCode) throws Exception {
         byte[] captcha = null;
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
@@ -38,6 +41,7 @@ public class ApiCaptchaController {
             // 设置类型，纯数字、纯字母、字母数字混合
             gifCaptcha.setCharType(Captcha.TYPE_NUM_AND_UPPER);
             String createText = gifCaptcha.text().toLowerCase();
+            log.info("captcha: {}", createText);
             // todo 存入redis并设置过期时间为30分钟
             // 输出到文件返回给前端
             gifCaptcha.out(out);

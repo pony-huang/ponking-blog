@@ -7,6 +7,7 @@ import com.ponking.pblog.model.vo.ArticleCommentsVo;
 import com.ponking.pblog.service.ICommentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +39,7 @@ public class ApiCommentController {
      * @return
      */
     @GetMapping("{id}")
-    @ApiModelProperty("获取评论")
+    @ApiOperation("获取评论")
     public R getOneByArticleId(@PathVariable("id") Long id) {
         List<ArticleCommentsVo> comments = commentService.getCommentByArticleId(id);
         return R.success(comments);
@@ -50,7 +51,7 @@ public class ApiCommentController {
      * @return
      */
     @PostMapping
-    @ApiModelProperty("添加评论")
+    @ApiOperation("添加评论")
     public R commentArticle(@RequestBody CommentDto commentDto, HttpServletRequest request) {
         try {
             commentService.addArticleComment(commentDto, request);

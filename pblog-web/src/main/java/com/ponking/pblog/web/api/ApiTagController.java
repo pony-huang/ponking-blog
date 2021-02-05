@@ -9,6 +9,7 @@ import com.ponking.pblog.service.ITagService;
 import com.ponking.pblog.util.PageUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class ApiTagController {
     private ITagService tagService;
 
     @GetMapping("page")
-    @ApiModelProperty("分页查询")
+    @ApiOperation("分页查询")
     public R getPage(@RequestParam("page") Integer page, @RequestParam("limit") Integer limit) {
         PageUtil.BlogSysPage sysPage = PageUtil.getPage(tagService.page(new Page<>(page, limit)));
         return R.success(sysPage);
@@ -45,14 +46,14 @@ public class ApiTagController {
      * @return
      */
     @GetMapping("/list")
-    @ApiModelProperty("获取列表")
+    @ApiOperation("获取列表")
     public R getList() {
         List<Tag> tags = tagService.list();
         return R.success(tags);
     }
 
     @PostMapping
-    @ApiModelProperty("添加标签")
+    @ApiOperation("添加标签")
     public R save(@RequestBody TagDto tag) {
         Tag t = new Tag();
         try {
@@ -67,7 +68,7 @@ public class ApiTagController {
 
 
     @DeleteMapping("{id}")
-    @ApiModelProperty("单个删除")
+    @ApiOperation("单个删除")
     public R removeTag(@PathVariable Integer id) {
         boolean result = tagService.removeById(id);
         if (!result) {
@@ -83,7 +84,7 @@ public class ApiTagController {
      * @return
      */
     @PutMapping
-    @ApiModelProperty("更新标签")
+    @ApiOperation("更新标签")
     public R update(@RequestBody TagDto tag) {
         boolean result = false;
         Tag t = new Tag();

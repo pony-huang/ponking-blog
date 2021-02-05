@@ -12,13 +12,12 @@ import com.ponking.pblog.service.IArticleService;
 import com.ponking.pblog.util.PageUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -51,7 +50,7 @@ public class ApiArticleController {
      * @return
      */
     @GetMapping("page")
-    @ApiModelProperty("分页查询")
+    @ApiOperation("分页查询")
     public R page(@RequestParam(value = "page", defaultValue = "1") Integer page
             , @RequestParam(value = "limit", defaultValue = "8") Integer limit
             , String title, String category) {
@@ -77,7 +76,7 @@ public class ApiArticleController {
      * @return
      */
     @GetMapping("/{id}")
-    @ApiModelProperty("获取详情")
+    @ApiOperation("获取详情")
     public R getArticleById(@PathVariable Long id) {
         ArticleEditDto articleEditDto = articleService.getArticleEditInfo(id);
         return R.success(articleEditDto);
@@ -90,7 +89,7 @@ public class ApiArticleController {
      * @return
      */
     @PostMapping
-    @ApiModelProperty("添加文章")
+    @ApiOperation("添加文章")
     public R save(@RequestBody ArticleEditDto articleEditDto) {
         articleService.save(articleEditDto);
         // 插入索引

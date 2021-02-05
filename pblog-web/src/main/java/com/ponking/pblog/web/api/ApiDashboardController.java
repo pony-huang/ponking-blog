@@ -7,6 +7,7 @@ import com.ponking.pblog.model.vo.DashboardArticleVisitsVo;
 import com.ponking.pblog.model.vo.DashboardVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,7 +42,7 @@ public class ApiDashboardController {
      * }
      */
     @GetMapping("/dashboard/info")
-    @ApiModelProperty("主页统计信息")
+    @ApiOperation("主页统计信息")
     public R dashboardInfo() {
         //todo 模拟数据
         DashboardVo dashboardVO = new DashboardVo();
