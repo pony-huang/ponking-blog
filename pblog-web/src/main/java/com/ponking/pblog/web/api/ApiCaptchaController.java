@@ -25,7 +25,7 @@ public class ApiCaptchaController {
 
     @GetMapping("/captcha")
     @ApiModelProperty("获取验证码")
-    public void createCaptcha(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void captcha(HttpServletRequest request, HttpServletResponse response) throws Exception {
         byte[] captcha = null;
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 

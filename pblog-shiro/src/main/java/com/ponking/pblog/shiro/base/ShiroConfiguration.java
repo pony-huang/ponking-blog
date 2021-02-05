@@ -8,8 +8,8 @@ import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSource
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -27,22 +27,23 @@ import java.util.Map;
  * @Des
  **/
 @Configuration
-@EnableConfigurationProperties(ShiroProperties.class)
 public class ShiroConfiguration {
+
+
+    @Autowired
+    private TokenProvider tokenProvider;
 
     /**
      * 配置安全管理器
      *
      * @return SecurityManager
      */
-    @Bean
+    @Bean(name = "securityManager")
     public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager =
                 new DefaultWebSecurityManager();
         // 设置自定义JRealm
-        securityManager.setRealm(new JwtRealm());
-        // 设置自定义Cache缓存
-//        securityManager.setCacheManager(new ShiroCacheManager());
+        securityManager.setRealm(new JWTRealm(tokenProvider));
         // 关闭Shiro自带的session
         DefaultSubjectDAO subjectDAO = new DefaultSubjectDAO();
         DefaultSessionStorageEvaluator defaultSessionStorageEvaluator = new DefaultSessionStorageEvaluator();
@@ -58,7 +59,7 @@ public class ShiroConfiguration {
      * @return ShiroFilterFactoryBean
      */
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier("securityManager") SecurityManager securityManager) {
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier("securityManager") SecurityManager securityManager, ShiroProperties properties) {
         ShiroFilterFactoryBean factoryBean =
                 new ShiroFilterFactoryBean();
         // 注入安全管理器
@@ -69,19 +70,16 @@ public class ShiroConfiguration {
         // 因为过滤器优先配对，建议使用LinkedHashMap
         Map<String, Filter> filterMap = new LinkedHashMap<>();
         // jwtFilter 是过滤器的名称
-        filterMap.put("jwtFilter", new JwtFilter());
+        filterMap.put("jwtFilter", new JWTFilter());
         factoryBean.setFilters(filterMap);
         // 配置过滤器规则，同上述
-        Map<String, String> chain = new LinkedHashMap<>();
-        chain.put("/swagger-ui.html/**", "anon");
-        //验证码
-        chain.put("/defaultKaptcha/**", "anon");
-        chain.put("/captcha/**", "anon");
-        // 登录
-        chain.put("/login", "anon");
-        // 认证,其余拦截
-        chain.put("/sys/**", "jwtFilter");
-        factoryBean.setFilterChainDefinitionMap(chain);
+        Map<String, String> filterChainDefinitionMap = factoryBean.getFilterChainDefinitionMap();
+        for (String url : properties.getAnonUrls()) {
+            filterChainDefinitionMap.put(url, "anon");
+        }
+        for (String url : properties.getAuthUrls()) {
+            filterChainDefinitionMap.put(url, "jwtFilter");
+        }
         return factoryBean;
     }
 

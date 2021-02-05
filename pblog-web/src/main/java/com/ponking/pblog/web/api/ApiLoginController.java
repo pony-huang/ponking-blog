@@ -12,6 +12,7 @@ import com.ponking.pblog.model.dto.UserInfoDTO;
 import com.ponking.pblog.model.entity.User;
 import com.ponking.pblog.model.vo.LoginVo;
 import com.ponking.pblog.service.IUserService;
+import com.ponking.pblog.shiro.base.TokenProvider;
 import com.ponking.pblog.shiro.util.JwtUtils;
 import com.ponking.pblog.shiro.util.Md5Utils;
 import com.ponking.pblog.shiro.util.UserHelper;
@@ -48,6 +49,9 @@ public class ApiLoginController {
     @Autowired
     private PBlogProperties config;
 
+    @Autowired
+    private TokenProvider tokenProvider;
+
     /**
      * 认证未通过
      *
@@ -79,7 +83,6 @@ public class ApiLoginController {
         if (!rightCode.equals(tryCode)) {
             throw new CredentialsException("验证码错误");
         }
-
         // 是否存在该用户
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper.eq("username", loginForm.getUsername());
@@ -87,30 +90,17 @@ public class ApiLoginController {
         if (StringUtils.isEmpty(dbUser)) {
             throw new UnknownAccountException("不存在该用户");
         }
-
-        // TODO 账号是否已被禁用
-
         // 判断密码是否正确
         String pwd = Md5Utils.encrypt(loginForm.getPassword(), dbUser.getSalt());
         if (!pwd.equals(dbUser.getPassword())) {
             throw new CredentialsException("密码错误");
         }
         // 用于注销登录(若已在其他地方登录，刷新token)
-        if (RedisUtils.exists(AuthConstants.PREFIX_SHIRO_CACHE + dbUser.getUsername())) {
-            RedisUtils.del(AuthConstants.PREFIX_SHIRO_CACHE + dbUser.getUsername());
-        }
-        long currentTimeMillis = System.currentTimeMillis();
-        RedisUtils.setObject(AuthConstants.PREFIX_SHIRO_REFRESH_TOKEN + dbUser.getUsername(), currentTimeMillis,
-                AuthConstants.REFRESH_TOKEN_EXPIRE_TIME, TimeUnit.SECONDS);
-        // 生成Token
-        String token = JwtUtils.sign(dbUser.getUsername(), currentTimeMillis + "");
-        response.setHeader("Authorization", token);
-        response.setHeader("Access-Control-Expose-Headers", "Authorization");
 
-        //todo 便于测试
-        Map<String, String> data = new HashMap<>();
-        data.put("token", token);
-        return R.success(data);
+        // 生成Token
+        response.setHeader("Authorization", tokenProvider.createToken(loginForm.getUsername(), true));
+        response.setHeader("Access-Control-Expose-Headers", "Authorization");
+        return R.success();
     }
 
     /**

@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
  * @date 2020/10/25--23:19
  * @Des
  **/
-@Controller
+//@Controller
 public class SearchController {
 
     @Autowired

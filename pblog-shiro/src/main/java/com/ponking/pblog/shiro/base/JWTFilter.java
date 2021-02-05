@@ -1,14 +1,11 @@
 package com.ponking.pblog.shiro.base;
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
-import com.ponking.pblog.common.constants.AuthConstants;
-import com.ponking.pblog.common.exception.GlobalException;
-import com.ponking.pblog.common.result.R;
-import com.ponking.pblog.common.util.RedisUtils;
-import com.ponking.pblog.shiro.util.JwtUtils;
+import com.baomidou.mybatisplus.extension.api.R;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.util.PropertiesUtil;
 import org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.http.HttpStatus;
@@ -20,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author Ponking
@@ -28,7 +24,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2020/3/14--22:32
  **/
 @Slf4j
-public class JwtFilter extends BasicHttpAuthenticationFilter {
+public class JWTFilter extends BasicHttpAuthenticationFilter {
 
 
     /**
@@ -79,10 +75,8 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
             // 获取当前请求类型
             String httpMethod = httpServletRequest.getMethod();
             // 获取当前请求URI
-            String requestURI = httpServletRequest.getRequestURI();
-            log.info("当前请求 {} Authorization属性(Token)为空 请求类型 {}", requestURI, httpMethod);
-            // mustLoginFlag = true 开启任何请求必须登录才可访问
-            final Boolean mustLoginFlag = false;
+            String requestUri = httpServletRequest.getRequestURI();
+            log.info("当前请求 {} Authorization属性(Token)为空 请求类型 {}", requestUri, httpMethod);
         }
         return true;
     }
@@ -126,6 +120,17 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
      */
     @Override
     protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception {
+        // 跨域已经在OriginFilter处全局配置
+        /*HttpServletRequest httpServletRequest = WebUtils.toHttp(request);
+        HttpServletResponse httpServletResponse = WebUtils.toHttp(response);
+        httpServletResponse.setHeader("Access-control-Allow-Origin", httpServletRequest.getHeader("Origin"));
+        httpServletResponse.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS,PUT,DELETE");
+        httpServletResponse.setHeader("Access-Control-Allow-Headers", httpServletRequest.getHeader("Access-Control-Request-Headers"));
+        // 跨域时会首先发送一个OPTIONS请求，这里我们给OPTIONS请求直接返回正常状态
+        if (httpServletRequest.getMethod().equals(RequestMethod.OPTIONS.name())) {
+            httpServletResponse.setStatus(HttpStatus.OK.value());
+            return false;
+        }*/
         return super.preHandle(request, response);
     }
 
@@ -133,40 +138,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
      * 此处为AccessToken刷新，进行判断RefreshToken是否过期，未过期就返回新的AccessToken且继续正常访问
      */
     private boolean refreshToken(ServletRequest request, ServletResponse response) {
-        // 拿到当前Header中Authorization的AccessToken(Shiro中getAuthzHeader方法已经实现)
-        String token = this.getAuthzHeader(request);
-        // 获取当前Token的帐号信息
-        String account = JwtUtils.getClaim(token, AuthConstants.ACCOUNT);
-        // 判断Redis中RefreshToken是否存在
-        if (RedisUtils.exists(AuthConstants.PREFIX_SHIRO_REFRESH_TOKEN + account)) {
-            // Redis中RefreshToken还存在，获取RefreshToken的时间戳
-            String currentTimeMillisRedis = RedisUtils.getObject(AuthConstants.PREFIX_SHIRO_REFRESH_TOKEN + account).toString();
-            // 获取当前AccessToken中的时间戳，与RefreshToken的时间戳对比，如果当前时间戳一致，进行AccessToken刷新
-            if (JwtUtils.getClaim(token, AuthConstants.CURRENT_TIME_MILLIS).equals(currentTimeMillisRedis)) {
-                // 获取当前最新时间戳
-                String currentTimeMillis = String.valueOf(System.currentTimeMillis());
-                // 读取配置文件，获取refreshTokenExpireTime属性
-                // 设置RefreshToken中的时间戳为当前最新时间戳，且刷新过期时间重新为15分钟过期(配置文件可配置refreshTokenExpireTime属性)
-                RedisUtils.setObject(AuthConstants.PREFIX_SHIRO_REFRESH_TOKEN + account, currentTimeMillis, AuthConstants.REFRESH_TOKEN_EXPIRE_TIME, TimeUnit.SECONDS);
-                // 刷新AccessToken，设置时间戳为当前最新时间戳
-                token = JwtUtils.sign(account, currentTimeMillis);
-                // 将新刷新的AccessToken再次进行Shiro的登录
-                JwtToken jwtToken = new JwtToken(token);
-                // 提交给UserRealm进行认证，如果错误他会抛出异常并被捕获，如果没有抛出异常则代表登入成功，返回true
-                this.getSubject(request, response).login(jwtToken);
-                // 最后将刷新的AccessToken存放在Response的Header中的Authorization字段返回
-                HttpServletResponse httpServletResponse = WebUtils.toHttp(response);
-                httpServletResponse.setHeader("Authorization", token);
-                httpServletResponse.setHeader("Access-Control-Expose-Headers", "Authorization");
-                return true;
-            }
-        }
-        return false;
-    }
-
-
-    private void requestDispatcher(ServletRequest request, ServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/admin/index").forward(request, response);
+        return true;
     }
 
     /**
@@ -178,11 +150,11 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
         httpServletResponse.setCharacterEncoding("UTF-8");
         httpServletResponse.setContentType("application/json; charset=utf-8");
         try (PrintWriter out = httpServletResponse.getWriter()) {
-            String data = JSON.toJSONString(R.success().code(HttpStatus.UNAUTHORIZED.value()).message("无权访问(Unauthorized):" + msg));
-            out.append(data);
+            out.append(JSONObject.toJSONString(R.failed(HttpStatus.UNAUTHORIZED.value() + " 无权访问(Unauthorized):" + msg)));
         } catch (IOException e) {
             log.error("直接返回Response信息出现IOException异常:{}", e.getMessage());
-            throw new GlobalException("直接返回Response信息出现IOException异常:" + e.getMessage());
+            throw new PBlogShiroException("直接返回Response信息出现IOException异常:" + e.getMessage());
         }
     }
+
 }

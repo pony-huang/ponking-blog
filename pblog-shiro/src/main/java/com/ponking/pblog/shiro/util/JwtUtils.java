@@ -5,8 +5,9 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.ponking.pblog.common.constants.AuthConstants;
-import com.ponking.pblog.common.exception.GlobalException;
+import com.ponking.pblog.shiro.base.ShiroConstants;
+import com.ponking.pblog.shiro.base.PBlogShiroException;
+
 
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
@@ -51,9 +52,9 @@ public class JwtUtils {
         try {
             DecodedJWT jwt = JWT.decode(token);
             // 只能输出String类型，如果是其他类型返回null
-            return jwt.getClaim(AuthConstants.ACCOUNT).asString();
+            return jwt.getClaim(ShiroConstants.ACCOUNT).asString();
         } catch (JWTDecodeException e) {
-            throw new GlobalException("解密Token中的公共信息出现JWTDecodeException异常:" + e.getMessage());
+            throw new PBlogShiroException("解密Token中的公共信息出现JWTDecodeException异常:" + e.getMessage());
         }
     }
 
@@ -69,13 +70,13 @@ public class JwtUtils {
     public static boolean verify(String token) {
         try {
             // 帐号加JWT私钥解密
-            String secret = getClaim(token, AuthConstants.ACCOUNT) + Base64ConvertUtil.decode(SECRET_KEY);
+            String secret = getClaim(token, ShiroConstants.ACCOUNT) + Base64ConvertUtil.decode(SECRET_KEY);
             Algorithm algorithm = Algorithm.HMAC256(secret);
             JWTVerifier verifier = JWT.require(algorithm).build();
             verifier.verify(token);
             return true;
         } catch (UnsupportedEncodingException e) {
-            throw new GlobalException("JWTToken认证解密出现UnsupportedEncodingException异常:" + e.getMessage());
+            throw new PBlogShiroException("JWTToken认证解密出现UnsupportedEncodingException异常:" + e.getMessage());
         }
     }
 
@@ -94,7 +95,7 @@ public class JwtUtils {
             // 只能输出String类型，如果是其他类型返回null
             return jwt.getClaim(claim).asString();
         } catch (JWTDecodeException e) {
-            throw new GlobalException("解密Token中的公共信息出现JWTDecodeException异常:" + e.getMessage());
+            throw new PBlogShiroException("解密Token中的公共信息出现JWTDecodeException异常:" + e.getMessage());
         }
     }
 
@@ -115,12 +116,12 @@ public class JwtUtils {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             // 附带account帐号信息
             return JWT.create()
-                    .withClaim(AuthConstants.ACCOUNT, account)
-                    .withClaim(AuthConstants.CURRENT_TIME_MILLIS, currentTimeMillis)
+                    .withClaim(ShiroConstants.ACCOUNT, account)
+                    .withClaim(ShiroConstants.CURRENT_TIME_MILLIS, currentTimeMillis)
                     .withExpiresAt(date)
                     .sign(algorithm);
-        } catch (UnsupportedEncodingException e) {
-            throw new GlobalException("JWTToken加密出现异常:" + e.getMessage());
+        } catch (Exception e) {
+            throw new PBlogShiroException("JWTToken加密出现异常:" + e.getMessage());
         }
     }
 

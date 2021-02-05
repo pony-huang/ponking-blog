@@ -7,7 +7,7 @@ spring:
     mode: HTML5
     encoding: utf-8
     cache: false
-#    prefix: classpath:/templates/blog,/templates/admin
+  #    prefix: classpath:/templates/blog,/templates/admin
   # BANNER
   banner:
     location: classpath:banner.txt
@@ -17,19 +17,39 @@ spring:
       invert: false
       width: 50
     charset: utf-8
+  resources:
+#    static-locations: classpath:/templates/,classpath:/static/
 
 jwt:
-  # AES密码加密私钥(Base64加密)
-  encryptAESKey: V2FuZzkyNjQ1NGRTQkFQSUpXVA==
-  # JWT认证加密私钥(Base64加密)
-  encryptJWTKey: U0JBUElKV1RkV2FuZzkyNjQ1NA==
-  # AccessToken过期时间-5分钟-5*60(秒为单位)
-  accessTokenExpireTime: 300
-  # RefreshToken过期时间-30分钟-30*60(秒为单位)
-  refreshTokenExpireTime: 1800
-  # Shiro缓存过期时间-5分钟-5*60(秒为单位)(一般设置与AccessToken过期时间一致)
-  shiroCacheExpireTime: 300
+  header: Authorization
+  # This token must be encoded using Base64 with mininum 88 Bits (you can type `echo 'secret-key'|base64` on your command line)
+  base64-secret: ZmQ0ZGI5NjQ0MDQwY2I4MjMxY2Y3ZmI3MjdhN2ZmMjNhODViOTg1ZGE0NTBjMGM4NDA5NzYxMjdjOWMwYWRmZTBlZjlhNGY3ZTg4Y2U3YTE1ODVkZDU5Y2Y3OGYwZWE1NzUzNWQ2YjFjZDc0NGMxZWU2MmQ3MjY1NzJmNTE0MzI=
+  # token is valid 24 hours
+  token-validity-in-seconds: 86400
+  # valid 30 hours
+  token-validity-in-seconds-for-remember-me: 108000
 
 
-
-
+pblog:
+  shiro:
+    auth-urls: /api/**
+    anno-urls: /swagger-ui.html/**,/defaultKaptcha/**,/captcha/**,/login/**,/doc.html/**
+  config:
+    blogTitle: PONKING
+    blogKeywords: 我就是我，颜色不一样的烟火
+    blogUrl:
+    blogAuthor: PONKING
+    blogAvatar:
+    blogNotice: blogNotice
+    blogDescription: 我就是我，颜色不一样的烟火
+    defaultImage:
+    authorDescription:
+    filingIcp:
+    filingSecurity:
+    commentCheck:
+    backgroundList:
+    blogHead:
+    blogScript:
+    fileStorage:
+    authorCity:
+    blogAbout:

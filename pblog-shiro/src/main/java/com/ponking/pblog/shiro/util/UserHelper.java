@@ -1,9 +1,6 @@
 package com.ponking.pblog.shiro.util;
 
-import com.ponking.pblog.common.constants.AuthConstants;
-import com.ponking.pblog.common.util.RedisUtils;
 import com.ponking.pblog.shiro.base.JwtToken;
-import io.jsonwebtoken.lang.Assert;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.subject.Subject;
@@ -31,15 +28,15 @@ public class UserHelper {
     }
 
     public static void logout(String token) {
-        Subject subject = SecurityUtils.getSubject();
-        try {
-            subject.logout();
-            boolean exists = RedisUtils.exists(AuthConstants.PREFIX_SHIRO_REFRESH_TOKEN + JwtUtils.getAccount(token));
-            Assert.isTrue(exists, "");
-            RedisUtils.del(AuthConstants.PREFIX_SHIRO_REFRESH_TOKEN + JwtUtils.getAccount(token));
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        }
+//        Subject subject = SecurityUtils.getSubject();
+//        try {
+//            subject.logout();
+//            boolean exists = RedisUtils.exists(AuthConstants.PREFIX_SHIRO_REFRESH_TOKEN + JwtUtils.getAccount(token));
+//            Assert.isTrue(exists, "");
+//            RedisUtils.del(AuthConstants.PREFIX_SHIRO_REFRESH_TOKEN + JwtUtils.getAccount(token));
+//        } catch (AuthenticationException e) {
+//            e.printStackTrace();
+//        }
     }
 
 }

@@ -2,6 +2,7 @@ package com.ponking.pblog;
 
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,8 +23,8 @@ public class Application implements CommandLineRunner {
 //    @Autowired
 //    private SchedulerManager manager;
 
-//    @Autowired
-//    private IConfigService configService;
+    @Value("${server.port}")
+    private String port;
 
 
     public static void main(String[] args) {
@@ -34,7 +35,9 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         log.info("正在初始化PBlogProperties...");
-        log.info("http://" + InetAddress.getLocalHost().getAddress() + "swagger-ui.html");
+        log.info("http://" + InetAddress.getLocalHost().getHostAddress() + ":" + port + "/swagger-ui.html");
+        log.info("http://" + InetAddress.getLocalHost().getHostAddress() + ":" + port + "/doc.html");
+        log.info("http://" + InetAddress.getLocalHost().getHostAddress() + ":" + port + "/home");
 //        PBlogProperties config = new PBlogProperties();
 //        List<BlogConfig> list = configService.list(null);
 //        for (BlogConfig bc : list) {
