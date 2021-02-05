@@ -17,6 +17,7 @@ import java.util.Date;
  * @ClassName JwtUtils
  * @date 2020/3/14--23:14
  **/
+@Deprecated
 public class JwtUtils {
 
 

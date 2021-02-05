@@ -64,10 +64,9 @@ public class TokenProvider implements InitializingBean {
                 .compact();
     }
 
-    public boolean validateToken(String authToken) {
+    public void validateToken(String authToken) {
         try {
             Jwts.parser().setSigningKey(key).parseClaimsJws(authToken);
-            return true;
         } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
             log.info("Invalid JWT signature.");
             log.trace("Invalid JWT signature trace: {}", e);
@@ -81,6 +80,5 @@ public class TokenProvider implements InitializingBean {
             log.info("JWT token compact of handler are invalid.");
             log.trace("JWT token compact of handler are invalid trace: {}", e);
         }
-        return false;
     }
 }

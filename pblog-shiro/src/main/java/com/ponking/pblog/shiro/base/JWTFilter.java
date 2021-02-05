@@ -5,12 +5,10 @@ import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.baomidou.mybatisplus.extension.api.R;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.util.PropertiesUtil;
 import org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.http.HttpStatus;
 
-import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
@@ -52,12 +50,7 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
                     // 该异常为JWT的AccessToken认证失败(Token或者密钥不正确)
                     msg = "Token或者密钥不正确(" + throwable.getMessage() + ")";
                 } else if (throwable instanceof TokenExpiredException) {
-                    // 该异常为JWT的AccessToken已过期，判断RefreshToken未过期就进行AccessToken刷新
-                    if (this.refreshToken(request, response)) {
-                        return true;
-                    } else {
-                        msg = "Token已过期(" + throwable.getMessage() + ")";
-                    }
+                    msg = "Token已过期(" + throwable.getMessage() + ")";
                 } else {
                     // 应用异常不为空
                     if (throwable != null) {
@@ -122,13 +115,6 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
     @Override
     protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception {
         return super.preHandle(request, response);
-    }
-
-    /**
-     * 此处为AccessToken刷新，进行判断RefreshToken是否过期，未过期就返回新的AccessToken且继续正常访问
-     */
-    private boolean refreshToken(ServletRequest request, ServletResponse response) {
-        return true;
     }
 
     /**

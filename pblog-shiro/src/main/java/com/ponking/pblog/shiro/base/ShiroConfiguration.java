@@ -70,7 +70,7 @@ public class ShiroConfiguration {
         // 因为过滤器优先配对，建议使用LinkedHashMap
         Map<String, Filter> filterMap = new LinkedHashMap<>();
         // jwtFilter 是过滤器的名称
-        filterMap.put("jwtFilter", new JWTFilter());
+        filterMap.put("jwt", new JWTFilter());
         factoryBean.setFilters(filterMap);
         // 配置过滤器规则，同上述
         Map<String, String> filterChainDefinitionMap = factoryBean.getFilterChainDefinitionMap();
@@ -78,7 +78,7 @@ public class ShiroConfiguration {
             filterChainDefinitionMap.put(url, "anon");
         }
         for (String url : properties.getAuthUrls()) {
-            filterChainDefinitionMap.put(url, "jwtFilter");
+            filterChainDefinitionMap.put(url, "jwt");
         }
         return factoryBean;
     }
