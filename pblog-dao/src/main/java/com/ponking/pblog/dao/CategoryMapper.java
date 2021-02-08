@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.model.entity.Category;
 import com.ponking.pblog.model.vo.CategoryContentPage;
-import com.ponking.pblog.model.vo.CategoryTableCardVo;
+import com.ponking.pblog.model.vo.CategoryTableCardVO;
 
 import java.util.List;
 
@@ -20,9 +20,10 @@ import java.util.List;
 public interface CategoryMapper extends BaseMapper<Category> {
     /**
      * 博客左侧栏分类列表
+     *
      * @return
      */
-    List<CategoryTableCardVo> selectCategoryColumnInfo();
+    List<CategoryTableCardVO> selectCategoryColumnInfo();
 
     /**
      * 按分类归分博客

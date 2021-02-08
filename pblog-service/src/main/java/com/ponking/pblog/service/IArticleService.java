@@ -6,12 +6,12 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ponking.pblog.model.document.EsArticle;
-import com.ponking.pblog.model.dto.ArticleDto;
+import com.ponking.pblog.model.dto.ArticleDTO;
 import com.ponking.pblog.model.dto.ArticleEditDto;
 import com.ponking.pblog.model.entity.Article;
-import com.ponking.pblog.model.vo.ArchiveTableCartVo;
-import com.ponking.pblog.model.vo.ArchiveVo;
-import com.ponking.pblog.model.vo.ArticleTopTableCardVo;
+import com.ponking.pblog.model.vo.ArchiveTableCartVO;
+import com.ponking.pblog.model.vo.ArchiveVO;
+import com.ponking.pblog.model.vo.ArticleTopTableCardVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.io.Serializable;
@@ -58,51 +58,56 @@ public interface IArticleService extends IService<Article> {
      * @param queryWrapper
      * @return
      */
-    IPage<ArticleDto> getArticleFrontPage(IPage page, @Param(Constants.WRAPPER) Wrapper<ArticleDto> queryWrapper);
+    IPage<ArticleDTO> getArticleFrontPage(IPage page, @Param(Constants.WRAPPER) Wrapper<ArticleDTO> queryWrapper);
 
     /**
      * 博客右侧栏归档列表
      *
      * @return
      */
-    List<ArchiveTableCartVo> listArchiveColumnInfo();
+    List<ArchiveTableCartVO> listArchiveColumnInfo();
 
     /**
      * 博客右侧栏最新（置顶）列表
+     *
      * @return
      */
-    List<ArticleTopTableCardVo> listArticleTopColumn();
+    List<ArticleTopTableCardVO> listArticleTopColumn();
 
     /**
      * 归档页列表
+     *
      * @return
      */
-    List<ArchiveVo> listArchiveFront();
+    List<ArchiveVO> listArchiveFront();
 
 
     /**
      * 博客列表
+     *
      * @param iPage
      * @param wrapper
      * @return
      */
-    IPage<ArticleDto> articleInfoOfTagDtoList(IPage<ArticleDto> iPage,@Param(Constants.WRAPPER) QueryWrapper<ArticleDto> wrapper);
+    IPage<ArticleDTO> articleInfoOfTagDtoList(IPage<ArticleDTO> iPage, @Param(Constants.WRAPPER) QueryWrapper<ArticleDTO> wrapper);
 
 
     /**
      * 根据id博客
+     *
      * @param id
      * @return
      */
-    ArticleDto getArticleInfoById(Long id);
+    ArticleDTO getArticleInfoById(Long id);
 
     /**
      * 归档
+     *
      * @param page
      * @param queryWrapper
      * @return
      */
-    IPage<ArchiveVo> pageArchiveYearMonthFront(IPage<ArchiveVo> page, QueryWrapper<ArchiveVo> queryWrapper);
+    IPage<ArchiveVO> pageArchiveYearMonthFront(IPage<ArchiveVO> page, QueryWrapper<ArchiveVO> queryWrapper);
 
     /**
      * 更新博客创作状态

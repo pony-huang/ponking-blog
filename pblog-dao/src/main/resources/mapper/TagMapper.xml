@@ -10,7 +10,7 @@
     <!--        <property name="memoryStoreEvictionPolicy" value="LRU"/>-->
     <!--    </com.ponking.pblog.cache>-->
 
-    <resultMap id="ArticleInfoMap" type="com.ponking.pblog.model.dto.ArticleDto">
+    <resultMap id="ArticleInfoMap" type="com.ponking.pblog.model.dto.ArticleDTO">
         <id property="id" column="id"/>
         <result property="title" column="title"/>
         <result property="summary" column="summary"/>
@@ -36,7 +36,7 @@
     <resultMap id="TagInfoMap" type="com.ponking.pblog.model.vo.TagContentPage">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
-        <collection property="articles" javaType="ArrayList" ofType="com.ponking.pblog.model.dto.ArticleDto"
+        <collection property="articles" javaType="ArrayList" ofType="com.ponking.pblog.model.dto.ArticleDTO"
                     column="{id=id}"
                     select="selectArticleId"/>
     </resultMap>
@@ -73,9 +73,10 @@
             bc.id = #{id}
     </select>
 
-    <select id="selectTagColumnInfo" resultType="com.ponking.pblog.model.vo.TagTableCardVo">
-        select t.id,t.name,count(t.id) count
-        from blog_article_tag a INNER JOIN blog_tag t on a.tag_id = t.id
+    <select id="selectTagColumnInfo" resultType="com.ponking.pblog.model.vo.TagTableCardVO">
+        select t.id, t.name, count(t.id) count
+        from blog_article_tag a INNER JOIN blog_tag t
+        on a.tag_id = t.id
         GROUP BY t.id
     </select>
 </mapper>

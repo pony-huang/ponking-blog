@@ -1,12 +1,11 @@
 package com.ponking.pblog.web.api;
 
 import com.ponking.pblog.common.result.R;
-import com.ponking.pblog.model.vo.DashboardArticleCommentsVo;
-import com.ponking.pblog.model.vo.DashboardArticleNumVo;
-import com.ponking.pblog.model.vo.DashboardArticleVisitsVo;
-import com.ponking.pblog.model.vo.DashboardVo;
+import com.ponking.pblog.model.vo.DashboardArticleCommentsVO;
+import com.ponking.pblog.model.vo.DashboardArticleNumVO;
+import com.ponking.pblog.model.vo.DashboardArticleVisitsVO;
+import com.ponking.pblog.model.vo.DashboardVO;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,10 +44,10 @@ public class ApiDashboardController {
     @ApiOperation("主页统计信息")
     public R dashboardInfo() {
         //todo 模拟数据
-        DashboardVo dashboardVO = new DashboardVo();
-        DashboardArticleVisitsVo visitsVO = new DashboardArticleVisitsVo();
-        DashboardArticleCommentsVo commentsVO = new DashboardArticleCommentsVo();
-        DashboardArticleNumVo numVO = new DashboardArticleNumVo();
+        DashboardVO dashboardVO = new DashboardVO();
+        DashboardArticleVisitsVO visitsVO = new DashboardArticleVisitsVO();
+        DashboardArticleCommentsVO commentsVO = new DashboardArticleCommentsVO();
+        DashboardArticleNumVO numVO = new DashboardArticleNumVO();
         visitsVO.setActualData(getData());
         visitsVO.setNums(count(visitsVO.getActualData()));
         commentsVO.setActualData(getData());

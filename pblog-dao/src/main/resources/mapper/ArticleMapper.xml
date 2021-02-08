@@ -12,7 +12,7 @@
     <!--    </com.ponking.pblog.cache>-->
 
 
-    <resultMap id="ArticleInfoMap" type="com.ponking.pblog.model.dto.ArticleDto">
+    <resultMap id="ArticleInfoMap" type="com.ponking.pblog.model.dto.ArticleDTO">
         <id property="id" column="id"/>
         <result property="title" column="title"/>
         <result property="summary" column="summary"/>
@@ -74,7 +74,7 @@
     </resultMap>
 
 
-    <resultMap id="ArchiveColumn" type="com.ponking.pblog.model.vo.ArticleTopTableCardVo">
+    <resultMap id="ArchiveColumn" type="com.ponking.pblog.model.vo.ArticleTopTableCardVO">
         <id property="id" column="id"/>
         <result property="image" column="image"/>
         <result property="updateTime" column="update_time"/>
@@ -82,7 +82,7 @@
                      column="{id=category_id}" select="selectCategoryByArticleId"/>
     </resultMap>
 
-    <resultMap id="ArchivesVoMap" type="com.ponking.pblog.model.vo.ArchiveVo">
+    <resultMap id="ArchivesVoMap" type="com.ponking.pblog.model.vo.ArchiveVO">
         <id property="id" column="id"/>
         <result property="title" column="title"/>
         <result property="date" column="update_time"/>
@@ -126,11 +126,11 @@
         WHERE id = #{id}
     </select>
 
-    <select id="selectArchiveColumnInfo" resultType="com.ponking.pblog.model.vo.ArchiveTableCartVo">
-        select date_format(update_time,'%Y-%m-01 00:00:00') as 'years',COUNT(*) count
+    <select id="selectArchiveColumnInfo" resultType="com.ponking.pblog.model.vo.ArchiveTableCartVO">
+        select date_format(update_time, '%Y-%m-01 00:00:00') as 'years',COUNT(*) count
         from blog_article
-        GROUP BY date_format(update_time,'%Y-%m-01 00:00:00')
-        ORDER BY date_format(update_time,'%Y-%m-01 00:00:00') DESC
+        GROUP BY date_format(update_time, '%Y-%m-01 00:00:00')
+        ORDER BY date_format(update_time, '%Y-%m-01 00:00:00') DESC
     </select>
 
     <select id="selectListArticleTopColumn" resultMap="ArchiveColumn">

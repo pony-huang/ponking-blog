@@ -3,12 +3,11 @@ package com.ponking.pblog.web.api;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.common.result.R;
-import com.ponking.pblog.model.dto.CategoryDto;
+import com.ponking.pblog.model.dto.CategoryDTO;
 import com.ponking.pblog.model.entity.Category;
 import com.ponking.pblog.service.ICategoryService;
 import com.ponking.pblog.util.PageUtil;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
@@ -61,7 +60,7 @@ public class ApiCategoryController {
 
     @PostMapping
     @ApiOperation("添加分类")
-    public R save(@RequestBody CategoryDto category) {
+    public R save(@RequestBody CategoryDTO category) {
         Category c = new Category();
         try {
             BeanUtils.copyProperties(category, c);
@@ -91,7 +90,7 @@ public class ApiCategoryController {
      */
     @PutMapping
     @ApiOperation("更新分类")
-    public R update(@RequestBody CategoryDto category) {
+    public R update(@RequestBody CategoryDTO category) {
         Category c = new Category();
         try {
             BeanUtils.copyProperties(c, category);

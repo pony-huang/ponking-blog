@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @date 2020/4/8--10:38
  **/
 @Data
-public class CategoryTableCardVo implements Serializable {
+public class CategoryTableCardVO implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer id;
     private String name;

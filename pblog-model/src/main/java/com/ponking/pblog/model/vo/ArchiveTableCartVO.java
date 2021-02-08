@@ -12,7 +12,7 @@ import java.util.Date;
  * @date 2020/4/8--12:01
  **/
 @Data
-public class ArchiveTableCartVo implements Serializable {
+public class ArchiveTableCartVO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Date years;

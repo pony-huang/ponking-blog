@@ -20,7 +20,7 @@ public class ArticleEditDto implements Serializable {
     /**
      * 作者
      */
-    private AuthorDto author;
+    private AuthorDTO author;
 
     /**
      * 文章标题

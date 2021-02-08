@@ -7,7 +7,7 @@ import lombok.Data;
  * @date 2020/9/2--15:18
  **/
 @Data
-public class TagDto {
+public class TagDTO {
 
     private Long id;
 

@@ -3,8 +3,8 @@ package com.ponking.pblog.web.front;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ponking.pblog.model.vo.ArchiveVo;
-import com.ponking.pblog.model.vo.ArchivesContentVo;
+import com.ponking.pblog.model.vo.ArchiveVO;
+import com.ponking.pblog.model.vo.ArchivesContentVO;
 import com.ponking.pblog.common.params.PBlogProperties;
 import com.ponking.pblog.service.IArticleService;
 import com.ponking.pblog.service.ICategoryService;
@@ -37,7 +37,7 @@ public class ArchivesController extends AbstractBaseController {
     @RequestMapping("/archives")
     public String content(Model model, @RequestParam(value = "time", defaultValue = "-1") int time,
                           @RequestParam(value = "page", defaultValue = "1") int page) {
-        QueryWrapper<ArchiveVo> wrapper = new QueryWrapper<>();
+        QueryWrapper<ArchiveVO> wrapper = new QueryWrapper<>();
         Calendar calendar = Calendar.getInstance();
         // 201909
         Date date;
@@ -64,8 +64,8 @@ public class ArchivesController extends AbstractBaseController {
                     orderByDesc("update_time");
         }
 
-        IPage<ArchiveVo> pageInfo = articleService.pageArchiveYearMonthFront(new Page<>(page, 4), wrapper);
-        List<ArchivesContentVo> records = new ArrayList<>();
+        IPage<ArchiveVO> pageInfo = articleService.pageArchiveYearMonthFront(new Page<>(page, 4), wrapper);
+        List<ArchivesContentVO> records = new ArrayList<>();
         if (pageInfo.getRecords().size() > 0) {
             records = ModelVoUtil.getArchivesFront(pageInfo.getRecords());
         }

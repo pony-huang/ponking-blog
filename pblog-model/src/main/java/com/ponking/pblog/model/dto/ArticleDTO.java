@@ -23,7 +23,7 @@ import java.util.List;
  * @since 2020-03-20
  */
 @Data
-public class ArticleDto implements Serializable {
+public class ArticleDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

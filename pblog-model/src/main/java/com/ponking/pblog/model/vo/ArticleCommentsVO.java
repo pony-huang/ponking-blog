@@ -1,6 +1,5 @@
 package com.ponking.pblog.model.vo;
 
-import com.ponking.pblog.model.entity.Article;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -12,7 +11,7 @@ import java.util.List;
  * @Des 文章评论
  **/
 @Data
-public class ArticleCommentsVo {
+public class ArticleCommentsVO {
 
     private Long id;
 
@@ -28,5 +27,5 @@ public class ArticleCommentsVo {
 
     private String content;
 
-    private List<ArticleCommentsVo> children = new ArrayList<>();
+    private List<ArticleCommentsVO> children = new ArrayList<>();
 }

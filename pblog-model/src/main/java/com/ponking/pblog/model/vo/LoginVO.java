@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @date 2020/3/15--10:28
  **/
 @Data
-public class LoginVo implements Serializable {
+public class LoginVO implements Serializable {
     private static final long serialVersionUID = 1L;
     /**
      * 密码

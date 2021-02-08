@@ -2,11 +2,10 @@ package com.ponking.pblog.web.api;
 
 
 import com.ponking.pblog.common.result.R;
-import com.ponking.pblog.model.dto.CommentDto;
-import com.ponking.pblog.model.vo.ArticleCommentsVo;
+import com.ponking.pblog.model.dto.CommentDTO;
+import com.ponking.pblog.model.vo.ArticleCommentsVO;
 import com.ponking.pblog.service.ICommentService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -41,7 +40,7 @@ public class ApiCommentController {
     @GetMapping("{id}")
     @ApiOperation("获取评论")
     public R getOneByArticleId(@PathVariable("id") Long id) {
-        List<ArticleCommentsVo> comments = commentService.getCommentByArticleId(id);
+        List<ArticleCommentsVO> comments = commentService.getCommentByArticleId(id);
         return R.success(comments);
     }
 
@@ -52,7 +51,7 @@ public class ApiCommentController {
      */
     @PostMapping
     @ApiOperation("添加评论")
-    public R commentArticle(@RequestBody CommentDto commentDto, HttpServletRequest request) {
+    public R commentArticle(@RequestBody CommentDTO commentDto, HttpServletRequest request) {
         try {
             commentService.addArticleComment(commentDto, request);
         } catch (Exception e) {

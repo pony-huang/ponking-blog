@@ -8,7 +8,7 @@ import lombok.Data;
  * @Des
  **/
 @Data
-public class CommentDto {
+public class CommentDTO {
 
     /**
      * 父评论（若是0，即本评论为父评论）

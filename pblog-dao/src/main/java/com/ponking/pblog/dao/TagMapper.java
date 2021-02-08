@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.model.entity.Tag;
 import com.ponking.pblog.model.vo.TagContentPage;
-import com.ponking.pblog.model.vo.TagTableCardVo;
+import com.ponking.pblog.model.vo.TagTableCardVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -23,9 +23,10 @@ import java.util.List;
 public interface TagMapper extends BaseMapper<Tag> {
     /**
      * 博客右侧栏标签
+     *
      * @return
      */
-    List<TagTableCardVo> selectTagColumnInfo();
+    List<TagTableCardVO> selectTagColumnInfo();
 
 
     /**

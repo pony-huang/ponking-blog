@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @Des 博客个人信息
  **/
 @Data
-public class AuthorInfoTableCardVo implements Serializable {
+public class AuthorInfoTableCardVO implements Serializable {
     private static final long serialVersionUID = 1L;
     private String name;
     private String city;
@@ -21,7 +21,7 @@ public class AuthorInfoTableCardVo implements Serializable {
     private Integer tagCount;
     private Integer categoryCount;
 
-    public AuthorInfoTableCardVo(String name, String city, String avatar, String title, Integer articleCount, Integer tagCount, Integer categoryCount) {
+    public AuthorInfoTableCardVO(String name, String city, String avatar, String title, Integer articleCount, Integer tagCount, Integer categoryCount) {
         this.name = name;
         this.city = city;
         this.avatar = avatar;

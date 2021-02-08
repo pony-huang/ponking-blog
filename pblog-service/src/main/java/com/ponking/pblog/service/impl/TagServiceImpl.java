@@ -7,7 +7,7 @@ import com.ponking.pblog.common.exception.GlobalException;
 import com.ponking.pblog.dao.TagMapper;
 import com.ponking.pblog.model.entity.Tag;
 import com.ponking.pblog.model.vo.TagContentPage;
-import com.ponking.pblog.model.vo.TagTableCardVo;
+import com.ponking.pblog.model.vo.TagTableCardVO;
 import com.ponking.pblog.service.ITagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,10 +65,11 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements ITagS
 
     /**
      * 博客右侧栏标签
+     *
      * @return
      */
     @Override
-    public List<TagTableCardVo> listTagColumnInfo() {
+    public List<TagTableCardVO> listTagColumnInfo() {
         return tagMapper.selectTagColumnInfo();
     }
 

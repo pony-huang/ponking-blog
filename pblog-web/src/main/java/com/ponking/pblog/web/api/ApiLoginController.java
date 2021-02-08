@@ -2,22 +2,18 @@ package com.ponking.pblog.web.api;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.ponking.pblog.common.constants.AuthConstants;
 import com.ponking.pblog.common.exception.GlobalException;
 import com.ponking.pblog.common.params.PBlogProperties;
 import com.ponking.pblog.common.result.R;
 import com.ponking.pblog.common.result.ResultCode;
-import com.ponking.pblog.common.util.RedisUtils;
 import com.ponking.pblog.model.dto.UserInfoDTO;
 import com.ponking.pblog.model.entity.User;
-import com.ponking.pblog.model.vo.LoginVo;
+import com.ponking.pblog.model.vo.LoginVO;
 import com.ponking.pblog.service.IUserService;
 import com.ponking.pblog.shiro.base.TokenProvider;
-import com.ponking.pblog.shiro.util.JwtUtils;
 import com.ponking.pblog.shiro.util.Md5Utils;
 import com.ponking.pblog.shiro.util.UserHelper;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.CredentialsException;
@@ -29,9 +25,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -71,7 +64,7 @@ public class ApiLoginController {
      */
     @PostMapping("/login")
     @ApiOperation("登陆")
-    public R login(@RequestBody LoginVo loginForm, HttpServletRequest request, HttpServletResponse response) {
+    public R login(@RequestBody LoginVO loginForm, HttpServletRequest request, HttpServletResponse response) {
         if (StringUtils.isEmpty(loginForm.getUsername())) {
             throw new GlobalException("用户名不能为空");
         }

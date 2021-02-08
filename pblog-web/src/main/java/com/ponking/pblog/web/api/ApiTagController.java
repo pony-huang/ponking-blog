@@ -3,12 +3,11 @@ package com.ponking.pblog.web.api;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.common.result.R;
-import com.ponking.pblog.model.dto.TagDto;
+import com.ponking.pblog.model.dto.TagDTO;
 import com.ponking.pblog.model.entity.Tag;
 import com.ponking.pblog.service.ITagService;
 import com.ponking.pblog.util.PageUtil;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
@@ -54,7 +53,7 @@ public class ApiTagController {
 
     @PostMapping
     @ApiOperation("添加标签")
-    public R save(@RequestBody TagDto tag) {
+    public R save(@RequestBody TagDTO tag) {
         Tag t = new Tag();
         try {
             BeanUtils.copyProperties(tag, t);
@@ -85,7 +84,7 @@ public class ApiTagController {
      */
     @PutMapping
     @ApiOperation("更新标签")
-    public R update(@RequestBody TagDto tag) {
+    public R update(@RequestBody TagDTO tag) {
         boolean result = false;
         Tag t = new Tag();
         try {

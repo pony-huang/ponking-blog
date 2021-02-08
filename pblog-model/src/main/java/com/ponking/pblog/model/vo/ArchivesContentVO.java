@@ -13,7 +13,7 @@ import java.util.List;
  * @Des 归档页内容
  **/
 @Data
-public class ArchivesContentVo implements Serializable {
+public class ArchivesContentVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,12 +22,12 @@ public class ArchivesContentVo implements Serializable {
      */
     private Date date;
 
-    private List<ArchiveVo> archiveList = new ArrayList<>();
+    private List<ArchiveVO> archiveList = new ArrayList<>();
 
-    public ArchivesContentVo() {
+    public ArchivesContentVO() {
     }
 
-    public ArchivesContentVo(Date date) {
+    public ArchivesContentVO(Date date) {
         this.date = date;
     }
 }

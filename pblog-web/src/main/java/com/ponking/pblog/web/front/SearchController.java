@@ -2,11 +2,10 @@ package com.ponking.pblog.web.front;
 
 import com.alibaba.fastjson.JSON;
 import com.ponking.pblog.model.document.EsArticle;
-import com.ponking.pblog.model.vo.SearchQueryVo;
+import com.ponking.pblog.model.vo.SearchQueryVO;
 import com.ponking.pblog.search.IEsArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -43,14 +42,14 @@ public class SearchController {
     public String contentJson() {
         // todo 暂时模拟部分数据，之后结合websocket
         List<EsArticle> articles = esArticleService.queryMatchAll();
-        List<SearchQueryVo.TagWithCate> categories = new ArrayList<>();
-        List<SearchQueryVo.TagWithCate> tags = new ArrayList<>();
-        SearchQueryVo result = new SearchQueryVo();
-        List<SearchQueryVo.Description> posts = articles.stream().map(item -> {
-            SearchQueryVo.Description desc = new SearchQueryVo.Description();
-            SearchQueryVo.TagWithCate cate = new SearchQueryVo.TagWithCate();
+        List<SearchQueryVO.TagWithCate> categories = new ArrayList<>();
+        List<SearchQueryVO.TagWithCate> tags = new ArrayList<>();
+        SearchQueryVO result = new SearchQueryVO();
+        List<SearchQueryVO.Description> posts = articles.stream().map(item -> {
+            SearchQueryVO.Description desc = new SearchQueryVO.Description();
+            SearchQueryVO.TagWithCate cate = new SearchQueryVO.TagWithCate();
             try {
-                if(host == null || "".equals(host)){
+                if (host == null || "".equals(host)) {
                     InetAddress addr = InetAddress.getLocalHost();
                     host = addr.getHostAddress();
                 }
@@ -69,7 +68,7 @@ public class SearchController {
                 String[] split = item.getTags().split(";");
                 for (int i = 0; i < split.length; i++) {
                     if (!"".equals(split[i])) {
-                        SearchQueryVo.TagWithCate tag = new SearchQueryVo.TagWithCate();
+                        SearchQueryVO.TagWithCate tag = new SearchQueryVO.TagWithCate();
                         tag.setSlug(item.getTitle());
                         tag.setName(split[i]);
                         tag.setLink("http://" + host + ":" + port + "/articles/" + item.getId());

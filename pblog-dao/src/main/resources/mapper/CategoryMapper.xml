@@ -11,7 +11,7 @@
     <!--        <property name="memoryStoreEvictionPolicy" value="LRU"/>-->
     <!--    </com.ponking.pblog.cache>-->
 
-    <resultMap id="ArticleInfoMap" type="com.ponking.pblog.model.dto.ArticleDto">
+    <resultMap id="ArticleInfoMap" type="com.ponking.pblog.model.dto.ArticleDTO">
         <id property="id" column="id"/>
         <result property="title" column="title"/>
         <result property="summary" column="summary"/>
@@ -37,7 +37,7 @@
     <resultMap id="CategoryInfo" type="com.ponking.pblog.model.vo.CategoryContentPage">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
-        <collection property="articles" javaType="ArrayList" ofType="com.ponking.pblog.model.dto.ArticleDto"
+        <collection property="articles" javaType="ArrayList" ofType="com.ponking.pblog.model.dto.ArticleDTO"
                     column="{id=id}"
                     select="selectArticleId"/>
     </resultMap>
@@ -74,9 +74,10 @@
     </select>
 
 
-    <select id="selectCategoryColumnInfo" resultType="com.ponking.pblog.model.vo.CategoryTableCardVo">
-        select c.id,c.name,count(c.id) count,path
-        from blog_article a INNER JOIN blog_category c on a.category_id = c.id
+    <select id="selectCategoryColumnInfo" resultType="com.ponking.pblog.model.vo.CategoryTableCardVO">
+        select c.id, c.name, count(c.id) count,path
+        from blog_article a INNER JOIN blog_category c
+        on a.category_id = c.id
         GROUP BY c.id
     </select>
 </mapper>

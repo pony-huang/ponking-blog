@@ -6,11 +6,11 @@ import java.util.List;
 
 /**
  * @author peng
- * @date 2020/9/3--9:18
+ * @date 2020/9/3--9:17
  * @Des
  **/
 @Data
-public class DashboardArticleNumVo {
+public class DashboardArticleCommentsVO {
 
     private List<Integer> expectedData;
 

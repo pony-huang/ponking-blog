@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ponking.pblog.model.entity.Tag;
 import com.ponking.pblog.model.vo.TagContentPage;
-import com.ponking.pblog.model.vo.TagTableCardVo;
+import com.ponking.pblog.model.vo.TagTableCardVO;
 
 import java.util.List;
 
@@ -21,9 +21,10 @@ public interface ITagService extends IService<Tag> {
 
     /**
      * 博客右侧栏标签
+     *
      * @return
      */
-    List<TagTableCardVo> listTagColumnInfo();
+    List<TagTableCardVO> listTagColumnInfo();
 
 
     /**

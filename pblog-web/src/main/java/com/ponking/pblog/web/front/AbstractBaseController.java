@@ -50,10 +50,10 @@ public abstract class AbstractBaseController {
      * @param model
      */
     protected void getBlogTableCardInfo(Model model) {
-        List<CategoryTableCardVo> categoryTableCardVoList = categoryService.listCategoryColumnInfo();
-        List<TagTableCardVo> tagTableCardVoList = tagService.listTagColumnInfo();
-        List<ArchiveTableCartVo> archiveTableCartVoList = articleService.listArchiveColumnInfo();
-        List<ArticleTopTableCardVo> articleTopTableCardVoList = articleService.listArticleTopColumn();
+        List<CategoryTableCardVO> categoryTableCardVOList = categoryService.listCategoryColumnInfo();
+        List<TagTableCardVO> tagTableCardVOList = tagService.listTagColumnInfo();
+        List<ArchiveTableCartVO> archiveTableCartVOList = articleService.listArchiveColumnInfo();
+        List<ArticleTopTableCardVO> articleTopTableCardVOList = articleService.listArticleTopColumn();
         List<Link> links = linkService.list();
 
         String name = config.getBlogAuthor();
@@ -66,13 +66,13 @@ public abstract class AbstractBaseController {
         int articleCount = articleService.count();
         int tagCount = tagService.count();
         int cateCount = categoryService.count();
-        AuthorInfoTableCardVo person = new AuthorInfoTableCardVo(name, city, avatar, title, articleCount, tagCount, cateCount);
+        AuthorInfoTableCardVO person = new AuthorInfoTableCardVO(name, city, avatar, title, articleCount, tagCount, cateCount);
 
         model.addAttribute("info", person);
-        model.addAttribute("categories", categoryTableCardVoList);
-        model.addAttribute("tags", tagTableCardVoList);
-        model.addAttribute("archives", archiveTableCartVoList);
-        model.addAttribute("newArticles", articleTopTableCardVoList);
+        model.addAttribute("categories", categoryTableCardVOList);
+        model.addAttribute("tags", tagTableCardVOList);
+        model.addAttribute("archives", archiveTableCartVOList);
+        model.addAttribute("newArticles", articleTopTableCardVOList);
         model.addAttribute("links", links);
     }
 }

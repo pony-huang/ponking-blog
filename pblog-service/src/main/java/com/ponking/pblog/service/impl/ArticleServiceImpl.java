@@ -9,15 +9,15 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ponking.pblog.dao.ArticleMapper;
 import com.ponking.pblog.common.exception.GlobalException;
 import com.ponking.pblog.model.document.EsArticle;
-import com.ponking.pblog.model.dto.ArticleDto;
+import com.ponking.pblog.model.dto.ArticleDTO;
 import com.ponking.pblog.model.dto.ArticleEditDto;
-import com.ponking.pblog.model.dto.AuthorDto;
+import com.ponking.pblog.model.dto.AuthorDTO;
 import com.ponking.pblog.model.entity.Article;
 import com.ponking.pblog.model.entity.ArticleTag;
 import com.ponking.pblog.common.params.PBlogProperties;
-import com.ponking.pblog.model.vo.ArchiveTableCartVo;
-import com.ponking.pblog.model.vo.ArchiveVo;
-import com.ponking.pblog.model.vo.ArticleTopTableCardVo;
+import com.ponking.pblog.model.vo.ArchiveTableCartVO;
+import com.ponking.pblog.model.vo.ArchiveVO;
+import com.ponking.pblog.model.vo.ArticleTopTableCardVO;
 import com.ponking.pblog.service.IArticleService;
 import com.ponking.pblog.service.IArticleTagService;
 import org.apache.ibatis.annotations.Param;
@@ -135,7 +135,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
      * @return
      */
     @Override
-    public Page getArticleFrontPage(IPage page, @Param(Constants.WRAPPER) Wrapper<ArticleDto> wrapper) {
+    public Page getArticleFrontPage(IPage page, @Param(Constants.WRAPPER) Wrapper<ArticleDTO> wrapper) {
         return baseMapper.selectArticleDtoList(page, wrapper);
     }
 
@@ -145,7 +145,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
      * @return
      */
     @Override
-    public List<ArchiveTableCartVo> listArchiveColumnInfo() {
+    public List<ArchiveTableCartVO> listArchiveColumnInfo() {
         return baseMapper.selectArchiveColumnInfo();
     }
 
@@ -155,27 +155,27 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
      * @return
      */
     @Override
-    public List<ArticleTopTableCardVo> listArticleTopColumn() {
+    public List<ArticleTopTableCardVO> listArticleTopColumn() {
         return baseMapper.selectListArticleTopColumn();
     }
 
     @Override
-    public List<ArchiveVo> listArchiveFront() {
+    public List<ArchiveVO> listArchiveFront() {
         return baseMapper.selectArchiveFrontAll();
     }
 
     @Override
-    public IPage<ArticleDto> articleInfoOfTagDtoList(IPage<ArticleDto> iPage, QueryWrapper<ArticleDto> wrapper) {
+    public IPage<ArticleDTO> articleInfoOfTagDtoList(IPage<ArticleDTO> iPage, QueryWrapper<ArticleDTO> wrapper) {
         return baseMapper.selectArticleInfoOfTagDtoList(iPage, wrapper);
     }
 
     @Override
-    public ArticleDto getArticleInfoById(Long id) {
+    public ArticleDTO getArticleInfoById(Long id) {
         return baseMapper.selectArticleInfoDtoOne(id);
     }
 
     @Override
-    public IPage<ArchiveVo> pageArchiveYearMonthFront(IPage<ArchiveVo> page, QueryWrapper<ArchiveVo> wrapper) {
+    public IPage<ArchiveVO> pageArchiveYearMonthFront(IPage<ArchiveVO> page, QueryWrapper<ArchiveVO> wrapper) {
         return baseMapper.selectArticleByYearMonthDto(page, wrapper);
     }
 
@@ -216,7 +216,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     @Override
     public ArticleEditDto getArticleEditInfo(Serializable id) {
         // todo 动态变化作者信息
-        AuthorDto authorDto = new AuthorDto();
+        AuthorDTO authorDto = new AuthorDTO();
         authorDto.setId(1);
         authorDto.setName(config.getBlogAuthor());
 

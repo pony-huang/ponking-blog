@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @date 2020/4/3--23:49
  **/
 @Data
-public class AuthorDto implements Serializable {
+public class AuthorDTO implements Serializable {
     private static final long serialVersionUID = 1L;
     private String name;
     private Integer id;

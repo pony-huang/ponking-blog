@@ -5,9 +5,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ponking.pblog.common.constants.AuthConstants;
 import com.ponking.pblog.dao.CommentMapper;
-import com.ponking.pblog.model.dto.CommentDto;
+import com.ponking.pblog.model.dto.CommentDTO;
 import com.ponking.pblog.model.entity.Comment;
-import com.ponking.pblog.model.vo.ArticleCommentsVo;
+import com.ponking.pblog.model.vo.ArticleCommentsVO;
 import com.ponking.pblog.service.ICommentService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -30,21 +30,21 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
 
 
     @Override
-    public List<ArticleCommentsVo> getCommentByArticleId(Long id) {
-        List<ArticleCommentsVo> articleCommentsVos = baseMapper.selectList(new QueryWrapper<Comment>().eq("article_id", id))
+    public List<ArticleCommentsVO> getCommentByArticleId(Long id) {
+        List<ArticleCommentsVO> articleCommentsVOS = baseMapper.selectList(new QueryWrapper<Comment>().eq("article_id", id))
                 .stream()
                 .map(item -> {
-                    ArticleCommentsVo vo = new ArticleCommentsVo();
+                    ArticleCommentsVO vo = new ArticleCommentsVO();
                     BeanUtils.copyProperties(item, vo);
                     return vo;
                 }).collect(Collectors.toList());
-        return getTreeCommentsOfParent(articleCommentsVos);
+        return getTreeCommentsOfParent(articleCommentsVOS);
     }
 
     @Override
-    public void addArticleComment(CommentDto commentDto, HttpServletRequest request) {
+    public void addArticleComment(CommentDTO commentDto, HttpServletRequest request) {
         Comment comment = new Comment();
-        BeanUtils.copyProperties(commentDto,comment);
+        BeanUtils.copyProperties(commentDto, comment);
         String ip = request.getRemoteHost();
         String userAgent = request.getHeader("User-Agent");
         comment.setIp(ip);
@@ -68,23 +68,23 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
         baseMapper.insert(comment);
     }
 
-    public List<ArticleCommentsVo> getTreeCommentsOfParent(List<ArticleCommentsVo> source) {
-        List<ArticleCommentsVo> parents = new ArrayList<>();
-        for (ArticleCommentsVo vo : source) {
+    public List<ArticleCommentsVO> getTreeCommentsOfParent(List<ArticleCommentsVO> source) {
+        List<ArticleCommentsVO> parents = new ArrayList<>();
+        for (ArticleCommentsVO vo : source) {
             if (vo.getParentId() == 0) {
                 parents.add(vo);
-                vo.setChildren(getTreeCommentsOfChildren(vo,source));
+                vo.setChildren(getTreeCommentsOfChildren(vo, source));
             }
         }
         return parents;
     }
 
-    public List<ArticleCommentsVo> getTreeCommentsOfChildren(ArticleCommentsVo parent, List<ArticleCommentsVo> source) {
-        List<ArticleCommentsVo> parents = new ArrayList<>();
-        for (ArticleCommentsVo vo : source) {
+    public List<ArticleCommentsVO> getTreeCommentsOfChildren(ArticleCommentsVO parent, List<ArticleCommentsVO> source) {
+        List<ArticleCommentsVO> parents = new ArrayList<>();
+        for (ArticleCommentsVO vo : source) {
             if (vo.getParentId().equals(parent.getId())) {
                 parents.add(vo);
-                vo.setChildren(getTreeCommentsOfChildren(vo,source));
+                vo.setChildren(getTreeCommentsOfChildren(vo, source));
             }
         }
         return parents;

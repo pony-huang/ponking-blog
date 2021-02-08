@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ponking.pblog.common.exception.GlobalException;
 import com.ponking.pblog.dao.CategoryMapper;
 import com.ponking.pblog.model.entity.Category;
-import com.ponking.pblog.model.vo.CategoryTableCardVo;
+import com.ponking.pblog.model.vo.CategoryTableCardVO;
 import com.ponking.pblog.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -68,10 +68,11 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
 
     /**
      * 博客左侧栏分类列表
+     *
      * @return
      */
     @Override
-    public List<CategoryTableCardVo> listCategoryColumnInfo() {
+    public List<CategoryTableCardVO> listCategoryColumnInfo() {
         return categoryMapper.selectCategoryColumnInfo();
     }
 }

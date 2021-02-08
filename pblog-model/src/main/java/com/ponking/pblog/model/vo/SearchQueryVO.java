@@ -13,7 +13,7 @@ import java.util.List;
  * @Des
  **/
 @Data
-public class SearchQueryVo {
+public class SearchQueryVO {
 
 
     private List<Description> pages = new ArrayList<>();
