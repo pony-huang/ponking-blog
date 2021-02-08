@@ -3,14 +3,13 @@ package com.ponking.pblog.web.api;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.common.result.R;
-import com.ponking.pblog.model.dto.CategoryDTO;
+import com.ponking.pblog.model.dto.CategoryAddDTO;
+import com.ponking.pblog.model.dto.CategoryEditDTO;
 import com.ponking.pblog.model.entity.Category;
 import com.ponking.pblog.service.ICategoryService;
 import com.ponking.pblog.util.PageUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,13 +31,6 @@ public class ApiCategoryController {
     @Autowired
     private ICategoryService categoryService;
 
-    /**
-     * 分页数据
-     *
-     * @param page
-     * @param limit
-     * @return
-     */
     @GetMapping("page")
     @ApiOperation("分页查询")
     public R page(@RequestParam("page") Integer page, @RequestParam("limit") Integer limit) {
@@ -46,11 +38,6 @@ public class ApiCategoryController {
         return R.success(sysPage);
     }
 
-    /**
-     * 总数据
-     *
-     * @return
-     */
     @GetMapping("/list")
     @ApiOperation("列表数据")
     public R list() {
@@ -60,45 +47,22 @@ public class ApiCategoryController {
 
     @PostMapping
     @ApiOperation("添加分类")
-    public R save(@RequestBody CategoryDTO category) {
-        Category c = new Category();
-        try {
-            BeanUtils.copyProperties(category, c);
-        } catch (BeansException e) {
-            e.printStackTrace();
-            return R.failed();
-        }
-        categoryService.save(c);
-        return R.success();
+    public R save(@RequestBody CategoryAddDTO category) {
+        categoryService.save(category);
+        return R.success().message("添加成功");
     }
 
     @DeleteMapping("/{id}")
     @ApiOperation("单个删除")
     public R removeById(@PathVariable Integer id) {
-        boolean result = categoryService.removeById(id);
-        if (!result) {
-            return R.failed();
-        }
-        return R.success("删除成功");
+        categoryService.removeById(id);
+        return R.success().message("删除成功");
     }
 
-    /**
-     * 更新category
-     *
-     * @param category
-     * @return
-     */
     @PutMapping
     @ApiOperation("更新分类")
-    public R update(@RequestBody CategoryDTO category) {
-        Category c = new Category();
-        try {
-            BeanUtils.copyProperties(c, category);
-        } catch (BeansException e) {
-            e.printStackTrace();
-            return R.failed();
-        }
-        categoryService.updateById(c);
-        return R.success();
+    public R update(@RequestBody CategoryEditDTO editDTO) {
+        categoryService.updateById(editDTO);
+        return R.success().message("更新成功");
     }
 }

@@ -1,4 +1,4 @@
-package com.ponking.pblog.web.api;
+package com.ponking.pblog.web.api.other;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;

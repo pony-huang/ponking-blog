@@ -3,14 +3,14 @@ package com.ponking.pblog.web.api;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.common.result.R;
-import com.ponking.pblog.model.dto.TagDTO;
+import com.ponking.pblog.model.dto.TagAddDTO;
+import com.ponking.pblog.model.dto.TagEditDTO;
 import com.ponking.pblog.model.entity.Tag;
 import com.ponking.pblog.service.ITagService;
 import com.ponking.pblog.util.PageUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,15 +53,8 @@ public class ApiTagController {
 
     @PostMapping
     @ApiOperation("添加标签")
-    public R save(@RequestBody TagDTO tag) {
-        Tag t = new Tag();
-        try {
-            BeanUtils.copyProperties(tag, t);
-        } catch (BeansException e) {
-            e.printStackTrace();
-            return R.failed();
-        }
-        tagService.save(t);
+    public R save(@RequestBody TagAddDTO addDTO) {
+        tagService.save(addDTO);
         return R.success();
     }
 
@@ -69,35 +62,15 @@ public class ApiTagController {
     @DeleteMapping("{id}")
     @ApiOperation("单个删除")
     public R removeTag(@PathVariable Integer id) {
-        boolean result = tagService.removeById(id);
-        if (!result) {
-            return R.failed();
-        }
+        tagService.removeById(id);
         return R.success().message("删除成功");
     }
 
-    /**
-     * 更新tag
-     *
-     * @param tag
-     * @return
-     */
     @PutMapping
     @ApiOperation("更新标签")
-    public R update(@RequestBody TagDTO tag) {
-        boolean result = false;
-        Tag t = new Tag();
-        try {
-            BeanUtils.copyProperties(t, tag);
-            result = tagService.updateById(t);
-        } catch (BeansException e) {
-            e.printStackTrace();
-            return R.failed();
-        }
-        if (!result) {
-            return R.failed();
-        }
-        return R.success();
+    public R update(@RequestBody TagEditDTO editDTO) {
+        tagService.updateById(editDTO);
+        return R.success().message("更新成功");
     }
 
 }

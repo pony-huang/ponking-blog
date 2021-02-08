@@ -1,4 +1,4 @@
-package com.ponking.pblog.web.api;
+package com.ponking.pblog.web.api.other;
 
 import org.springframework.web.bind.annotation.RestController;
 

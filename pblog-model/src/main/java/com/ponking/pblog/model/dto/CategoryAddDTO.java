@@ -2,12 +2,16 @@ package com.ponking.pblog.model.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @author Peng
- * @date 2020/9/2--15:18
+ * @date 2020/9/2--15:17
  **/
 @Data
-public class TagDTO {
+public class CategoryAddDTO implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Long id;
 
@@ -20,4 +24,5 @@ public class TagDTO {
      * 路径
      */
     private String path;
+
 }

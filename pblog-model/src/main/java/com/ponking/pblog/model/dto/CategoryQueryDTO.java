@@ -2,12 +2,16 @@ package com.ponking.pblog.model.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
- * @author Peng
- * @date 2020/9/2--15:17
- **/
+ * @Author ponking
+ * @Date 2021/2/8 20:45
+ */
 @Data
-public class CategoryDTO {
+public class CategoryQueryDTO implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Long id;
 

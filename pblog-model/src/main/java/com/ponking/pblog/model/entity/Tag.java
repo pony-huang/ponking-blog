@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.io.Serializable;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -28,16 +30,13 @@ public class Tag implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
+    @ApiModelProperty("id")
     private Long id;
 
-    /**
-     * 标签名
-     */
+    @ApiModelProperty("标签名")
     private String name;
 
-    /**
-     * 路径
-     */
+    @ApiModelProperty("路径")
     private String path;
 
 }

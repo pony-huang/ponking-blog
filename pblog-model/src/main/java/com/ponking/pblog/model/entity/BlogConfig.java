@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.io.Serializable;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -27,26 +28,19 @@ public class BlogConfig implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
+    @ApiModelProperty("id")
     private Long id;
 
-    /**
-     * 参数名
-     */
+    @ApiModelProperty("参数名")
     private String name;
 
-    /**
-     * 参数值
-     */
+    @ApiModelProperty("参数值")
     private String value;
 
-    /**
-     * 参数类型 1：全局变量 2：系统配置
-     */
+    @ApiModelProperty("参数类型 1：全局变量 2：系统配置")
     private Integer type;
 
-    /**
-     * 描述
-     */
+    @ApiModelProperty("描述")
     private String description;
 
 

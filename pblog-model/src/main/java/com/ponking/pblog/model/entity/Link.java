@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.io.Serializable;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -27,20 +29,15 @@ public class Link implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
+    @ApiModelProperty("id")
     private Long id;
 
-    /**
-     * 链接名称
-     */
+    @ApiModelProperty("链接名称")
     private String name;
 
-    /**
-     * 链接地址
-     */
+    @ApiModelProperty("链接地址")
     private String url;
 
-    /**
-     * 链接类型 1：友情链接 2：个人链接
-     */
+    @ApiModelProperty("链接类型 1：友情链接 2：个人链接")
     private Integer type;
 }

@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.io.Serializable;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -32,6 +34,7 @@ public class ArticleTag implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
+    @ApiModelProperty("id")
     private Long id;
 
     public ArticleTag(long articleId, long tagId) {
@@ -39,13 +42,9 @@ public class ArticleTag implements Serializable {
         this.tagId = tagId;
     }
 
-    /**
-     * 文章ID
-     */
+    @ApiModelProperty("文章ID")
     private Long articleId;
 
-    /**
-     * 标签ID
-     */
+    @ApiModelProperty("标签ID")
     private Long tagId;
 }

@@ -6,15 +6,16 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ponking.pblog.dao.ArticleMapper;
 import com.ponking.pblog.common.exception.GlobalException;
+import com.ponking.pblog.common.params.PBlogProperties;
+import com.ponking.pblog.dao.ArticleMapper;
 import com.ponking.pblog.model.document.EsArticle;
 import com.ponking.pblog.model.dto.ArticleDTO;
 import com.ponking.pblog.model.dto.ArticleEditDto;
+import com.ponking.pblog.model.dto.ArticleQueryDTO;
 import com.ponking.pblog.model.dto.AuthorDTO;
 import com.ponking.pblog.model.entity.Article;
 import com.ponking.pblog.model.entity.ArticleTag;
-import com.ponking.pblog.common.params.PBlogProperties;
 import com.ponking.pblog.model.vo.ArchiveTableCartVO;
 import com.ponking.pblog.model.vo.ArchiveVO;
 import com.ponking.pblog.model.vo.ArticleTopTableCardVO;
@@ -25,6 +26,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
 import java.util.List;
@@ -211,6 +213,20 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     @Override
     public List<EsArticle> listEsArticleAll() {
         return baseMapper.selectEsArticleList();
+    }
+
+    @Override
+    public IPage<Article> pageArticle(Page<Article> objectPage, ArticleQueryDTO queryDTO) {
+        QueryWrapper<Article> wrapper = new QueryWrapper<>();
+        if (!StringUtils.isEmpty(queryDTO.getTitle())) {
+            // 模糊搜索
+            wrapper.like("title", queryDTO.getTitle());
+        }
+        if (!StringUtils.isEmpty(queryDTO.getCategory())) {
+            // 模糊搜索
+            wrapper.like("category_id", queryDTO.getCategory());
+        }
+        return baseMapper.selectPage(objectPage, wrapper);
     }
 
     @Override

@@ -4,10 +4,12 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ponking.pblog.model.document.EsArticle;
 import com.ponking.pblog.model.dto.ArticleDTO;
 import com.ponking.pblog.model.dto.ArticleEditDto;
+import com.ponking.pblog.model.dto.ArticleQueryDTO;
 import com.ponking.pblog.model.entity.Article;
 import com.ponking.pblog.model.vo.ArchiveTableCartVO;
 import com.ponking.pblog.model.vo.ArchiveVO;
@@ -130,7 +132,17 @@ public interface IArticleService extends IService<Article> {
 
     /**
      * 获取全部博客
+     *
      * @return
      */
     List<EsArticle> listEsArticleAll();
+
+    /**
+     * 获取分页
+     *
+     * @param objectPage
+     * @param queryDTO
+     * @return
+     */
+    IPage<Article> pageArticle(Page<Article> objectPage, ArticleQueryDTO queryDTO);
 }

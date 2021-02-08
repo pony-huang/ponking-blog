@@ -5,10 +5,13 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ponking.pblog.common.exception.GlobalException;
 import com.ponking.pblog.dao.TagMapper;
+import com.ponking.pblog.model.dto.TagAddDTO;
+import com.ponking.pblog.model.dto.TagEditDTO;
 import com.ponking.pblog.model.entity.Tag;
 import com.ponking.pblog.model.vo.TagContentPage;
 import com.ponking.pblog.model.vo.TagTableCardVO;
 import com.ponking.pblog.service.ITagService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,16 +35,17 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements ITagS
     public boolean save(Tag tag) {
         // 1. 判断是否已存在该标签
         QueryWrapper<Tag> wrapper = new QueryWrapper<>();
-        wrapper.eq("name",tag.getName());
+        wrapper.eq("name", tag.getName());
         Integer count = tagMapper.selectCount(wrapper);
-        if(count>0){
-            throw new GlobalException("已存在【"+tag.getName()+"】标签");
+        if (count > 0) {
+            throw new GlobalException("已存在【" + tag.getName() + "】标签");
         }
         return super.save(tag);
     }
 
     /**
      * 更新Tag
+     *
      * @param tag
      * @return
      */
@@ -51,14 +55,14 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements ITagS
         // 1.  originName 为原始名称,updateName为需要更新的名称,若originName = updateName可视为允许修改
         String originName = tagMapper.selectById(tag.getId()).getName();
         String updateName = tag.getName();
-        if (updateName.equals(originName)){
+        if (updateName.equals(originName)) {
             return super.updateById(tag);
         }
         // 2. 是否已存在该分类(原始的名称可以省略)
         wrapper.eq("name", updateName);
         Integer count = tagMapper.selectCount(wrapper);
-        if(count>0){
-            throw new GlobalException("已存在【"+tag.getName()+"】分类");
+        if (count > 0) {
+            throw new GlobalException("已存在【" + tag.getName() + "】分类");
         }
         return super.updateById(tag);
     }
@@ -75,6 +79,20 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements ITagS
 
     @Override
     public IPage<TagContentPage> getArticleFrontPage(IPage<TagContentPage> iPage, QueryWrapper<TagContentPage> wrapper) {
-        return tagMapper.selectTagInfoPage(iPage,wrapper);
+        return tagMapper.selectTagInfoPage(iPage, wrapper);
+    }
+
+    @Override
+    public boolean save(TagAddDTO addDTO) {
+        Tag tag = new Tag();
+        BeanUtils.copyProperties(addDTO, tag);
+        return save(tag);
+    }
+
+    @Override
+    public boolean updateById(TagEditDTO editDTO) {
+        Tag tag = new Tag();
+        BeanUtils.copyProperties(editDTO, tag);
+        return updateById(tag);
     }
 }

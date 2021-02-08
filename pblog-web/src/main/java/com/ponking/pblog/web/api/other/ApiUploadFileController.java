@@ -1,4 +1,4 @@
-package com.ponking.pblog.web.api;
+package com.ponking.pblog.web.api.other;
 
 import com.ponking.pblog.common.result.R;
 import com.ponking.pblog.common.exception.GlobalException;

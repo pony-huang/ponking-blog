@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.common.result.R;
 import com.ponking.pblog.model.dto.ArticleEditDto;
+import com.ponking.pblog.model.dto.ArticleQueryDTO;
 import com.ponking.pblog.model.entity.Article;
 import com.ponking.pblog.search.IEsArticleService;
 import com.ponking.pblog.service.IArticleService;
@@ -44,27 +45,17 @@ public class ApiArticleController {
     /**
      * 博客列表数据
      *
-     * @param page  当前页
-     * @param limit 每页size
-     * @param title 标题查询条件
+     * @param page            当前页
+     * @param limit           每页size
+     * @param articleQueryDTO
      * @return
      */
     @GetMapping("page")
     @ApiOperation("分页查询")
     public R page(@RequestParam(value = "page", defaultValue = "1") Integer page
             , @RequestParam(value = "limit", defaultValue = "8") Integer limit
-            , String title, String category) {
-
-        QueryWrapper<Article> wrapper = new QueryWrapper<>();
-        if (!StringUtils.isEmpty(title)) {
-            // 模糊搜索
-            wrapper.like("title", title);
-        }
-        if (!StringUtils.isEmpty(category)) {
-            // 模糊搜索
-            wrapper.like("category_id", category);
-        }
-        IPage<Article> articlePage = articleService.page(new Page<>(page, limit), wrapper);
+            , ArticleQueryDTO articleQueryDTO) {
+        IPage<Article> articlePage = articleService.pageArticle(new Page<>(page, limit), articleQueryDTO);
         PageUtil.BlogSysPage sysPage = PageUtil.getPage(articlePage);
         return R.success(sysPage);
     }
