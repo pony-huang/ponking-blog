@@ -110,14 +110,6 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
     }
 
     /**
-     * 对跨域提供支持
-     */
-    @Override
-    protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception {
-        return super.preHandle(request, response);
-    }
-
-    /**
      * 无需转发，直接返回Response信息
      */
     private void response401(ServletResponse response, String msg) {
