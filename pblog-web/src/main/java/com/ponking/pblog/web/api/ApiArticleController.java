@@ -12,7 +12,6 @@ import com.ponking.pblog.search.IEsArticleService;
 import com.ponking.pblog.service.IArticleService;
 import com.ponking.pblog.util.PageUtil;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,7 +91,7 @@ public class ApiArticleController {
      * @return
      */
     @DeleteMapping("/{id}")
-    @ApiModelProperty("单个删除")
+    @ApiOperation("单个删除")
     public R deleteById(@PathVariable Long id) {
         articleService.removeById(id);
         return R.success();
@@ -105,7 +104,7 @@ public class ApiArticleController {
      * @return
      */
     @DeleteMapping
-    @ApiModelProperty("批量删除")
+    @ApiOperation("批量删除")
     public R deleteByIds(@RequestParam @ApiParam("列表ID") Set<Integer> ids) {
         articleService.removeByIds(ids);
         // 删除索引
@@ -120,7 +119,7 @@ public class ApiArticleController {
      * @return
      */
     @PutMapping
-    @ApiModelProperty("更新文章")
+    @ApiOperation("更新文章")
     public R update(@RequestBody ArticleEditDTO articleEditDto) {
         articleService.updateById(articleEditDto);
         esArticleService.updatePutIndex(articleEditDto.getId() + "");
@@ -134,7 +133,7 @@ public class ApiArticleController {
      * @return
      */
     @PutMapping("/status")
-    @ApiModelProperty("更新博客状态")
+    @ApiOperation("更新博客状态")
     public R updateArticleStatus(@RequestBody ArticleEditDTO articleEditDto) {
         articleService.updateArticleStatusById(articleEditDto);
         esArticleService.updatePutIndex(articleEditDto.getId() + "");
@@ -148,7 +147,7 @@ public class ApiArticleController {
      * @return
      */
     @PutMapping("/transfer/status")
-    @ApiModelProperty("更新博客创作状态")
+    @ApiOperation("更新博客创作状态")
     public R updateArticleTransferStatus(@RequestBody ArticleEditDTO articleEditDto) {
         articleService.updateTransferStatusById(articleEditDto);
         esArticleService.updatePutIndex(articleEditDto.getId() + "");
@@ -162,7 +161,7 @@ public class ApiArticleController {
      * @return
      */
     @PutMapping("/comment/status")
-    @ApiModelProperty("更新博客评论状态")
+    @ApiOperation("更新博客评论状态")
     public R updateArticleCommentStatus(@RequestBody ArticleEditDTO articleEditDto) {
         articleService.updateCommentstatusById(articleEditDto);
         esArticleService.updatePutIndex(articleEditDto.getId() + "");

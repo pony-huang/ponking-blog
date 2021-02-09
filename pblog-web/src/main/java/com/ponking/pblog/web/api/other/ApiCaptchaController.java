@@ -1,9 +1,10 @@
-package com.ponking.pblog.web.api;
+package com.ponking.pblog.web.api.other;
 
 import com.wf.captcha.GifCaptcha;
 import com.wf.captcha.base.Captcha;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,7 @@ import java.io.ByteArrayOutputStream;
 public class ApiCaptchaController {
 
     @GetMapping("/captcha")
-    @ApiModelProperty("获取验证码")
+    @ApiOperation("获取验证码")
     public void captcha(HttpServletRequest request, HttpServletResponse response, String randomCode) throws Exception {
         byte[] captcha = null;
         ByteArrayOutputStream out = new ByteArrayOutputStream();
