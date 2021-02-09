@@ -10,8 +10,8 @@ import com.ponking.pblog.common.exception.GlobalException;
 import com.ponking.pblog.common.params.PBlogProperties;
 import com.ponking.pblog.dao.ArticleMapper;
 import com.ponking.pblog.model.document.EsArticle;
-import com.ponking.pblog.model.dto.ArticleDTO;
-import com.ponking.pblog.model.dto.ArticleEditDto;
+import com.ponking.pblog.model.dto.ArticleAddDTO;
+import com.ponking.pblog.model.dto.ArticleEditDTO;
 import com.ponking.pblog.model.dto.ArticleQueryDTO;
 import com.ponking.pblog.model.dto.AuthorDTO;
 import com.ponking.pblog.model.entity.Article;
@@ -66,32 +66,32 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     /**
      * 编辑界面传输数据
      *
-     * @param articleEditDto
+     * @param articleAddDTO
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void save(ArticleEditDto articleEditDto) {
+    public void save(ArticleAddDTO articleAddDTO) {
         // 1. 是否已存在该标题
         QueryWrapper<Article> wrapper = new QueryWrapper<>();
-        String title = articleEditDto.getTitle();
+        String title = articleAddDTO.getTitle();
         wrapper.eq("title", title);
         Integer count = baseMapper.selectCount(wrapper);
         if (count > 0) {
-            throw new GlobalException("已存在" + articleEditDto.getTitle() + "标题");
+            throw new GlobalException("已存在" + articleAddDTO.getTitle() + "标题");
         }
         // 2. 插入文章
         Article article = new Article();
         // 若图片为空,插入默认图片
-        if (articleEditDto.getImage() == null) {
-            articleEditDto.setImage(config.getDefaultImage());
+        if (articleAddDTO.getImage() == null) {
+            articleAddDTO.setImage(config.getDefaultImage());
         }
-        BeanUtils.copyProperties(articleEditDto, article);
+        BeanUtils.copyProperties(articleAddDTO, article);
         // 获取新插入记录的主键
         baseMapper.insert(article);
         Long articleId = article.getId();
         // 为新文章更新新的标签
-        List<ArticleTag> articleTags = articleEditDto.getTagIds().stream()
-                .map(e -> new ArticleTag(articleId, e)).distinct().collect(Collectors.toList());
+        List<ArticleTag> articleTags = articleAddDTO.getTags().stream()
+                .map(e -> new ArticleTag(articleId, e.getId())).distinct().collect(Collectors.toList());
         articleTagService.saveBatch(articleTags);
     }
 
@@ -102,7 +102,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void updateById(ArticleEditDto articleEditDto) {
+    public void updateById(ArticleEditDTO articleEditDto) {
         // 1. 是否已存在该标题（若没有修改标题视为已修改标题）
         QueryWrapper<Article> wrapper1 = new QueryWrapper<>();
         // 修改后的title
@@ -137,7 +137,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
      * @return
      */
     @Override
-    public Page getArticleFrontPage(IPage page, @Param(Constants.WRAPPER) Wrapper<ArticleDTO> wrapper) {
+    public Page getArticleFrontPage(IPage page, @Param(Constants.WRAPPER) Wrapper<ArticleAddDTO> wrapper) {
         return baseMapper.selectArticleDtoList(page, wrapper);
     }
 
@@ -167,12 +167,12 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     }
 
     @Override
-    public IPage<ArticleDTO> articleInfoOfTagDtoList(IPage<ArticleDTO> iPage, QueryWrapper<ArticleDTO> wrapper) {
+    public IPage<ArticleAddDTO> articleInfoOfTagDtoList(IPage<ArticleAddDTO> iPage, QueryWrapper<ArticleAddDTO> wrapper) {
         return baseMapper.selectArticleInfoOfTagDtoList(iPage, wrapper);
     }
 
     @Override
-    public ArticleDTO getArticleInfoById(Long id) {
+    public ArticleAddDTO getArticleInfoById(Long id) {
         return baseMapper.selectArticleInfoDtoOne(id);
     }
 
@@ -182,7 +182,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     }
 
     @Override
-    public void updateTransferStatusById(ArticleEditDto articleEditDto) {
+    public void updateTransferStatusById(ArticleEditDTO articleEditDto) {
         Article article = new Article();
         article.setOriginal(articleEditDto.getOriginal());
         article.setId(articleEditDto.getId());
@@ -190,7 +190,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     }
 
     @Override
-    public void updateCommentstatusById(ArticleEditDto articleEditDto) {
+    public void updateCommentstatusById(ArticleEditDTO articleEditDto) {
         Article article = new Article();
         article.setCommented(articleEditDto.getCommented());
         article.setId(articleEditDto.getId());
@@ -203,7 +203,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
      * @param articleEditDto
      */
     @Override
-    public void updateArticleStatusById(ArticleEditDto articleEditDto) {
+    public void updateArticleStatusById(ArticleEditDTO articleEditDto) {
         Article article = new Article();
         article.setId(articleEditDto.getId());
         article.setStatus(articleEditDto.getStatus());
@@ -230,13 +230,13 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     }
 
     @Override
-    public ArticleEditDto getArticleEditInfo(Serializable id) {
+    public ArticleEditDTO getArticleEditInfo(Serializable id) {
         // todo 动态变化作者信息
         AuthorDTO authorDto = new AuthorDTO();
         authorDto.setId(1);
         authorDto.setName(config.getBlogAuthor());
 
-        ArticleEditDto article = baseMapper.selectArticleEditInfo(id);
+        ArticleEditDTO article = baseMapper.selectArticleEditInfo(id);
         List<Long> tagIds = articleTagService.list(new QueryWrapper<ArticleTag>().eq("article_id", id))
                 .stream()
                 .map(ArticleTag::getTagId).collect(Collectors.toList());

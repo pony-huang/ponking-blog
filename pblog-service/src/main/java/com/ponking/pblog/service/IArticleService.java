@@ -7,8 +7,8 @@ import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ponking.pblog.model.document.EsArticle;
-import com.ponking.pblog.model.dto.ArticleDTO;
-import com.ponking.pblog.model.dto.ArticleEditDto;
+import com.ponking.pblog.model.dto.ArticleAddDTO;
+import com.ponking.pblog.model.dto.ArticleEditDTO;
 import com.ponking.pblog.model.dto.ArticleQueryDTO;
 import com.ponking.pblog.model.entity.Article;
 import com.ponking.pblog.model.vo.ArchiveTableCartVO;
@@ -35,22 +35,22 @@ public interface IArticleService extends IService<Article> {
      * @param id
      * @return
      */
-    ArticleEditDto getArticleEditInfo(Serializable id);
+    ArticleEditDTO getArticleEditInfo(Serializable id);
 
     /**
      * 根据id值查询博客文章,用于后台插入
      *
-     * @param articleEditDto
+     * @param articleAddDTO
      * @return
      */
-    void save(ArticleEditDto articleEditDto);
+    void save(ArticleAddDTO articleAddDTO);
 
     /**
      * 根据id值查询博客文章,用于后台更新
      *
      * @param articleEditDto
      */
-    void updateById(ArticleEditDto articleEditDto);
+    void updateById(ArticleEditDTO articleEditDto);
 
 
     /**
@@ -60,7 +60,7 @@ public interface IArticleService extends IService<Article> {
      * @param queryWrapper
      * @return
      */
-    IPage<ArticleDTO> getArticleFrontPage(IPage page, @Param(Constants.WRAPPER) Wrapper<ArticleDTO> queryWrapper);
+    IPage<ArticleAddDTO> getArticleFrontPage(IPage page, @Param(Constants.WRAPPER) Wrapper<ArticleAddDTO> queryWrapper);
 
     /**
      * 博客右侧栏归档列表
@@ -91,7 +91,7 @@ public interface IArticleService extends IService<Article> {
      * @param wrapper
      * @return
      */
-    IPage<ArticleDTO> articleInfoOfTagDtoList(IPage<ArticleDTO> iPage, @Param(Constants.WRAPPER) QueryWrapper<ArticleDTO> wrapper);
+    IPage<ArticleAddDTO> articleInfoOfTagDtoList(IPage<ArticleAddDTO> iPage, @Param(Constants.WRAPPER) QueryWrapper<ArticleAddDTO> wrapper);
 
 
     /**
@@ -100,7 +100,7 @@ public interface IArticleService extends IService<Article> {
      * @param id
      * @return
      */
-    ArticleDTO getArticleInfoById(Long id);
+    ArticleAddDTO getArticleInfoById(Long id);
 
     /**
      * 归档
@@ -113,21 +113,24 @@ public interface IArticleService extends IService<Article> {
 
     /**
      * 更新博客创作状态
+     *
      * @param articleEditDto
      */
-    void updateTransferStatusById(ArticleEditDto articleEditDto);
+    void updateTransferStatusById(ArticleEditDTO articleEditDto);
 
     /**
      * 更新博客评论状态
+     *
      * @param articleEditDto
      */
-    void updateCommentstatusById(ArticleEditDto articleEditDto);
+    void updateCommentstatusById(ArticleEditDTO articleEditDto);
 
     /**
      * 更新博客状态(发布,草稿,回收箱)状态
+     *
      * @param articleEditDto
      */
-    void updateArticleStatusById(ArticleEditDto articleEditDto);
+    void updateArticleStatusById(ArticleEditDTO articleEditDto);
 
 
     /**

@@ -1,7 +1,7 @@
 package com.ponking.pblog.web.front;
 
 import com.ponking.pblog.common.params.PBlogProperties;
-import com.ponking.pblog.model.dto.ArticleDTO;
+import com.ponking.pblog.model.dto.ArticleAddDTO;
 import com.ponking.pblog.model.entity.Article;
 import com.ponking.pblog.service.IArticleService;
 import com.ponking.pblog.service.ICategoryService;
@@ -28,7 +28,7 @@ public class ArticleDetailController extends AbstractBaseController {
 
     @RequestMapping("/articles/{id}")
     public String content(Model model, @PathVariable("id") Long id) {
-        ArticleDTO article = articleService.getArticleInfoById(id);
+        ArticleAddDTO article = articleService.getArticleInfoById(id);
         Article articleUpdateVisit = new Article();
 
         /*更新阅读数*/

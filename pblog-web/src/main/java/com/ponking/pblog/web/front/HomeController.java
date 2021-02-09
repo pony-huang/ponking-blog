@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.common.params.PBlogProperties;
-import com.ponking.pblog.model.dto.ArticleDTO;
+import com.ponking.pblog.model.dto.ArticleAddDTO;
 import com.ponking.pblog.service.IArticleService;
 import com.ponking.pblog.service.ICategoryService;
 import com.ponking.pblog.service.ILinkService;
@@ -41,8 +41,8 @@ public class HomeController extends AbstractBaseController {
 
     @RequestMapping("/home")
     public String content(Model model, @RequestParam(value = "page",defaultValue = "1")int page) {
-        IPage<ArticleDTO> iPage = new Page<>(page, 3);
-        IPage<ArticleDTO> articles = articleService.getArticleFrontPage(iPage, new QueryWrapper<>());
+        IPage<ArticleAddDTO> iPage = new Page<>(page, 3);
+        IPage<ArticleAddDTO> articles = articleService.getArticleFrontPage(iPage, new QueryWrapper<>());
         model.addAttribute("articles", articles);
         getBlogTableCardInfo(model);
         return "blog/index";

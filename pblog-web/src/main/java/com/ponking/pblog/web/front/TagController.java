@@ -3,9 +3,9 @@ package com.ponking.pblog.web.front;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ponking.pblog.model.dto.ArticleDTO;
-import com.ponking.pblog.model.entity.Tag;
 import com.ponking.pblog.common.params.PBlogProperties;
+import com.ponking.pblog.model.dto.ArticleAddDTO;
+import com.ponking.pblog.model.entity.Tag;
 import com.ponking.pblog.service.IArticleService;
 import com.ponking.pblog.service.ICategoryService;
 import com.ponking.pblog.service.ILinkService;
@@ -40,10 +40,10 @@ public class TagController extends AbstractBaseController {
     @RequestMapping("/tags/{tagId}")
     public String list(Model model, @PathVariable Integer tagId,
                        @RequestParam(value = "page", defaultValue = "1") Integer page) {
-        IPage<ArticleDTO> iPage = new Page<>(page, 4);
-        QueryWrapper<ArticleDTO> wrapper = new QueryWrapper<>();
+        IPage<ArticleAddDTO> iPage = new Page<>(page, 4);
+        QueryWrapper<ArticleAddDTO> wrapper = new QueryWrapper<>();
         wrapper.eq("bt.id", tagId);
-        IPage<ArticleDTO> articles = articleService.articleInfoOfTagDtoList(iPage, wrapper);
+        IPage<ArticleAddDTO> articles = articleService.articleInfoOfTagDtoList(iPage, wrapper);
         Tag tag = tagService.getById(tagId);
         model.addAttribute("articles", articles);
         model.addAttribute("tag", tag);

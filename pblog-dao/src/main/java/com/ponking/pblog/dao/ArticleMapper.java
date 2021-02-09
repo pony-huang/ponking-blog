@@ -6,8 +6,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.model.document.EsArticle;
-import com.ponking.pblog.model.dto.ArticleDTO;
-import com.ponking.pblog.model.dto.ArticleEditDto;
+import com.ponking.pblog.model.dto.ArticleAddDTO;
+import com.ponking.pblog.model.dto.ArticleEditDTO;
 import com.ponking.pblog.model.entity.Article;
 import com.ponking.pblog.model.vo.ArchiveTableCartVO;
 import com.ponking.pblog.model.vo.ArchiveVO;
@@ -28,13 +28,13 @@ import java.util.List;
 public interface ArticleMapper extends BaseMapper<Article> {
 
 
-
     /**
      * 该数据用于后台管理编辑
+     *
      * @param id
      * @return
      */
-    ArticleEditDto selectArticleEditInfo(@Param("id") Serializable id);
+    ArticleEditDTO selectArticleEditInfo(@Param("id") Serializable id);
 
     /**
      * 博客右侧栏归档列表
@@ -64,7 +64,7 @@ public interface ArticleMapper extends BaseMapper<Article> {
      * @param queryWrapper
      * @return
      */
-    Page<ArticleDTO> selectArticleDtoList(IPage<ArticleDTO> page, @Param(Constants.WRAPPER) Wrapper<ArticleDTO> queryWrapper);
+    Page<ArticleAddDTO> selectArticleDtoList(IPage<ArticleAddDTO> page, @Param(Constants.WRAPPER) Wrapper<ArticleAddDTO> queryWrapper);
 
 
     /**
@@ -91,7 +91,7 @@ public interface ArticleMapper extends BaseMapper<Article> {
      * @param queryWrapper
      * @return
      */
-    Page<ArticleDTO> selectArticleInfoOfTagDtoList(IPage<ArticleDTO> page, @Param(Constants.WRAPPER) Wrapper<ArticleDTO> queryWrapper);
+    Page<ArticleAddDTO> selectArticleInfoOfTagDtoList(IPage<ArticleAddDTO> page, @Param(Constants.WRAPPER) Wrapper<ArticleAddDTO> queryWrapper);
 
 
     /**
@@ -100,5 +100,5 @@ public interface ArticleMapper extends BaseMapper<Article> {
      * @param id
      * @return
      */
-    ArticleDTO selectArticleInfoDtoOne(@Param("id") long id);
+    ArticleAddDTO selectArticleInfoDtoOne(@Param("id") long id);
 }

@@ -25,7 +25,7 @@ public class ApiEsSearchController {
     @GetMapping("/es/import")
     @ApiOperation("导入数据（测试）")
     public R importAll(){
-        int i = esArticleService.importAll();
-        return R.success(i);
+        // todo
+        return R.success();
     }
 }

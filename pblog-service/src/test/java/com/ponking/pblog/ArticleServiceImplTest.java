@@ -1,7 +1,7 @@
 package com.ponking.pblog;
 
 
-import com.ponking.pblog.model.dto.ArticleEditDto;
+import com.ponking.pblog.model.dto.ArticleEditDTO;
 import com.ponking.pblog.model.entity.Tag;
 import com.ponking.pblog.service.IArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class ArticleServiceImplTest {
 
     //    @Test
     public void save() {
-        ArticleEditDto articleEditDto = new ArticleEditDto();
+        ArticleEditDTO articleEditDto = new ArticleEditDTO();
 
         Tag t1 = new Tag();
         t1.setId(12L);
@@ -38,7 +38,6 @@ public class ArticleServiceImplTest {
 //        articleEditDto.setId(12L);
         articleEditDto.setTitle("hello save method");
         articleEditDto.setStatus(2);
-        articleService.save(articleEditDto);
     }
 
     //    @Test

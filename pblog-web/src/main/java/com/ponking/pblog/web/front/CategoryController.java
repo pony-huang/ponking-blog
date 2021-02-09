@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.common.params.PBlogProperties;
-import com.ponking.pblog.model.dto.ArticleDTO;
+import com.ponking.pblog.model.dto.ArticleAddDTO;
 import com.ponking.pblog.model.entity.Category;
 import com.ponking.pblog.service.IArticleService;
 import com.ponking.pblog.service.ICategoryService;
@@ -37,10 +37,10 @@ public class CategoryController extends AbstractBaseController {
 
     @RequestMapping("/categories/{categoryId}")
     public String content(Model model, @PathVariable Integer categoryId, @RequestParam(value = "page", defaultValue = "1") Integer page) {
-        IPage<ArticleDTO> iPage = new Page<>(page, 4);
-        QueryWrapper<ArticleDTO> wrapper = new QueryWrapper<>();
+        IPage<ArticleAddDTO> iPage = new Page<>(page, 4);
+        QueryWrapper<ArticleAddDTO> wrapper = new QueryWrapper<>();
         wrapper.eq("category_id", categoryId);
-        IPage<ArticleDTO> articles = articleService.getArticleFrontPage(iPage, wrapper);
+        IPage<ArticleAddDTO> articles = articleService.getArticleFrontPage(iPage, wrapper);
         Category category = categoryService.getById(categoryId);
         model.addAttribute("articles", articles);
         model.addAttribute("category", category);

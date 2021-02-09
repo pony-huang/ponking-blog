@@ -14,6 +14,7 @@ public class CategoryEditDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @ApiModelProperty("id")
     private Long id;
 
     @ApiModelProperty("分类名")

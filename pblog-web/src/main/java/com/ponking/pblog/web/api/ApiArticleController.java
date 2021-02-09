@@ -1,11 +1,11 @@
 package com.ponking.pblog.web.api;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ponking.pblog.common.result.R;
-import com.ponking.pblog.model.dto.ArticleEditDto;
+import com.ponking.pblog.model.dto.ArticleAddDTO;
+import com.ponking.pblog.model.dto.ArticleEditDTO;
 import com.ponking.pblog.model.dto.ArticleQueryDTO;
 import com.ponking.pblog.model.entity.Article;
 import com.ponking.pblog.search.IEsArticleService;
@@ -16,7 +16,6 @@ import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
@@ -69,22 +68,20 @@ public class ApiArticleController {
     @GetMapping("/{id}")
     @ApiOperation("获取详情")
     public R getArticleById(@PathVariable Long id) {
-        ArticleEditDto articleEditDto = articleService.getArticleEditInfo(id);
+        ArticleEditDTO articleEditDto = articleService.getArticleEditInfo(id);
         return R.success(articleEditDto);
     }
 
     /**
      * 插入博客文章
      *
-     * @param articleEditDto
+     * @param addDTO
      * @return
      */
     @PostMapping
     @ApiOperation("添加文章")
-    public R save(@RequestBody ArticleEditDto articleEditDto) {
-        articleService.save(articleEditDto);
-        // 插入索引
-        esArticleService.create(articleEditDto.getId() + "");
+    public R save(@RequestBody ArticleAddDTO addDTO) {
+        articleService.save(addDTO);
         return R.success();
     }
 
@@ -98,8 +95,6 @@ public class ApiArticleController {
     @ApiModelProperty("单个删除")
     public R deleteById(@PathVariable Long id) {
         articleService.removeById(id);
-        // 删除索引
-        esArticleService.delete(id + "");
         return R.success();
     }
 
@@ -126,7 +121,7 @@ public class ApiArticleController {
      */
     @PutMapping
     @ApiModelProperty("更新文章")
-    public R update(@RequestBody ArticleEditDto articleEditDto) {
+    public R update(@RequestBody ArticleEditDTO articleEditDto) {
         articleService.updateById(articleEditDto);
         esArticleService.updatePutIndex(articleEditDto.getId() + "");
         return R.success();
@@ -140,7 +135,7 @@ public class ApiArticleController {
      */
     @PutMapping("/status")
     @ApiModelProperty("更新博客状态")
-    public R updateArticleStatus(@RequestBody ArticleEditDto articleEditDto) {
+    public R updateArticleStatus(@RequestBody ArticleEditDTO articleEditDto) {
         articleService.updateArticleStatusById(articleEditDto);
         esArticleService.updatePutIndex(articleEditDto.getId() + "");
         return R.success();
@@ -154,7 +149,7 @@ public class ApiArticleController {
      */
     @PutMapping("/transfer/status")
     @ApiModelProperty("更新博客创作状态")
-    public R updateArticleTransferStatus(@RequestBody ArticleEditDto articleEditDto) {
+    public R updateArticleTransferStatus(@RequestBody ArticleEditDTO articleEditDto) {
         articleService.updateTransferStatusById(articleEditDto);
         esArticleService.updatePutIndex(articleEditDto.getId() + "");
         return R.success();
@@ -168,7 +163,7 @@ public class ApiArticleController {
      */
     @PutMapping("/comment/status")
     @ApiModelProperty("更新博客评论状态")
-    public R updateArticleCommentStatus(@RequestBody ArticleEditDto articleEditDto) {
+    public R updateArticleCommentStatus(@RequestBody ArticleEditDTO articleEditDto) {
         articleService.updateCommentstatusById(articleEditDto);
         esArticleService.updatePutIndex(articleEditDto.getId() + "");
         return R.success();

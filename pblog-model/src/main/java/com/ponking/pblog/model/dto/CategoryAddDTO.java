@@ -1,5 +1,6 @@
 package com.ponking.pblog.model.dto;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -13,16 +14,13 @@ public class CategoryAddDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @ApiModelProperty("id")
     private Long id;
 
-    /**
-     * 分类名
-     */
+    @ApiModelProperty("分类名")
     private String name;
 
-    /**
-     * 路径
-     */
+    @ApiModelProperty("路径")
     private String path;
 
 }

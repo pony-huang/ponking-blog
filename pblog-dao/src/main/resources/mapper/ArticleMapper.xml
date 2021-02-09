@@ -12,7 +12,7 @@
     <!--    </com.ponking.pblog.cache>-->
 
 
-    <resultMap id="ArticleInfoMap" type="com.ponking.pblog.model.dto.ArticleDTO">
+    <resultMap id="ArticleInfoMap" type="com.ponking.pblog.model.dto.ArticleAddDTO">
         <id property="id" column="id"/>
         <result property="title" column="title"/>
         <result property="summary" column="summary"/>
@@ -56,7 +56,7 @@
                     select="selectTagsByArticleId"/>
     </resultMap>
 
-    <resultMap id="ArticleDTO" type="com.ponking.pblog.model.dto.ArticleEditDto">
+    <resultMap id="ArticleDTO" type="com.ponking.pblog.model.dto.ArticleEditDTO">
         <id property="id" column="id"/>
         <result property="summary" column="summary"/>
         <result property="image" column="image"/>
