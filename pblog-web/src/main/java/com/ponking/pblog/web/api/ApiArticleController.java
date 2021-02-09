@@ -53,9 +53,7 @@ public class ApiArticleController {
     public R page(@RequestParam(value = "page", defaultValue = "1") Integer page
             , @RequestParam(value = "limit", defaultValue = "8") Integer limit
             , ArticleQueryDTO articleQueryDTO) {
-        IPage<Article> articlePage = articleService.pageArticle(new Page<>(page, limit), articleQueryDTO);
-        PageUtil.BlogSysPage sysPage = PageUtil.getPage(articlePage);
-        return R.success(sysPage);
+        return R.success(PageUtil.getPage(articleService.pageArticle(new Page<>(page, limit), articleQueryDTO)));
     }
 
     /**
@@ -107,8 +105,6 @@ public class ApiArticleController {
     @ApiOperation("批量删除")
     public R deleteByIds(@RequestParam @ApiParam("列表ID") Set<Integer> ids) {
         articleService.removeByIds(ids);
-        // 删除索引
-        esArticleService.delete(ids.stream().map(String::valueOf).collect(Collectors.toList()));
         return R.success();
     }
 
@@ -122,7 +118,6 @@ public class ApiArticleController {
     @ApiOperation("更新文章")
     public R update(@RequestBody ArticleEditDTO articleEditDto) {
         articleService.updateById(articleEditDto);
-        esArticleService.updatePutIndex(articleEditDto.getId() + "");
         return R.success();
     }
 
@@ -136,7 +131,6 @@ public class ApiArticleController {
     @ApiOperation("更新博客状态")
     public R updateArticleStatus(@RequestBody ArticleEditDTO articleEditDto) {
         articleService.updateArticleStatusById(articleEditDto);
-        esArticleService.updatePutIndex(articleEditDto.getId() + "");
         return R.success();
     }
 
@@ -150,7 +144,6 @@ public class ApiArticleController {
     @ApiOperation("更新博客创作状态")
     public R updateArticleTransferStatus(@RequestBody ArticleEditDTO articleEditDto) {
         articleService.updateTransferStatusById(articleEditDto);
-        esArticleService.updatePutIndex(articleEditDto.getId() + "");
         return R.success();
     }
 
@@ -164,7 +157,6 @@ public class ApiArticleController {
     @ApiOperation("更新博客评论状态")
     public R updateArticleCommentStatus(@RequestBody ArticleEditDTO articleEditDto) {
         articleService.updateCommentstatusById(articleEditDto);
-        esArticleService.updatePutIndex(articleEditDto.getId() + "");
         return R.success();
     }
 

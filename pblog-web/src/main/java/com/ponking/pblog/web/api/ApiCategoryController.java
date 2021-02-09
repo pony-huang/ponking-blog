@@ -34,8 +34,7 @@ public class ApiCategoryController {
     @GetMapping("page")
     @ApiOperation("分页查询")
     public R page(@RequestParam("page") Integer page, @RequestParam("limit") Integer limit) {
-        PageUtil.BlogSysPage sysPage = PageUtil.getPage(categoryService.page(new Page<>(page, limit)));
-        return R.success(sysPage);
+        return R.success(PageUtil.getPage(categoryService.page(new Page<>(page, limit))));
     }
 
     @GetMapping("/list")

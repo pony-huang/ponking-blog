@@ -35,8 +35,7 @@ public class ApiTagController {
     @GetMapping("page")
     @ApiOperation("分页查询")
     public R getPage(@RequestParam("page") Integer page, @RequestParam("limit") Integer limit) {
-        PageUtil.BlogSysPage sysPage = PageUtil.getPage(tagService.page(new Page<>(page, limit)));
-        return R.success(sysPage);
+        return R.success(PageUtil.getPage(tagService.page(new Page<>(page, limit))));
     }
 
     /**
